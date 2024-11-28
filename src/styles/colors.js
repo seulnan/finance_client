@@ -1,0 +1,23 @@
+export const legacyColors = {
+    Beige500: '#98908B', // black100
+    Beige100: '#F8F4F0',
+    Grey900: '#201F24',
+    Grey500: '#696868',
+    Grey300: '#B3B3B3',
+    Grey100: '#F2F2F2',
+    Green: '#277C78',
+    Yellow: '#F2CDAC',
+    Cyan: '#82C9D7',
+    Navy: '#626070',
+    Red: '#C94736',
+    Purple: '#826CB0',
+    Turquoise: '#597C7C',
+    Brown: '#93674F',
+    Magenta: '#934F6F',
+    Blue: '#3F82B2',
+    NavyGrey: '#97A0AC',
+    ArmyGreen: '#7F9161',
+    Gold: '#CAB361',
+    Orange: '#BE6C49',
+    White: 'FFFFFF',    
+  };
