@@ -1,38 +1,24 @@
 import React from 'react';
-import './App.css';  // 기본 스타일 파일
-import './styles/fonts.css';  // 폰트 관련 CSS 파일을 불러옴
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './layouts/SideBar.jsx';
 
 function App() {
   return (
-    <div className="App">
-      <div className="textPreset1">
-        This is Text Preset 1 with bold font.
+    <Router>
+      <div style={{ display: 'flex' }}>
+        <Sidebar />
+        <div style={{ flexGrow: 1, padding: '20px', backgroundColor: '#f8f6f4' }}>
+          <Routes>
+            <Route path="/" element={<h1>Overview</h1>} />
+            <Route path="/transactions" element={<h1>Transactions</h1>} />
+            <Route path="/budgets" element={<h1>Budgets</h1>} />
+            <Route path="/pots" element={<h1>Pots</h1>} />
+            <Route path="/recurring-bills" element={<h1>Recurring Bills</h1>} />
+            <Route path="/new-budget" element={<h1>New Budget</h1>} />
+          </Routes>
+        </div>
       </div>
-
-      <div className="textPreset2">
-        This is Text Preset 2 with regular font.
-      </div>
-
-      <div className="textPreset3">
-        This is Text Preset 3 with bold font.
-      </div>
-
-      <div className="textPreset4">
-        This is Text Preset 4 with regular font.
-      </div>
-
-      <div className="textPreset4Bold">
-        This is Text Preset 4 Bold with bold font.
-      </div>
-
-      <div className="textPreset5">
-        This is Text Preset 5 with regular font.
-      </div>
-
-      <div className="textPreset5Bold">
-        This is Text Preset 5 Bold with bold font.
-      </div>
-    </div>
+    </Router>
   );
 }
 
