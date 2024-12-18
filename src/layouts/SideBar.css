@@ -14,7 +14,7 @@
 
 .logo {
   display: flex;
-  padding: var(--spacing-500, 40px) var(--spacing-400, 32px);
+  padding: 40px 32px 62px 32px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -34,7 +34,7 @@
   align-items: center;
   height: 56px;
   gap: 16px;
-  padding: 5px 32px;
+  padding: 2px 32px;
   color: #bdbdbd;
   font-size: 1rem;
   text-decoration: none;
