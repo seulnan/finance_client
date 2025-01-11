@@ -1,19 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import '../layouts/SideBar.css';
-import Logo from 'C:/university_life/finance_client/src/assets/images/Logo.png';
+import Logo from '../assets/images/Logo.png';
 
 // 아이콘 가져오기
-import OverviewIcon from 'C:/university_life/finance_client/src/assets/images/Icons overview.png';
-import OverviewIconActive from 'C:/university_life/finance_client/src/assets/images/Icons overview active.png';
-import TransactionIcon from 'C:/university_life/finance_client/src/assets/images/Icons transactions.png';
-import TransactionIconActive from 'C:/university_life/finance_client/src/assets/images/Icons transactions active.png';
-import BudgetIcon from 'C:/university_life/finance_client/src/assets/images/Icons budgets.png';
-import BudgetIconActive from 'C:/university_life/finance_client/src/assets/images/Icons budgets active.png';
-import PotsIcon from 'C:/university_life/finance_client/src/assets/images/Icons pots.png';
-import PotsIconActive from 'C:/university_life/finance_client/src/assets/images/Icons pots active.png';
-import RecurringBillsIcon from 'C:/university_life/finance_client/src/assets/images/Icons recurring bills.png';
-import RecurringBillsIconActive from 'C:/university_life/finance_client/src/assets/images/Icons recurring bills active.png';
+import OverviewIcon from '../assets/images/Icons overview.png';
+import OverviewIconActive from '../assets/images/Icons overview active.png';
+import TransactionIcon from '../assets/images/Icons transactions.png';
+import TransactionIconActive from '../assets/images/Icons transactions active.png';
+import BudgetIcon from '../assets/images/Icons budgets.png';
+import BudgetIconActive from '../assets/images/Icons budgets active.png';
+import PotsIcon from '../assets/images/Icons pots.png';
+import PotsIconActive from '../assets/images/Icons pots active.png';
+import RecurringBillsIcon from '../assets/images/Icons recurring bills.png';
+import RecurringBillsIconActive from '../assets/images/Icons recurring bills active.png';
 
 // 아이콘 컴포넌트
 const MenuItem = ({ to, label, icon, iconActive }) => {
