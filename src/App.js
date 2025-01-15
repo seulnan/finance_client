@@ -11,7 +11,7 @@ function App() {
         <div style={{ flexGrow: 1, padding: '20px', backgroundColor: '#f8f6f4' }}>
           <Routes>
             <Route path="/" element={<h1>Overview</h1>} />
-            <Route path="/transactions" element={<h1>Transactions</h1>} />
+            <Route path="/transactions" element={<Transactions />} />
             <Route path="/budgets" element={<h1>Budgets</h1>} />
             <Route path="/pots" element={<h1>Pots</h1>} />
             <Route path="/recurring-bills" element={<h1>Recurring Bills</h1>} />
