@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './layouts/SideBar.jsx';
+import Transactions from './pages/Transactions.jsx';
 
 function App() {
   return (
