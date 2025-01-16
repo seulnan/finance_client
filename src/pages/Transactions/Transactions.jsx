@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import baseAxios from "../../baseAxios";
-import "../../styles/fonts.css"; // fonts.css 파일을 import합니다.
+import "../../styles/fonts.css"; 
+import "./Transactions.css"; 
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]); // 거래 데이터
@@ -61,45 +62,32 @@ function Transactions() {
 
   return (
     <div>
-      <h2 style={{ margin: "8px 0px 40px", fontSize: "32px" }}>Transactions</h2>
+      <h2>Transactions</h2>
 
-      <div
-        style={{
-          padding: "32px", // 내부 여백 (spacing/400)
-          backgroundColor: "#fff", // 박스 배경색
-          borderRadius: "8px", // 모서리 둥글게
-          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)", // 박스 그림자
-        }}
-      >
+      <div className="mainBox">
         {/* 에러 메시지 */}
         {error && (
-          <div style={{ color: "red", textAlign: "center", marginBottom: "20px" }}>
+          <div className="errorMessage">
             {error}
           </div>
         )}
 
         {/* 로딩 상태 */}
         {loading ? (
-          <div style={{ textAlign: "center", marginTop: "32px" }}> {/* spacing/400 */}
+          <div className="loading">
             <div className="spinner"></div> {/* 로딩 스피너 */}
             <p>Loading...</p>
           </div>
         ) : (
           <div>
             <div style={{ marginBottom: "24px" }}> {/* spacing/300 */}
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
+              <table className="table">
                 <thead>
-                  <tr
-                    className="textPreset5"
-                    style={{
-                      color: "#696868", // 제목 색상
-                      borderBottom: "2px solid #F2F2F2", // 제목과 항목들 사이 구분선
-                    }}
-                  >
-                    <th style={{ padding: "12px 0px 12px 16px", textAlign: "left" }}>Recipient / Sender</th>
-                    <th style={{ padding: "12px 0px", textAlign: "left" }}>Category</th>
-                    <th style={{ padding: "12px 0px", textAlign: "left" }}>Transaction Date</th>
-                    <th style={{ padding: "12px 16px 12px 0px", textAlign: "right" }}>Amount</th>
+                  <tr className="textPreset5 titles">
+                    <th id="personTitle">Recipient / Sender</th>
+                    <th className="CategoryDate">Category</th>
+                    <th className="CategoryDate">Transaction Date</th>
+                    <th id="amountTitle">Amount</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -111,60 +99,26 @@ function Transactions() {
                           borderBottom: index === transactions.length - 1 ? "none" : "1px solid #F2F2F2", // 마지막 행 제외
                         }}
                       >
-                        <td
-                          className="textPreset4Bold"
-                          style={{
-                            padding: "16px 0px 16px 12px", // spacing/200
-                            color: "#201F24", // Recipient / Sender 항목 색상
-                          }}
-                        >
-                          <div style={{ display: "flex", alignItems: "center" }}>
-                            <img
-                              src={transaction.avatar}
-                              alt={`${transaction.name} avatar`}
-                              style={{
-                                width: 40,
-                                height: 40,
-                                borderRadius: "50%",
-                                marginRight: "16px", // spacing/200
-                              }}
-                            />
+                        <td className="textPreset4Bold personInfo">
+                          <div className="imgName">
+                            <img src={transaction.avatar} alt={`${transaction.name} avatar`}/>
                             {transaction.name}
                           </div>
                         </td>
-                        <td
-                          className="textPreset5"
-                          style={{
-                            padding: "16px 0px",
-                            color: "#696868", // Category 항목 색상
-                          }}
-                        >
+                        <td className="textPreset5 CategoryDateInfo">
                           {transaction.category}
                         </td>
-                        <td
-                          className="textPreset5"
-                          style={{
-                            padding: "16px 0px",
-                            color: "#696868", // Transaction Date 항목 색상
-                          }}
-                        >
+                        <td className="textPreset5 CategoryDateInfo">
                           {formatDate(transaction.date)}
                         </td>
-                        <td style={{ padding: "16px 12px 16px 0px", textAlign: "right" }}>
+                        <td className="amountInfo">
                           {formatAmount(transaction.amount)}
                         </td>
                       </tr>
                     ))
                   ) : (
                     <tr>
-                      <td
-                        colSpan="4"
-                        style={{
-                          textAlign: "center",
-                          padding: "32px", // spacing/400
-                          color: "gray",
-                        }}
-                      >
+                      <td colSpan="4" className="noTransactions">
                         No transactions available.
                       </td>
                     </tr>
@@ -174,16 +128,12 @@ function Transactions() {
             </div>
 
             {/* 페이지네이션 */}
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "24px" }}> {/* spacing/300 */}
+            <div className="pagination"> {/* spacing/300 */}
               <button
                 disabled={page === 1}
                 onClick={() => handlePageChange(page - 1)}
                 style={{
-                  padding: "16px",
                   backgroundColor: page === 1 ? "#ccc" : "#277C78",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "5px",
                   cursor: page === 1 ? "default" : "pointer",
                 }}
               >
@@ -194,11 +144,7 @@ function Transactions() {
                 disabled={page === totalPages}
                 onClick={() => handlePageChange(page + 1)}
                 style={{
-                  padding: "16px",
                   backgroundColor: page === totalPages ? "#ccc" : "#277C78",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "5px",
                   cursor: page === totalPages ? "default" : "pointer",
                 }}
               >
