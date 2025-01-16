@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import baseAxios from "../baseAxios";
+import baseAxios from "../../baseAxios";
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]); // 거래 데이터
@@ -39,7 +39,7 @@ function Transactions() {
   }, [page]);
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "8px" }}>
       <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Transactions</h2>
 
       {error && (
