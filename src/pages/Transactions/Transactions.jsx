@@ -46,7 +46,7 @@ function Transactions() {
       <div
         style={{
           padding: "32px", // 내부 여백 (spacing/400)
-          backgroundColor: "#f9f9f9", // 박스 배경색
+          backgroundColor: "#fff", // 박스 배경색
           borderRadius: "8px", // 모서리 둥글게
           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)", // 박스 그림자
         }}
@@ -69,7 +69,13 @@ function Transactions() {
             <div style={{ marginBottom: "24px" }}> {/* spacing/300 */}
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
-                  <tr style={{ fontSize: "12px", color: "#696868" }}>
+                  <tr
+                    style={{
+                      fontSize: "12px",
+                      color: "#696868",
+                      borderBottom: "2px solid #F2F2F2", // 제목과 항목들 사이 구분선
+                    }}
+                  >
                     <th style={{ padding: "12px 0px 12px 16px", textAlign: "left" }}>Recipient / Sender</th> {/* spacing/200 */}
                     <th style={{ padding: "12px 0px", textAlign: "left" }}>Category</th>
                     <th style={{ padding: "12px 0px", textAlign: "left" }}>Transaction Date</th>
@@ -78,8 +84,13 @@ function Transactions() {
                 </thead>
                 <tbody>
                   {transactions.length > 0 ? (
-                    transactions.map((transaction) => (
-                      <tr key={transaction._id}>
+                    transactions.map((transaction, index) => (
+                      <tr
+                        key={transaction._id}
+                        style={{
+                          borderBottom: index === transactions.length - 1 ? "none" : "1px solid #F2F2F2", // 마지막 행 제외
+                        }}
+                      >
                         <td style={{ padding: "16px 0px 16px 12px" }}> {/* spacing/200 */}
                           <div style={{ display: "flex", alignItems: "center" }}>
                             <img
