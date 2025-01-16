@@ -179,7 +179,7 @@ function Transactions() {
                 disabled={page === 1}
                 onClick={() => handlePageChange(page - 1)}
                 style={{
-                  padding: "10px 20px",
+                  padding: "16px",
                   backgroundColor: page === 1 ? "#ccc" : "#277C78",
                   color: "white",
                   border: "none",
@@ -187,14 +187,14 @@ function Transactions() {
                   cursor: page === 1 ? "default" : "pointer",
                 }}
               >
-                Previous
+                Prev
               </button>
               <span>Page {page} of {totalPages}</span>
               <button
                 disabled={page === totalPages}
                 onClick={() => handlePageChange(page + 1)}
                 style={{
-                  padding: "10px 20px",
+                  padding: "16px",
                   backgroundColor: page === totalPages ? "#ccc" : "#277C78",
                   color: "white",
                   border: "none",
