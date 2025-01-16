@@ -38,6 +38,24 @@ function Transactions() {
     fetchTransactions();
   }, [page]);
 
+  // ** 날짜 포맷 함수 **
+  const formatDate = (dateString) => {
+    const options = { day: "2-digit", month: "short", year: "numeric" }; // 20 Aug 2024 형식
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
+
+  // ** 금액 포맷 함수 **
+  const formatAmount = (amount) => {
+    if (typeof amount !== "number") return "N/A";
+    const color = amount >= 0 ? "#277C78" : "#201F24"; // +는 녹색, -는 검정
+    const sign = amount >= 0 ? "+" : "-";
+    return (
+      <span style={{ color }}>
+        {`${sign}$${Math.abs(amount).toFixed(2)}`}
+      </span>
+    );
+  };
+
   return (
     <div>
       <h2 style={{ margin: "8px 0px 40px", fontSize: "32px" }}>Transactions</h2>
@@ -107,19 +125,14 @@ function Transactions() {
                           </div>
                         </td>
                         <td style={{ padding: "16px 0px" }}>{transaction.category}</td>
-                        <td style={{ padding: "16px 0px" }}>{new Date(transaction.date).toLocaleDateString()}</td>
+                        <td style={{ padding: "16px 0px" }}>{formatDate(transaction.date)}</td>
                         <td
                           style={{
                             padding: "16px 12px 16px 0px",
                             textAlign: "right",
-                            color: transaction.amount < 0 ? "red" : "green",
                           }}
                         >
-                          {typeof transaction.amount === "number"
-                            ? transaction.amount < 0
-                              ? `-$${Math.abs(transaction.amount).toFixed(2)}`
-                              : `+$${transaction.amount.toFixed(2)}`
-                            : "N/A"}
+                          {formatAmount(transaction.amount)}
                         </td>
                       </tr>
                     ))
