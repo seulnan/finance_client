@@ -1,0 +1,58 @@
+.meatball-menu {
+  position: relative;
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.menu-button img {
+  width: 16px; /* 이미지 크기 */
+  height: 16px;
+}
+
+.menu-dropdown {
+  position: absolute;
+  right: 0;
+  top: 20px;
+  background: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 120px;
+  padding: 5px 0;
+}
+
+.menu-dropdown button {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.menu-dropdown button:hover {
+  background: #f0f0f0;
+}
+
+.edit-button{
+  color: #333;
+}
+
+.delete-button {
+  color: #e63946;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #e6e6e6;
+  margin: 5px 0;
+}
