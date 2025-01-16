@@ -90,16 +90,16 @@ function Transactions() {
               <table style={{ width: "100%", borderCollapse: "collapse" }}>
                 <thead>
                   <tr
+                    className="textPreset5"
                     style={{
-                      fontSize: "12px",
-                      color: "#696868",
+                      color: "#696868", // 제목 색상
                       borderBottom: "2px solid #F2F2F2", // 제목과 항목들 사이 구분선
                     }}
                   >
-                    <th className="textPreset5" style={{ padding: "12px 0px 12px 16px", textAlign: "left" }}>Recipient / Sender</th>
-                    <th className="textPreset5" style={{ padding: "12px 0px", textAlign: "left" }}>Category</th>
-                    <th className="textPreset5" style={{ padding: "12px 0px", textAlign: "left" }}>Transaction Date</th>
-                    <th className="textPreset5" style={{ padding: "12px 16px 12px 0px", textAlign: "right" }}>Amount</th>
+                    <th style={{ padding: "12px 0px 12px 16px", textAlign: "left" }}>Recipient / Sender</th>
+                    <th style={{ padding: "12px 0px", textAlign: "left" }}>Category</th>
+                    <th style={{ padding: "12px 0px", textAlign: "left" }}>Transaction Date</th>
+                    <th style={{ padding: "12px 16px 12px 0px", textAlign: "right" }}>Amount</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -111,7 +111,13 @@ function Transactions() {
                           borderBottom: index === transactions.length - 1 ? "none" : "1px solid #F2F2F2", // 마지막 행 제외
                         }}
                       >
-                        <td className="textPreset4Bold" style={{ padding: "16px 0px 16px 12px" }}> {/* spacing/200 */}
+                        <td
+                          className="textPreset4Bold"
+                          style={{
+                            padding: "16px 0px 16px 12px", // spacing/200
+                            color: "#201F24", // Recipient / Sender 항목 색상
+                          }}
+                        >
                           <div style={{ display: "flex", alignItems: "center" }}>
                             <img
                               src={transaction.avatar}
@@ -126,8 +132,24 @@ function Transactions() {
                             {transaction.name}
                           </div>
                         </td>
-                        <td className="textPreset5" style={{ padding: "16px 0px" }}>{transaction.category}</td>
-                        <td className="textPreset5" style={{ padding: "16px 0px" }}>{formatDate(transaction.date)}</td>
+                        <td
+                          className="textPreset5"
+                          style={{
+                            padding: "16px 0px",
+                            color: "#696868", // Category 항목 색상
+                          }}
+                        >
+                          {transaction.category}
+                        </td>
+                        <td
+                          className="textPreset5"
+                          style={{
+                            padding: "16px 0px",
+                            color: "#696868", // Transaction Date 항목 색상
+                          }}
+                        >
+                          {formatDate(transaction.date)}
+                        </td>
                         <td style={{ padding: "16px 12px 16px 0px", textAlign: "right" }}>
                           {formatAmount(transaction.amount)}
                         </td>
