@@ -46,15 +46,20 @@ function Transactions() {
 
   // ** 금액 포맷 함수 **
   const formatAmount = (amount) => {
-    if (typeof amount !== "number") return "N/A";
+  // 숫자가 아닌 경우 처리
+    if (isNaN(Number(amount))) return "N/A";
+
     const color = amount >= 0 ? "#277C78" : "#201F24"; // +는 녹색, -는 검정
     const sign = amount >= 0 ? "+" : "-";
+
+  // 금액 표시
     return (
       <span style={{ color }}>
-        {`${sign}$${Math.abs(amount).toFixed(2)}`}
+        {`${sign}$${Math.abs(Number(amount)).toFixed(2)}`}
       </span>
     );
   };
+
 
   return (
     <div>
