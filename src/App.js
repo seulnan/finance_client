@@ -8,7 +8,7 @@ function App() {
     <Router>
       <div style={{ display: 'flex' }}>
         <Sidebar />
-        <div style={{ flexGrow: 1, padding: '20px', backgroundColor: '#f8f6f4' }}>
+        <div style={{ flexGrow: 1, padding: '32px 40px', backgroundColor: '#f8f6f4' }}>
           <Routes>
             <Route path="/" element={<h1>Overview</h1>} />
             <Route path="/transactions" element={<Transactions />} />

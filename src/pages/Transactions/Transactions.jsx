@@ -39,8 +39,8 @@ function Transactions() {
   }, [page]);
 
   return (
-    <div style={{ padding: "8px" }}>
-      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>Transactions</h2>
+    <div>
+      <h2 style={{margin: "8px 0px 40px", fontSize: '32px'}}>Transactions</h2>
 
       {error && (
         <div style={{ color: "red", textAlign: "center", marginBottom: "20px" }}>
