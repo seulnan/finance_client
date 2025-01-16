@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import baseAxios from "../../baseAxios";
+import "../../styles/fonts.css"; // fonts.css 파일을 import합니다.
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]); // 거래 데이터
@@ -46,26 +47,22 @@ function Transactions() {
 
   // ** 금액 포맷 함수 **
   const formatAmount = (amount) => {
-  // 숫자가 아닌 경우 처리
     if (isNaN(Number(amount))) return "N/A";
 
     const color = amount >= 0 ? "#277C78" : "#201F24"; // +는 녹색, -는 검정
     const sign = amount >= 0 ? "+" : "-";
 
-  // 금액 표시
     return (
-      <span style={{ color }}>
+      <span className="textPreset4Bold" style={{ color }}>
         {`${sign}$${Math.abs(Number(amount)).toFixed(2)}`}
       </span>
     );
   };
 
-
   return (
     <div>
       <h2 style={{ margin: "8px 0px 40px", fontSize: "32px" }}>Transactions</h2>
 
-      {/* 나머지 요소들을 하나의 박스로 묶음 */}
       <div
         style={{
           padding: "32px", // 내부 여백 (spacing/400)
@@ -99,10 +96,10 @@ function Transactions() {
                       borderBottom: "2px solid #F2F2F2", // 제목과 항목들 사이 구분선
                     }}
                   >
-                    <th style={{ padding: "12px 0px 12px 16px", textAlign: "left" }}>Recipient / Sender</th> {/* spacing/200 */}
-                    <th style={{ padding: "12px 0px", textAlign: "left" }}>Category</th>
-                    <th style={{ padding: "12px 0px", textAlign: "left" }}>Transaction Date</th>
-                    <th style={{ padding: "12px 16px 12px 0px", textAlign: "right" }}>Amount</th>
+                    <th className="textPreset5" style={{ padding: "12px 0px 12px 16px", textAlign: "left" }}>Recipient / Sender</th>
+                    <th className="textPreset5" style={{ padding: "12px 0px", textAlign: "left" }}>Category</th>
+                    <th className="textPreset5" style={{ padding: "12px 0px", textAlign: "left" }}>Transaction Date</th>
+                    <th className="textPreset5" style={{ padding: "12px 16px 12px 0px", textAlign: "right" }}>Amount</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -114,7 +111,7 @@ function Transactions() {
                           borderBottom: index === transactions.length - 1 ? "none" : "1px solid #F2F2F2", // 마지막 행 제외
                         }}
                       >
-                        <td style={{ padding: "16px 0px 16px 12px" }}> {/* spacing/200 */}
+                        <td className="textPreset4Bold" style={{ padding: "16px 0px 16px 12px" }}> {/* spacing/200 */}
                           <div style={{ display: "flex", alignItems: "center" }}>
                             <img
                               src={transaction.avatar}
@@ -129,14 +126,9 @@ function Transactions() {
                             {transaction.name}
                           </div>
                         </td>
-                        <td style={{ padding: "16px 0px" }}>{transaction.category}</td>
-                        <td style={{ padding: "16px 0px" }}>{formatDate(transaction.date)}</td>
-                        <td
-                          style={{
-                            padding: "16px 12px 16px 0px",
-                            textAlign: "right",
-                          }}
-                        >
+                        <td className="textPreset5" style={{ padding: "16px 0px" }}>{transaction.category}</td>
+                        <td className="textPreset5" style={{ padding: "16px 0px" }}>{formatDate(transaction.date)}</td>
+                        <td style={{ padding: "16px 12px 16px 0px", textAlign: "right" }}>
                           {formatAmount(transaction.amount)}
                         </td>
                       </tr>
