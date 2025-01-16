@@ -81,7 +81,12 @@ function Transactions() {
                     <td style={{ padding: "10px" }}>{transaction.category}</td>
                     <td style={{ padding: "10px" }}>{new Date(transaction.date).toLocaleDateString()}</td>
                     <td style={{ padding: "10px", textAlign: "right", color: transaction.amount < 0 ? "red" : "green" }}>
-                      {transaction.amount < 0 ? `-$${Math.abs(transaction.amount).toFixed(2)}` : `+$${transaction.amount.toFixed(2)}`}
+                      {/* `amount`가 숫자인지 확인 후 toFixed() 적용 */}
+                      {typeof transaction.amount === "number"
+                        ? (transaction.amount < 0
+                            ? `-$${Math.abs(transaction.amount).toFixed(2)}`
+                            : `+$${transaction.amount.toFixed(2)}`)
+                        : "N/A"}
                     </td>
                   </tr>
                 ))
