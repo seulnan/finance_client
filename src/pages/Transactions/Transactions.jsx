@@ -30,6 +30,26 @@ function Transactions() {
     }
   };
 
+  // ** 날짜 포맷 함수 **
+  const formatDate = (dateString) => {
+    const options = { day: "2-digit", month: "short", year: "numeric" }; // 20 Aug 2024 형식
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
+
+  // ** 금액 포맷 함수 **
+  const formatAmount = (amount) => {
+    if (isNaN(Number(amount))) return "N/A";
+
+    const color = amount >= 0 ? "#277C78" : "#201F24"; // +는 녹색, -는 검정
+    const sign = amount >= 0 ? "+" : "-";
+
+    return (
+      <span style={{ color }} className="textPreset4Bold">
+        {`${sign}$${Math.abs(Number(amount)).toFixed(2)}`}
+      </span>
+    );
+  };
+
   // ** 페이지 변경 함수 **
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
@@ -70,7 +90,7 @@ function Transactions() {
                 </thead>
                 <tbody>
                   {transactions.length > 0 ? (
-                    transactions.map((transaction, index) => (
+                    transactions.map((transaction) => (
                       <tr key={transaction._id} className="transactionRow">
                         <td className="textPreset4Bold personInfo">
                           <div className="imgName">
@@ -83,8 +103,8 @@ function Transactions() {
                           </div>
                         </td>
                         <td className="textPreset5 CategoryDateInfo">{transaction.category}</td>
-                        <td className="textPreset5 CategoryDateInfo">{transaction.date}</td>
-                        <td className="amountInfo">{transaction.amount}</td>
+                        <td className="textPreset5 CategoryDateInfo">{formatDate(transaction.date)}</td>
+                        <td className="amountInfo">{formatAmount(transaction.amount)}</td>
                       </tr>
                     ))
                   ) : (
