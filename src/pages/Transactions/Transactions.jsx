@@ -44,7 +44,7 @@ function Transactions() {
 
   return (
     <div className="Transactions">
-      <h2>Transactions</h2>
+      <h2 id="TransactionTitle">Transactions</h2>
 
       <div className="mainBox">
         {/* 에러 메시지 */}

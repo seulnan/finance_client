@@ -1,4 +1,8 @@
-h2 {
+.Transactions {
+  margin: 32px 40px;
+}
+
+#TransactionTitle {
   margin: 8px 0px 40px;
   font-size: 32px;
 }
