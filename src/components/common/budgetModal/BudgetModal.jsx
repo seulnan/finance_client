@@ -25,7 +25,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
         theme: budget.color,
         limit: budget.limit,
       });
-      fetchOptions(); // Ensure options are fetched for editing as well
+      fetchOptions();
     }
   }, [type, budget]);
 
@@ -33,7 +33,6 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
     try {
       const response = await baseAxios.get("/api/budget/available-options");
       setOptions(response.data);
-      console.log("Options fetched successfully:", response.data);
     } catch (error) {
       console.error("Failed to fetch options:", error);
     }
@@ -46,25 +45,17 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
 
   const handleSubmit = async () => {
     try {
-      console.log("Submitting data:", {
-        name: formData.category,
-        color: formData.theme,
-        limit: parseFloat(formData.limit),
-      });
-
       if (type === "add") {
-        const response = await baseAxios.post("/api/budget", {
+        await baseAxios.post("/api/budget", {
           name: formData.category,
           color: formData.theme,
           limit: parseFloat(formData.limit),
         });
-        console.log("Budget added successfully:", response.data);
       } else if (type === "edit") {
-        const response = await baseAxios.patch(`/api/budget/${budget._id}`, {
+        await baseAxios.patch(`/api/budget/${budget._id}`, {
           color: formData.theme,
           limit: parseFloat(formData.limit),
         });
-        console.log("Budget updated successfully:", response.data);
       }
       onSuccess();
     } catch (error) {
@@ -74,8 +65,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
 
   const handleDelete = async () => {
     try {
-      const response = await baseAxios.delete(`/api/budget/${budget._id}`);
-      console.log("Budget deleted successfully:", response.data);
+      await baseAxios.delete(`/api/budget/${budget._id}`);
       onSuccess();
     } catch (error) {
       console.error("Failed to delete budget:", error);
@@ -85,16 +75,29 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
   return (
     <div className="modal">
       <div className="modal-content">
-        <button className="close-button" onClick={onClose}>
-          ✖
-        </button>
+        <div className="modal-header">
+          <h2>
+            {type === "add"
+              ? "Add New Budget"
+              : type === "edit"
+              ? "Edit Budget"
+              : `Delete ‘${budget.name}’`}
+          </h2>
+          <button className="close-button" onClick={onClose}></button>
+        </div>
         {type === "add" && (
           <>
-            <h2>Add New Budget</h2>
-            <p>Choose a category to set a spending budget. These categories can help you monitor spending.</p>
+            <p>
+              Choose a category to set a spending budget. These categories can
+              help you monitor spending.
+            </p>
             <div className="form-group">
               <label>Budget Category</label>
-              <select name="category" onChange={handleInputChange} value={formData.category}>
+              <select
+                name="category"
+                onChange={handleInputChange}
+                value={formData.category}
+              >
                 <option value="">Select Category</option>
                 {options.availableCategories.map((category) => (
                   <option key={category} value={category}>
@@ -120,7 +123,11 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
             </div>
             <div className="form-group">
               <label>Theme</label>
-              <select name="theme" onChange={handleInputChange} value={formData.theme}>
+              <select
+                name="theme"
+                onChange={handleInputChange}
+                value={formData.theme}
+              >
                 <option value="">Select Theme</option>
                 {options.usedColors.map((color) => (
                   <option key={`used-${color}`} value={color} disabled>
@@ -141,8 +148,9 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
         )}
         {type === "edit" && (
           <>
-            <h2>Edit Budget</h2>
-            <p>As your budgets change, feel free to update your spending limits.</p>
+            <p>
+              As your budgets change, feel free to update your spending limits.
+            </p>
             <div className="form-group">
               <label>Budget Category</label>
               <input type="text" value={formData.category} disabled />
@@ -160,7 +168,11 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
             </div>
             <div className="form-group">
               <label>Theme</label>
-              <select name="theme" onChange={handleInputChange} value={formData.theme}>
+              <select
+                name="theme"
+                onChange={handleInputChange}
+                value={formData.theme}
+              >
                 <option value="">Select Theme</option>
                 {options.usedColors.map((color) => (
                   <option key={`used-${color}`} value={color} disabled>
@@ -181,10 +193,9 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
         )}
         {type === "delete" && (
           <>
-            <h2>Delete ‘{budget.name}’?</h2>
             <p>
-              Are you sure you want to delete this budget? This action cannot be reversed,
-              and all the data inside it will be removed forever.
+              Are you sure you want to delete this budget? This action cannot be
+              reversed, and all the data inside it will be removed forever.
             </p>
             <button className="modal-delete-button" onClick={handleDelete}>
               Yes, Confirm Deletion
