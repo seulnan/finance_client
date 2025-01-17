@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./MeatballMenu.css";
-import meatballIcon from "C:/university_life/finance_client/src/assets/images/meatballMenu.png"; // 업로드된 미트볼 아이콘 이미지 경로를 정확히 지정하세요
-
+import meatballIcon from "../../../assets/images/meatballMenu.png"
 const MeatballMenu = ({ onEdit, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);

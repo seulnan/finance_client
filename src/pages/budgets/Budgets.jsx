@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import baseAxios from "C:/university_life/finance_client/src/baseAxios.js";
-import BudgetModal from "C:/university_life/finance_client/src/components/common/budgetModal/BudgetModal.jsx";
-import MeatballMenu from "C:/university_life/finance_client/src/components/common/meatballMenu/MeatballMenu.jsx";
+import baseAxios from "../../baseAxios.js";
+import BudgetModal from "../../components/common/budgetModal/BudgetModal.jsx";
+import MeatballMenu from "../../components/common/meatballMenu/MeatballMenu.jsx";
 import "../budgets/Budgets.css";
 
 const Budgets = () => {
