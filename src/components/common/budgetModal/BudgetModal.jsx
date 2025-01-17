@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import baseAxios from "C:/university_life/finance_client/src/baseAxios.js";
+import baseAxios from "../../../baseAxios.js";
 import SearchField from "../searchField/SearchField.jsx";
 import "../budgetModal/BudgetModal.css";
 
