@@ -46,6 +46,12 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
 
   const handleSubmit = async () => {
     try {
+      console.log("Submitting data:", {
+        name: formData.category,
+        color: formData.theme,
+        limit: parseFloat(formData.limit),
+      });
+
       if (type === "add") {
         const response = await baseAxios.post("/api/budget", {
           name: formData.category,
