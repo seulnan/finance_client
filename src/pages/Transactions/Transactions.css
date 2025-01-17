@@ -1,6 +1,6 @@
 h2 {
-    margin: 8px 0px 40px;
-    font-size: 32px;
+  margin: 8px 0px 40px;
+  font-size: 32px;
 }
 
 .mainBox {
@@ -123,16 +123,43 @@ h2 {
 /* Prev, Next 버튼 */
 .prevButton,
 .nextButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: auto;
   padding: 0 16px; /* 텍스트와 아이콘을 위한 여백 */
+  gap: 8px; /* 아이콘과 텍스트 간격 */
+  height: 40px; /* 버튼 높이 */
+  border: 1px solid #b8b8b8; /* 외곽선 색 */
+  border-radius: 8px; /* 둥근 버튼 모양 */
+  font-family: 'Text Preset 4', sans-serif;
+  font-size: 14px;
+  background-color: white; /* 버튼 배경색 */
+  color: #201F24; /* 텍스트 색 */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
 }
 
-/* 비활성화된 버튼 스타일 */
+/* 아이콘 스타일 */
+.paginationIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* 비활성화된 Prev, Next 버튼 */
 .prevButton.disabled,
 .nextButton.disabled {
   background-color: #f2f2f2;
   color: #aaa;
   cursor: default;
+  border: 1px solid #ddd; /* 비활성화 버튼 외곽선 */
+}
+
+/* Prev, Next 버튼 Hover 효과 */
+.prevButton:hover:not(.disabled),
+.nextButton:hover:not(.disabled) {
+  background-color: #f9f9f9; /* Hover 시 배경색 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hover 시 그림자 */
 }
 
 /* 현재 페이지 버튼 스타일 */

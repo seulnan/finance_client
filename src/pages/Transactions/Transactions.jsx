@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import baseAxios from "../../baseAxios";
-import prevIcon from "../../assets/images/prevIcon.png";
-import nextIcon from "../../assets/images/nextIcon.png";
 import "../../styles/fonts.css";
 import "./Transactions.css";
+import prevIcon from "../../assets/images/prevIcon.png";
+import nextIcon from "../../assets/images/nextIcon.png";
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]); // 거래 데이터
@@ -43,7 +43,7 @@ function Transactions() {
   }, [page]);
 
   return (
-    <div>
+    <div className="Transactions">
       <h2>Transactions</h2>
 
       <div className="mainBox">
@@ -106,6 +106,7 @@ function Transactions() {
                 onClick={() => handlePageChange(page - 1)}
                 className={`paginationButton prevButton ${page === 1 ? "disabled" : ""}`}
               >
+                <img src={prevIcon} alt="Prev" className="paginationIcon" />
                 Prev
               </button>
 
@@ -132,6 +133,7 @@ function Transactions() {
                 className={`paginationButton nextButton ${page === totalPages ? "disabled" : ""}`}
               >
                 Next
+                <img src={nextIcon} alt="Next" className="paginationIcon" />
               </button>
             </div>
           </div>
