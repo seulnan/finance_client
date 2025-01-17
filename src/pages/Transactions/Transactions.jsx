@@ -90,23 +90,56 @@ function Transactions() {
                 </thead>
                 <tbody>
                   {transactions.length > 0 ? (
-                    transactions.map((transaction) => (
-                      <tr key={transaction._id} className="transactionRow">
-                        <td className="textPreset4Bold personInfo">
-                          <div className="imgName">
-                            <img
-                              src={transaction.avatar}
-                              alt={`${transaction.name} avatar`}
-                              className="personImg"
-                            />
-                            {transaction.name}
+                    transactions.map((transaction) => {
+                      // 현재 화면 폭 확인 (675px 이하 여부)
+                      const isSmallScreen = window.innerWidth <= 675;
+
+                      return isSmallScreen ? (
+                        // 카드형 디자인 (675px 이하)
+                        <div key={transaction._id} className="transactionRow">
+                          <div className="personInfo">
+                            <div className="imgName">
+                              <img
+                                src={transaction.avatar}
+                                alt={`${transaction.name} avatar`}
+                                className="personImg"
+                              />
+                              <span className="personName">{transaction.name}</span>
+                            </div>
+                            <div className="CategoryDateInfo">{transaction.category}</div>
                           </div>
-                        </td>
-                        <td className="textPreset5 CategoryDateInfo">{transaction.category}</td>
-                        <td className="textPreset5 CategoryDateInfo">{formatDate(transaction.date)}</td>
-                        <td className="amountInfo">{formatAmount(transaction.amount)}</td>
-                      </tr>
-                    ))
+                          <div className="rightInfo">
+                            <div
+                              className={`amountInfo ${
+                                transaction.amount >= 0 ? "positive" : "negative"
+                              }`}
+                            >
+                              {transaction.amount >= 0 ? "+" : "-"}${
+                                Math.abs(transaction.amount).toFixed(2)
+                              }
+                            </div>
+                            <div className="transactionDate">{formatDate(transaction.date)}</div>
+                          </div>
+                        </div>
+                      ) : (
+                        // 테이블형 디자인 (675px 초과)
+                        <tr key={transaction._id} className="transactionRow">
+                          <td className="textPreset4Bold personInfo">
+                            <div className="imgName">
+                              <img
+                                src={transaction.avatar}
+                                alt={`${transaction.name} avatar`}
+                                className="personImg"
+                              />
+                              {transaction.name}
+                            </div>
+                          </td>
+                          <td className="textPreset5 CategoryDateInfo">{transaction.category}</td>
+                          <td className="textPreset5 CategoryDateInfo">{formatDate(transaction.date)}</td>
+                          <td className="amountInfo">{formatAmount(transaction.amount)}</td>
+                        </tr>
+                      );
+                    })
                   ) : (
                     <tr>
                       <td colSpan="4" className="noTransactions">
@@ -138,7 +171,9 @@ function Transactions() {
                     <button
                       key={pageNumber}
                       onClick={() => handlePageChange(pageNumber)}
-                      className={`pageButton ${pageNumber === page ? "currentPage" : ""}`}
+                      className={`pageButton ${
+                        pageNumber === page ? "currentPage" : ""
+                      }`}
                     >
                       {pageNumber}
                     </button>
@@ -150,7 +185,9 @@ function Transactions() {
               <button
                 disabled={page === totalPages}
                 onClick={() => handlePageChange(page + 1)}
-                className={`paginationButton nextButton ${page === totalPages ? "disabled" : ""}`}
+                className={`paginationButton nextButton ${
+                  page === totalPages ? "disabled" : ""
+                }`}
               >
                 Next
                 <img src={nextIcon} alt="Next" className="paginationIcon" />
