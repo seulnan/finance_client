@@ -1,10 +1,14 @@
-h2 {
-    margin: 8px 0px 40px;
-    font-size: 32px;
+.Transactions {
+  margin: 32px 40px;
+}
+
+#TransactionTitle {
+  margin: 8px 0px 40px;
+  font-size: 32px;
 }
 
 .mainBox {
-  padding: "32px";
+  padding: 32px;
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -48,6 +52,14 @@ h2 {
   text-align: right;
 }
 
+.transactionRow {
+  border-bottom: 1px solid #F2F2F2; /* 기본 구분선 */
+}
+
+.transactionRow:last-child {
+  border-bottom: none; /* 마지막 행 구분선 제거 */
+}
+
 .personInfo {
   padding: 16px 0px 16px 12px;
   color: #201F24;
@@ -58,7 +70,7 @@ h2 {
   align-items: center;
 }
 
-img {
+.personImg {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -82,6 +94,187 @@ img {
     color: gray;
 }
 
+/* 페이지네이션 전체 스타일 */
+.pagination {
+  display: flex;
+  justify-content: space-between; /* 양 끝에 버튼 배치 */
+  align-items: center;
+  margin-top: 24px;
+}
+
+/* 페이지 번호 버튼 컨테이너 */
+.pageNumbers {
+  display: flex;
+  gap: 8px; /* 페이지 버튼 간격 */
+}
+
+/* 공통 버튼 스타일 */
+.paginationButton,
+.pageButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Text Preset 4', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  background-color: white;
+  color: #201F24;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Prev, Next 버튼 */
+.prevButton,
+.nextButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: 0 16px; /* 텍스트와 아이콘을 위한 여백 */
+  gap: 8px; /* 아이콘과 텍스트 간격 */
+  height: 40px; /* 버튼 높이 */
+  border: 1px solid #b8b8b8; /* 외곽선 색 */
+  border-radius: 8px; /* 둥근 버튼 모양 */
+  font-family: 'Text Preset 4', sans-serif;
+  font-size: 14px;
+  background-color: white; /* 버튼 배경색 */
+  color: #201F24; /* 텍스트 색 */
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* 아이콘 스타일 */
+.paginationIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* 비활성화된 Prev, Next 버튼 */
+.prevButton.disabled,
+.nextButton.disabled {
+  background-color: #f2f2f2;
+  color: #aaa;
+  cursor: default;
+  border: 1px solid #ddd; /* 비활성화 버튼 외곽선 */
+}
+
+/* Prev, Next 버튼 Hover 효과 */
+.prevButton:hover:not(.disabled),
+.nextButton:hover:not(.disabled) {
+  background-color: #f9f9f9; /* Hover 시 배경색 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hover 시 그림자 */
+}
+
+/* 현재 페이지 버튼 스타일 */
+.pageButton.currentPage {
+  background-color: #201F24;
+  color: white;
+  font-weight: bold;
+  cursor: default;
+}
+
+.pageButton:hover:not(.currentPage) {
+  background-color: #f2f2f2;
+}
+
+
+/* 미디어 쿼리 적용: 675px 이하 */
+/* Transactions 전체 레이아웃 */
+.Transactions {
+  margin: 32px 40px;
+}
+
+#TransactionTitle {
+  margin: 8px 0px 40px;
+  font-size: 32px;
+}
+
+.mainBox {
+  padding: 32px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.errorMessage {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.loading {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.titles {
+  color: #696868;
+  border-bottom: 2px solid #F2F2F2;
+}
+
+#personTitle {
+  padding: 12px 0px 12px 16px;
+  text-align: left;
+}
+
+.CategoryDate {
+  padding: 12px 0px;
+  text-align: left;
+}
+
+#amountTitle {
+  padding: 12px 16px 12px 0px;
+  text-align: right;
+}
+
+.transactionRow {
+  border-bottom: 1px solid #F2F2F2;
+}
+
+.transactionRow:last-child {
+  border-bottom: none;
+}
+
+.personInfo {
+  padding: 16px 0px 16px 12px;
+  color: #201F24;
+}
+
+.imgName {
+  display: flex;
+  align-items: center;
+}
+
+.personImg {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.CategoryDateInfo {
+  padding: 16px 0px;
+  color: #696868;
+}
+
+.amountInfo {
+  padding: 16px 12px 16px 0px;
+  text-align: right;
+}
+
+.noTransactions {
+  text-align: center;
+  padding: 32px;
+  color: gray;
+}
+
+/* 페이지네이션 */
 .pagination {
   display: flex;
   justify-content: space-between;
@@ -89,9 +282,116 @@ img {
   margin-top: 24px;
 }
 
-button {
-  padding: 16px;
+.pageNumbers {
+  display: flex;
+  gap: 8px;
+}
+
+.paginationButton,
+.pageButton {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  color: #201F24;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pageButton.currentPage {
+  background-color: #201F24;
   color: white;
-  border: none;
-  border-radius: 5px;
+  font-weight: bold;
+}
+
+.pageButton:hover:not(.currentPage) {
+  background-color: #f2f2f2;
+}
+
+/* 675px 이하에서의 스타일 */
+@media (max-width: 675px) {
+  .table {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-collapse: unset;
+  }
+
+  .titles {
+    display: none;
+  }
+
+  .transactionRow {
+    flex-direction: row; /* 이미지와 텍스트가 가로로 나란히 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #f2f2f2;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+
+  .personInfo {
+    padding: 0px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .personImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+
+  .imgName {
+    display: flex;
+    flex-direction: column; /* 텍스트 상하 배치 */
+  }
+
+  .personName {
+    font-size: 14px;
+    font-weight: bold;
+    color: #201f24;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .CategoryDateInfo {
+    padding: 0px;
+    font-size: 12px;
+    color: #696868;
+  }
+
+  .rightInfo {
+    display: flex;
+    flex-direction: column; /* Amount와 Date 상하 배치 */
+    align-items: flex-end;
+    flex: 1;
+  }
+
+  .amountInfo {
+    padding: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px; /* Amount와 Date 간격 */
+  }
+
+  .amountInfo.positive {
+    color: #277c78;
+  }
+
+  .amountInfo.negative {
+    color: #201f24;
+  }
+
+  .transactionDate {
+    font-size: 12px;
+    color: #696868;
+  }
 }

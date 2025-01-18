@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import baseAxios from "../../baseAxios";
-import "../../styles/fonts.css"; 
-import "./Transactions.css"; 
+import "../../styles/fonts.css";
+import "./Transactions.css";
+import prevIcon from "../../assets/images/prevIcon.png";
+import nextIcon from "../../assets/images/nextIcon.png";
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]); // 거래 데이터
@@ -28,18 +30,6 @@ function Transactions() {
     }
   };
 
-  // ** 페이지 변경 함수 **
-  const handlePageChange = (newPage) => {
-    if (newPage >= 1 && newPage <= totalPages) {
-      setPage(newPage);
-    }
-  };
-
-  // ** 컴포넌트 마운트 시 첫 API 호출 **
-  useEffect(() => {
-    fetchTransactions();
-  }, [page]);
-
   // ** 날짜 포맷 함수 **
   const formatDate = (dateString) => {
     const options = { day: "2-digit", month: "short", year: "numeric" }; // 20 Aug 2024 형식
@@ -54,33 +44,41 @@ function Transactions() {
     const sign = amount >= 0 ? "+" : "-";
 
     return (
-      <span className="textPreset4Bold" style={{ color }}>
+      <span style={{ color }} className="textPreset4Bold">
         {`${sign}$${Math.abs(Number(amount)).toFixed(2)}`}
       </span>
     );
   };
 
+  // ** 페이지 변경 함수 **
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setPage(newPage);
+    }
+  };
+
+  // ** 컴포넌트 마운트 시 첫 API 호출 **
+  useEffect(() => {
+    fetchTransactions();
+  }, [page]);
+
   return (
-    <div>
-      <h2>Transactions</h2>
+    <div className="Transactions">
+      <h2 id="TransactionTitle">Transactions</h2>
 
       <div className="mainBox">
         {/* 에러 메시지 */}
-        {error && (
-          <div className="errorMessage">
-            {error}
-          </div>
-        )}
+        {error && <div className="errorMessage">{error}</div>}
 
         {/* 로딩 상태 */}
         {loading ? (
           <div className="loading">
-            <div className="spinner"></div> {/* 로딩 스피너 */}
+            <div className="spinner"></div>
             <p>Loading...</p>
           </div>
         ) : (
           <div>
-            <div style={{ marginBottom: "24px" }}> {/* spacing/300 */}
+            <div style={{ marginBottom: "24px" }}>
               <table className="table">
                 <thead>
                   <tr className="textPreset5 titles">
@@ -92,30 +90,56 @@ function Transactions() {
                 </thead>
                 <tbody>
                   {transactions.length > 0 ? (
-                    transactions.map((transaction, index) => (
-                      <tr
-                        key={transaction._id}
-                        style={{
-                          borderBottom: index === transactions.length - 1 ? "none" : "1px solid #F2F2F2", // 마지막 행 제외
-                        }}
-                      >
-                        <td className="textPreset4Bold personInfo">
-                          <div className="imgName">
-                            <img src={transaction.avatar} alt={`${transaction.name} avatar`}/>
-                            {transaction.name}
+                    transactions.map((transaction) => {
+                      // 현재 화면 폭 확인 (675px 이하 여부)
+                      const isSmallScreen = window.innerWidth <= 675;
+
+                      return isSmallScreen ? (
+                        // 카드형 디자인 (675px 이하)
+                        <div key={transaction._id} className="transactionRow">
+                          <div className="personInfo">
+                            <div className="imgName">
+                              <img
+                                src={transaction.avatar}
+                                alt={`${transaction.name} avatar`}
+                                className="personImg"
+                              />
+                              <span className="personName">{transaction.name}</span>
+                            </div>
+                            <div className="CategoryDateInfo">{transaction.category}</div>
                           </div>
-                        </td>
-                        <td className="textPreset5 CategoryDateInfo">
-                          {transaction.category}
-                        </td>
-                        <td className="textPreset5 CategoryDateInfo">
-                          {formatDate(transaction.date)}
-                        </td>
-                        <td className="amountInfo">
-                          {formatAmount(transaction.amount)}
-                        </td>
-                      </tr>
-                    ))
+                          <div className="rightInfo">
+                            <div
+                              className={`amountInfo ${
+                                transaction.amount >= 0 ? "positive" : "negative"
+                              }`}
+                            >
+                              {transaction.amount >= 0 ? "+" : "-"}${
+                                Math.abs(transaction.amount).toFixed(2)
+                              }
+                            </div>
+                            <div className="transactionDate">{formatDate(transaction.date)}</div>
+                          </div>
+                        </div>
+                      ) : (
+                        // 테이블형 디자인 (675px 초과)
+                        <tr key={transaction._id} className="transactionRow">
+                          <td className="textPreset4Bold personInfo">
+                            <div className="imgName">
+                              <img
+                                src={transaction.avatar}
+                                alt={`${transaction.name} avatar`}
+                                className="personImg"
+                              />
+                              {transaction.name}
+                            </div>
+                          </td>
+                          <td className="textPreset5 CategoryDateInfo">{transaction.category}</td>
+                          <td className="textPreset5 CategoryDateInfo">{formatDate(transaction.date)}</td>
+                          <td className="amountInfo">{formatAmount(transaction.amount)}</td>
+                        </tr>
+                      );
+                    })
                   ) : (
                     <tr>
                       <td colSpan="4" className="noTransactions">
@@ -128,27 +152,45 @@ function Transactions() {
             </div>
 
             {/* 페이지네이션 */}
-            <div className="pagination"> {/* spacing/300 */}
+            <div className="pagination">
+              {/* Prev 버튼 */}
               <button
                 disabled={page === 1}
                 onClick={() => handlePageChange(page - 1)}
-                style={{
-                  backgroundColor: page === 1 ? "#ccc" : "#277C78",
-                  cursor: page === 1 ? "default" : "pointer",
-                }}
+                className={`paginationButton prevButton ${page === 1 ? "disabled" : ""}`}
               >
+                <img src={prevIcon} alt="Prev" className="paginationIcon" />
                 Prev
               </button>
-              <span>Page {page} of {totalPages}</span>
+
+              {/* 페이지 번호 버튼 */}
+              <div className="pageNumbers">
+                {Array.from({ length: totalPages }, (_, index) => {
+                  const pageNumber = index + 1;
+                  return (
+                    <button
+                      key={pageNumber}
+                      onClick={() => handlePageChange(pageNumber)}
+                      className={`pageButton ${
+                        pageNumber === page ? "currentPage" : ""
+                      }`}
+                    >
+                      {pageNumber}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Next 버튼 */}
               <button
                 disabled={page === totalPages}
                 onClick={() => handlePageChange(page + 1)}
-                style={{
-                  backgroundColor: page === totalPages ? "#ccc" : "#277C78",
-                  cursor: page === totalPages ? "default" : "pointer",
-                }}
+                className={`paginationButton nextButton ${
+                  page === totalPages ? "disabled" : ""
+                }`}
               >
                 Next
+                <img src={nextIcon} alt="Next" className="paginationIcon" />
               </button>
             </div>
           </div>
