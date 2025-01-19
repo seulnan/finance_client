@@ -23,15 +23,15 @@ const MeatballMenu = ({ onEdit, onDelete }) => {
   }, []);
 
   return (
-    <div className="meatball-menu" ref={menuRef}>
-      <button className="menu-button" onClick={toggleMenu}>
+    <div className="MeatballMenu" ref={menuRef}>
+      <button className="MenuButton" onClick={toggleMenu}>
         <img src={meatballIcon} alt="Meatball Menu" />
       </button>
       {isOpen && (
-        <div className="menu-dropdown">
-          <button onClick={onEdit} className="edit-button">Edit Budget</button>
+        <div className="MenuDropdown">
+          <button onClick={onEdit} className="EditButton">Edit Budget</button>
           <hr />
-          <button onClick={onDelete} className="delete-button">Delete Budget</button>
+          <button onClick={onDelete} className="DeleteButton">Delete Budget</button>
         </div>
       )}
     </div>

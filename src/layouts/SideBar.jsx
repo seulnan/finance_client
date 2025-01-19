@@ -18,14 +18,13 @@ import RecurringBillsIconActive from '../assets/images/Icons recurring bills act
 // 아이콘 컴포넌트
 const MenuItem = ({ to, label, icon, iconActive }) => {
   return (
-    <NavLink 
-      to={to} 
-      className={({ isActive }) => (isActive ? "menu-item active" : "menu-item")}
+    <NavLink
+      to={to}
+      className={({ isActive }) => (isActive ? "MenuItem Active" : "MenuItem")}
     >
-      {/* 현재 isActive 상태에 따라 아이콘 동적으로 교체 */}
       {({ isActive }) => (
         <>
-          <img src={isActive ? iconActive : icon} alt={label} className="icon" />
+          <img src={isActive ? iconActive : icon} alt={label} className="Icon" />
           {label}
         </>
       )}
@@ -33,52 +32,52 @@ const MenuItem = ({ to, label, icon, iconActive }) => {
   );
 };
 
-const Sidebar = () => {
+const SideBar = () => {
   return (
-    <div className="sidebar">
-      <div className="logo">
+    <div className="SideBar">
+      <div className="Logo">
         <img src={Logo} alt="Logo" />
       </div>
-      <nav className="menu">
+      <nav className="Menu">
         <ul>
           <li>
-            <MenuItem 
-              to="/" 
-              label="Overview" 
-              icon={OverviewIcon} 
-              iconActive={OverviewIconActive} 
+            <MenuItem
+              to="/"
+              label="Overview"
+              icon={OverviewIcon}
+              iconActive={OverviewIconActive}
             />
           </li>
           <li>
-            <MenuItem 
-              to="/transactions" 
-              label="Transactions" 
-              icon={TransactionIcon} 
-              iconActive={TransactionIconActive} 
+            <MenuItem
+              to="/transactions"
+              label="Transactions"
+              icon={TransactionIcon}
+              iconActive={TransactionIconActive}
             />
           </li>
           <li>
-            <MenuItem 
-              to="/budgets" 
-              label="Budgets" 
-              icon={BudgetIcon} 
-              iconActive={BudgetIconActive} 
+            <MenuItem
+              to="/budgets"
+              label="Budgets"
+              icon={BudgetIcon}
+              iconActive={BudgetIconActive}
             />
           </li>
           <li>
-            <MenuItem 
-              to="/pots" 
-              label="Pots" 
-              icon={PotsIcon} 
-              iconActive={PotsIconActive} 
+            <MenuItem
+              to="/pots"
+              label="Pots"
+              icon={PotsIcon}
+              iconActive={PotsIconActive}
             />
           </li>
           <li>
-            <MenuItem 
-              to="/recurring-bills" 
-              label="Recurring Bills" 
-              icon={RecurringBillsIcon} 
-              iconActive={RecurringBillsIconActive} 
+            <MenuItem
+              to="/recurring-bills"
+              label="Recurring Bills"
+              icon={RecurringBillsIcon}
+              iconActive={RecurringBillsIconActive}
             />
           </li>
         </ul>
@@ -87,4 +86,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideBar;

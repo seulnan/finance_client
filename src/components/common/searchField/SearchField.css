@@ -8,30 +8,31 @@
   --spacing-200: 16px;
   --spacing-250: 20px;
 }
-
-.input-container {
+/* 
+사용안되는거 같음 혹시 에러나면 주석 풀기 */
+/* .InputContainer {
   display: flex;
   flex-direction: column;
   gap: 16px;
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-}
+} */
 
-.input-wrapper {
+.InputWrapper {
   position: relative;
   width: 496px; /* 기본값: 데스크톱 및 태블릿 크기 */
   height: 45px;
 }
 
-/* 반응형 디자인 추가 */
+/*반응형 디자인 추가*/
 @media (max-width: 1024px) {
   /* 태블릿 환경 */
-  .input-wrapper {
+  .InputWrapper {
     width: 496px; /* 태블릿에서도 456px 유지 */
     height: 45px;
   }
-  .icon-left {
+  .IconLeft {
     font-size: 18px; /* 태블릿에서 아이콘 크기 조정 */
     left: 8px; /* 위치 조정 */
   }
@@ -39,21 +40,21 @@
 
 @media (max-width: 375px) {
   /* 모바일 환경 */
-  .input-wrapper {
+  .InputWrapper {
     width: 295px; /* 모바일에서 295px로 변경 */
     height: 45px;
   }
-  .input-field {
+  .InputField {
     padding-left: 25px; /* 모바일에서 아이콘과의 간격 줄임 */
     font-size: 14px; /* 글자 크기 조정 */
   }
-  .icon-left {
+  .IconLeft {
     font-size: 16px; /* 모바일에서 아이콘 크기 조정 */
     left: 5px; /* 위치 조정 */
   }
 }
 
-.input-field {
+.InputField {
   width: 100%;
   height: 100%;
   padding-left: 30px;
@@ -66,17 +67,17 @@
   box-sizing: border-box;
 }
 
-.input-field::placeholder {
+.InputField::placeholder {
   color: var(--grey-500, #696868);
 }
 
-.input-field:focus {
+.InputField:focus {
   outline: none;
   border-color: var(--blue, #3F82B2);
 }
 
 /* 왼쪽 아이콘 */
-.icon-left {
+.IconLeft {
   font-family: 'Text Preset 2', sans-serif;
   position: absolute;
   left: 10px; /* 왼쪽 10px */
@@ -88,7 +89,7 @@
 }
 
 /* 오른쪽 아이콘 */
-.icon-right {
+.IconRight {
   position: absolute;
   right: 10px; /* 오른쪽 10px */
   top: 50%;

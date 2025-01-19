@@ -73,9 +73,9 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
   };
 
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <div className="modal-header">
+    <div className="Modal">
+      <div className="ModalContent">
+        <div className="ModalHeader">
           <h2>
             {type === "add"
               ? "Add New Budget"
@@ -83,7 +83,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
               ? "Edit Budget"
               : `Delete ‘${budget.name}’`}
           </h2>
-          <button className="close-button" onClick={onClose}></button>
+          <button className="CloseButton" onClick={onClose}></button>
         </div>
         {type === "add" && (
           <>
@@ -91,7 +91,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
               Choose a category to set a spending budget. These categories can
               help you monitor spending.
             </p>
-            <div className="form-group">
+            <div className="FormGroup">
               <label>Budget Category</label>
               <select
                 name="category"
@@ -111,7 +111,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                 ))}
               </select>
             </div>
-            <div className="form-group">
+            <div className="FormGroup">
               <label>Maximum Spend</label>
               <SearchField
                 type="icon-left"
@@ -121,7 +121,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                 }
               />
             </div>
-            <div className="form-group">
+            <div className="FormGroup">
               <label>Theme</label>
               <select
                 name="theme"
@@ -141,7 +141,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                 ))}
               </select>
             </div>
-            <button className="modal-submit-button" onClick={handleSubmit}>
+            <button className="ModalSubmitButton" onClick={handleSubmit}>
               Add Budget
             </button>
           </>
@@ -151,11 +151,11 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
             <p>
               As your budgets change, feel free to update your spending limits.
             </p>
-            <div className="form-group">
+            <div className="FormGroup">
               <label>Budget Category</label>
               <input type="text" value={formData.category} disabled />
             </div>
-            <div className="form-group">
+            <div className="FormGroup">
               <label>Maximum Spend</label>
               <SearchField
                 type="icon-left"
@@ -166,7 +166,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                 }
               />
             </div>
-            <div className="form-group">
+            <div className="FormGroup">
               <label>Theme</label>
               <select
                 name="theme"
@@ -186,7 +186,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                 ))}
               </select>
             </div>
-            <button className="modal-submit-button" onClick={handleSubmit}>
+            <button className="ModalSubmitButton" onClick={handleSubmit}>
               Save Changes
             </button>
           </>
@@ -197,10 +197,10 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
               Are you sure you want to delete this budget? This action cannot be
               reversed, and all the data inside it will be removed forever.
             </p>
-            <button className="modal-delete-button" onClick={handleDelete}>
+            <button className="ModalDeleteButton" onClick={handleDelete}>
               Yes, Confirm Deletion
             </button>
-            <button className="modal-cancel-button" onClick={onClose}>
+            <button className="ModalCancelButton" onClick={onClose}>
               No, Go Back
             </button>
           </>

@@ -1,7 +1,7 @@
 @import '/src/styles/colors.css';
 @import '/src/styles/fonts.css';
 
-.sidebar {
+.SideBar {
   width: 300px;
   height: 100vh;
   background-color: var(--grey-900, #201F24);
@@ -12,7 +12,7 @@
   border-radius: 0px var(--spacing-200, 16px) var(--spacing-200, 16px) 0px;
 }
 
-.logo {
+.Logo {
   display: flex;
   padding: 40px 32px 62px 32px;
   flex-direction: column;
@@ -23,13 +23,13 @@
 }
 
 /* 메뉴 스타일 */
-.menu ul {
+.Menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.menu-item {
+.MenuItem {
   display: flex;
   align-items: center;
   height: 56px;
@@ -41,16 +41,16 @@
   font-family: 'Text Preset 4 Bold', sans-serif;
 }
 
-.menu-item img.icon {
+.MenuItem img.Icon {
   width: 20px;
   height: 20px;
 }
 
-.menu-item:hover {
+.MenuItem:hover {
   color: var(--white, #FFFFFF);
 }
 
-.menu-item.active {
+.MenuItem.Active {
   color: var(--grey-900, #201F24);
   font-weight: bold;
   border-left: 4px solid var(--color-green, #277C78);

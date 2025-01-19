@@ -1,20 +1,15 @@
-.meatball-menu {
+.MeatballMenu {
   position: relative;
 }
 
-.menu-button {
+.MenuButton {
   background: none;
   border: none;
   padding: 0;
   cursor: pointer;
 }
 
-.menu-button img {
-  width: 16px; /* 이미지 크기 */
-  height: 16px;
-}
-
-.menu-dropdown {
+.MenuDropdown {
   position: absolute;
   right: 0;
   top: 20px;
@@ -27,7 +22,7 @@
   padding: 5px 0;
 }
 
-.menu-dropdown button {
+.MenuDropdown button {
   display: block;
   width: 100%;
   padding: 10px 15px;
@@ -38,15 +33,15 @@
   font-size: 14px;
 }
 
-.menu-dropdown button:hover {
+.MenuDropdown button:hover {
   background: #f0f0f0;
 }
 
-.edit-button{
+.EditButton{
   color: #333;
 }
 
-.delete-button {
+.DeleteButton {
   color: #e63946;
 }
 

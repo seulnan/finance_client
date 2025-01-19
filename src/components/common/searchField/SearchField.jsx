@@ -11,25 +11,25 @@ const SearchField = ({
     switch (type) {
       case 'icon-right':
         return (
-          <div className="input-wrapper">
+          <div className="InputWrapper">
             <input 
               type="text" 
               placeholder={placeholder} 
-              className="input-field with-icon-right" 
+              className="InputFieldWithIconRight" 
               onChange={onChange} // 이벤트 핸들러 추가
               value={value} // value 추가
             />
-            <span className="icon-right">🔍</span>
+            <span className="iconRight">🔍</span>
           </div>
         );
       case 'icon-left':
         return (
-          <div className="input-wrapper">
-            <span className="icon-left">$</span>
+          <div className="InputWrapper">
+            <span className="IconLeft">$</span>
             <input 
               type="text" 
               placeholder={placeholder} 
-              className="input-field with-icon-left" 
+              className="InputFieldWithIconLeft" 
               onChange={onChange} // 이벤트 핸들러 추가
               value={value} // value 추가
             />
@@ -37,11 +37,11 @@ const SearchField = ({
         );
       default:
         return (
-          <div className="input-wrapper">
+          <div className="InputWrapper">
             <input 
               type="text" 
               placeholder={placeholder} 
-              className="input-field" 
+              className="InputField" 
               onChange={onChange} // 이벤트 핸들러 추가
               value={value} // value 추가
             />
