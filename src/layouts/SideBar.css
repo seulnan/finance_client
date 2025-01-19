@@ -1,6 +1,7 @@
 @import '/src/styles/colors.css';
 @import '/src/styles/fonts.css';
 
+/* Desktop 모드: 기존 코드 유지 */
 .SideBar {
   width: 300px;
   height: 100vh;
@@ -22,7 +23,7 @@
   align-self: stretch;
 }
 
-/* 메뉴 스타일 */
+/* Desktop 메뉴 스타일 */
 .Menu ul {
   list-style: none;
   padding: 0;
@@ -53,8 +54,155 @@
 .MenuItem.Active {
   color: var(--grey-900, #201F24);
   font-weight: bold;
-  border-left: 4px solid var(--color-green, #277C78);
   background: var(--color-beige-100, #F8F4F0);
-  border-radius: 0px 12px 12px 0px;
-  width: 212px;
+  border-radius: 12px;
+  padding: 12px 0;
+  position: relative;
+}
+
+.MenuItem.Active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--color-green, #277C78);
+  border-radius: 2px;
+}
+
+/* Tablet 모드 (768px 이하) */
+@media (max-width: 768px) {
+  .SideBar {
+    width: 100%;
+    height: auto;
+    flex-direction: row; /* 메뉴를 가로로 배치 */
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--grey-900, #201F24);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .Logo {
+    display: none; /* Tablet에서 로고 숨기기 */
+  }
+
+  .Menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .Menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+
+  .MenuItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
+    padding: 8px 0;
+    text-align: center;
+  }
+
+  .MenuItem img.Icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .MenuItem.Active {
+    background: var(--color-beige-100, #F8F4F0);
+    border-radius: 12px;
+    padding: 16px 12px; /* 내부 여백 및 둥근 배경 */
+    position: relative;
+  }
+
+  .MenuItem.Active::after {
+    width: 100%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background: var(--color-green, #277C78);
+  }
+}
+
+/* Mobile 모드 (375px 이하) */
+@media (max-width: 375px) {
+  .SideBar {
+    width: 100%;
+    height: auto;
+    flex-direction: row; /* 메뉴를 가로로 배치 */
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--grey-900, #201F24);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .Logo {
+    display: none; /* Mobile에서도 로고 숨기기 */
+  }
+
+  .Menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .Menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+
+  .MenuItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0; /* 텍스트 숨기기 */
+    padding: 8px 0;
+    text-align: center;
+  }
+
+  .MenuItem img.Icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .MenuItem.Active {
+    background: var(--color-beige-100, #F8F4F0);
+    border-radius: 12px;
+    padding: 16px 16px; /* 가로로 더 넓은 여백 */
+    position: relative;
+  }
+
+  .MenuItem.Active::after {
+    width: 100%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background: var(--color-green, #277C78);
+  }
 }
