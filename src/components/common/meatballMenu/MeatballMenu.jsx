@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./MeatballMenu.css";
-import meatballIcon from "../../../assets/images/meatballMenu.png"
+import meatballIcon from "../../../assets/images/meatBallMenu.svg"; // Updated to use the SVG file
+
 const MeatballMenu = ({ onEdit, onDelete }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
