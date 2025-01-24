@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import baseAxios from "../../baseAxios";
 import "../../styles/fonts.css";
 import "./Transactions.css";
-import Pagination from "../../components/common/pagination/pagination.jsx"; // 분리된 Pagination 컴포넌트
+import Pagination from "../../components/common/pagination/pagination.jsx";
 
 function Transactions() {
   const [transactions, setTransactions] = useState([]);
@@ -31,7 +31,7 @@ function Transactions() {
 
   // ** 날짜 포맷 함수 **
   const formatDate = (dateString) => {
-    const options = { day: "2-digit", month: "short", year: "numeric" }; // "20 Aug 2024" 형식
+    const options = { day: "2-digit", month: "short", year: "numeric" };
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
@@ -39,7 +39,7 @@ function Transactions() {
   const formatAmount = (amount) => {
     if (isNaN(Number(amount))) return "N/A";
 
-    const color = amount >= 0 ? "#277C78" : "#201F24"; // 양수는 녹색, 음수는 검정
+    const color = amount >= 0 ? "#277C78" : "#201F24";
     const sign = amount >= 0 ? "+" : "-";
 
     return (
@@ -56,69 +56,60 @@ function Transactions() {
     }
   };
 
-  // ** 컴포넌트 마운트 시 첫 API 호출 **
   useEffect(() => {
     fetchTransactions();
   }, [page]);
 
   return (
     <div className="Transactions">
-      <h2 id="TransactionTitle">Transactions</h2>
+      <h2 id="TransactionTitle" className="textPreset4Bold">Transactions</h2>
 
       <div className="mainBox">
-        {error && <div className="errorMessage">{error}</div>}
+        {error && <div className="errorMessage textPreset5">{error}</div>}
 
         {loading ? (
           <div className="loading">
             <div className="spinner"></div>
-            <p>Loading...</p>
+            <p className="textPreset5">Loading...</p>
           </div>
         ) : (
           <div>
-            <div style={{ marginBottom: "24px" }}>
-              <table className="table">
-                <thead>
-                  <tr className="textPreset5 titles">
-                    <th id="personTitle">Recipient / Sender</th>
-                    <th className="CategoryDate">Category</th>
-                    <th className="CategoryDate">Transaction Date</th>
-                    <th id="amountTitle">Amount</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {transactions.length > 0 ? (
-                    transactions.map((transaction) => (
-                      <tr key={transaction._id} className="transactionRow">
-                        <td className="textPreset4Bold personInfo">
-                          <div className="imgName">
-                            <img
-                              src={transaction.avatar}
-                              alt={`${transaction.name} avatar`}
-                              className="personImg"
-                            />
-                            {transaction.name}
-                          </div>
-                        </td>
-                        <td className="textPreset5 CategoryDateInfo">{transaction.category}</td>
-                        <td className="textPreset5 CategoryDateInfo">{formatDate(transaction.date)}</td>
-                        <td className="amountInfo">{formatAmount(transaction.amount)}</td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="4" className="noTransactions">
-                        No transactions available.
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
+            {/* 헤더 */}
+            <div className="transactionHeader">
+              <div className="headerItem textPreset5">Recipient / Sender</div>
+              <div className="headerItem textPreset5" id="CategoryTitle">Category</div>
+              <div className="headerItem textPreset5" id="DateTitle">Transaction Date</div>
+              <div className="headerItem textPreset5" id="amountTitle">Amount</div>
             </div>
 
-            {/* Pagination 컴포넌트 */}
-            <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+            {/* 데이터 리스트 */}
+            <div className="transactionList">
+              {transactions.length > 0 ? (
+                transactions.map((transaction) => (
+                  <div key={transaction._id} className="transactionContainer">
+                    <div className="personInfo">
+                      <img
+                        src={transaction.avatar}
+                        alt={`${transaction.name} avatar`}
+                        className="personImg"
+                      />
+                    </div>
+                    <div key={transaction._id} className="transactionRow">
+                      <div className="rowItem personName textPreset4Bold">{transaction.name}</div>
+                      <div className="rowItem CategoryDateInfo textPreset5">{transaction.category}</div>
+                      <div className="rowItem CategoryDateInfo textPreset5">{formatDate(transaction.date)}</div>
+                      <div className="rowItem amountInfo textPreset4Bold">{formatAmount(transaction.amount)}</div>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <div className="noTransactions textPreset5">No transactions available.</div>
+              )}
+            </div>
           </div>
         )}
+        
+        <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>
   );

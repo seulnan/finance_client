@@ -28,231 +28,109 @@
   margin-top: var(--spacing-400);
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.titles {
-  color: var(--grey-500);
-  border-bottom: 2px solid var(--grey-100);
-}
-
-#personTitle {
-  padding: var(--spacing-150) 0 var(--spacing-150) var(--spacing-200);
-  text-align: left;
-}
-
-.CategoryDate {
-  padding: var(--spacing-150) 0;
-  text-align: left;
-}
-
-#amountTitle {
-  padding: var(--spacing-150) var(--spacing-200) var(--spacing-150) 0;
-  text-align: right;
-}
-
-.transactionRow {
-  border-bottom: 1px solid var(--grey-100);
-}
-
-.transactionRow:last-child {
-  border-bottom: none;
-}
-
-.personInfo {
-  padding: var(--spacing-200) 0 var(--spacing-200) var(--spacing-150);
+/* 헤더 스타일 */
+.transactionHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr; /* 열 비율 */
+  gap: var(--spacing-100);
+  padding: var(--spacing-200);
+  font-weight: bold;
   color: var(--grey-900);
 }
 
-.imgName {
+#CategoryTitle {
+  padding-left: var(--spacing-400);
+}
+
+#DateTitle {
+  padding-left: var(--spacing-250);
+}
+
+#amountTitle {
+  text-align: right;
+}
+
+/* 데이터 리스트 스타일 */
+.transactionContainer {
+  display: flex; /* personImg와 transactionRow를 가로로 배치 */
+  align-items: center;
+  gap: var(--spacing-200); /* personImg와 transactionRow 간격 */
+  padding: var(--spacing-150) 0;
+  border-top: 1px solid var(--grey-100);
+}
+
+.transactionList {
+  display: flex;
+  flex-direction: column;
+}
+
+.transactionRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr 1fr; /* 열 비율 */
+  gap: var(--spacing-100);
+  align-items: center;
+  padding: var(--spacing-200) var(--spacing-200) var(--spacing-200) 0;
+  flex: 1; /* transactionRow가 나머지 공간 차지 */
+}
+
+.rowItem {
   display: flex;
   align-items: center;
+}
+
+.personInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
 }
 
 .personImg {
   width: var(--spacing-500);
   height: var(--spacing-500);
   border-radius: 50%;
-  margin-right: var(--spacing-200);
+  margin-left: var(--spacing-150);
+}
+
+.personName {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--grey-900);
 }
 
 .CategoryDateInfo {
-  padding: var(--spacing-200) 0;
+  font-size: 12px;
   color: var(--grey-500);
 }
 
 .amountInfo {
-  padding: var(--spacing-200) var(--spacing-150) var(--spacing-200) 0;
-  text-align: right;
+  justify-content: flex-end;
+  font-weight: bold;
+  color: var(--grey-900);
 }
 
 .noTransactions {
   text-align: center;
   padding: var(--spacing-400);
-  color: gray;
+  color: var(--grey-500);
 }
 
-/* 페이지네이션 전체 스타일 */
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: var(--spacing-300);
-}
-
-.pageNumbers {
-  display: flex;
-  gap: var(--spacing-100);
-}
-
-.paginationButton,
-.pageButton {
-  width: var(--spacing-500);
-  height: var(--spacing-500);
-  border: 1px solid var(--grey-300);
-  border-radius: var(--spacing-100);
-  font-family: 'Text Preset 4', sans-serif;
-  font-size: 14px;
-  text-align: center;
-  background-color: var(--white);
-  color: var(--grey-900);
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.prevButton,
-.nextButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  padding: 0 var(--spacing-200);
-  gap: var(--spacing-100);
-  height: var(--spacing-500);
-  border: 1px solid var(--grey-300);
-  border-radius: var(--spacing-100);
-  font-family: 'Text Preset 4', sans-serif;
-  font-size: 14px;
-  background-color: var(--white);
-  color: var(--grey-900);
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-}
-
-.paginationIcon {
-  width: var(--spacing-200);
-  height: var(--spacing-200);
-}
-
-.prevButton.disabled,
-.nextButton.disabled {
-  background-color: var(--grey-100);
-  color: #aaa;
-  cursor: default;
-  border: 1px solid #ddd;
-}
-
-.prevButton:hover:not(.disabled),
-.nextButton:hover:not(.disabled) {
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.pageButton.currentPage {
-  background-color: var(--grey-900);
-  color: var(--white);
-  font-weight: bold;
-  cursor: default;
-}
-
-.pageButton:hover:not(.currentPage) {
-  background-color: var(--grey-100);
-}
-
-/* 미디어 쿼리 적용: 675px 이하 */
-@media (max-width: 675px) {
-  .table {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-200);
-    border-collapse: unset;
-  }
-
-  .titles {
-    display: none;
+/* 미디어 쿼리 */
+@media (max-width: 375px) {
+  .transactionHeader {
+    display: none; /* 헤더 숨기기 */
   }
 
   .transactionRow {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-200);
-    border: 1px solid var(--grey-100);
-    border-radius: var(--spacing-100);
-    background-color: var(--white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  }
-
-  .personInfo {
-    padding: 0;
-    flex: 1;
-    display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: var(--spacing-100);
   }
 
-  .personImg {
-    width: var(--spacing-400);
-    height: var(--spacing-400);
-    border-radius: 50%;
+  .rowItem {
+    justify-content: space-between;
   }
 
-  .imgName {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .personName {
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--grey-900);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .CategoryDateInfo {
-    padding: 0;
-    font-size: 12px;
-    color: var(--grey-500);
-  }
-
-  .rightInfo {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    flex: 1;
-  }
-
-  .amountInfo {
-    padding: 0;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: var(--spacing-50);
-  }
-
-  .amountInfo.positive {
-    color: var(--green);
-  }
-
-  .amountInfo.negative {
-    color: var(--grey-900);
-  }
-
-  .transactionDate {
-    font-size: 12px;
-    color: var(--grey-500);
+  .personInfo {
+    flex-direction: row;
   }
 }
