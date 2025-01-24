@@ -1,7 +1,7 @@
 import React from "react";
 import prevIcon from "../../../assets/images/prevIcon.png";
 import nextIcon from "../../../assets/images/nextIcon.png";
-import "./Pagination.css";
+import "./pagination.css";
 
 const Pagination = ({ page, totalPages, onPageChange }) => {
   return (
