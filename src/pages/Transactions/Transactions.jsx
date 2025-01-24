@@ -97,7 +97,7 @@ function Transactions() {
                     <div key={transaction._id} className="transactionRow">
                       <div className="rowItem personName textPreset4Bold">{transaction.name}</div>
                       <div className="rowItem CategoryDateInfo textPreset5">{transaction.category}</div>
-                      <div className="rowItem CategoryDateInfo textPreset5">{formatDate(transaction.date)}</div>
+                      <div className="rowItem CategoryDateInfo textPreset5" id="DateInfo">{formatDate(transaction.date)}</div>
                       <div className="rowItem amountInfo textPreset4Bold">{formatAmount(transaction.amount)}</div>
                     </div>
                   </div>
