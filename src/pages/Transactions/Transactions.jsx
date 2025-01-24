@@ -2,26 +2,25 @@ import React, { useEffect, useState } from "react";
 import baseAxios from "../../baseAxios";
 import "../../styles/fonts.css";
 import "./Transactions.css";
-import prevIcon from "../../assets/images/prevIcon.png";
-import nextIcon from "../../assets/images/nextIcon.png";
+import Pagination from "../../components/common/pagination/pagination.jsx"; // 분리된 Pagination 컴포넌트
 
 function Transactions() {
-  const [transactions, setTransactions] = useState([]); // 거래 데이터
-  const [page, setPage] = useState(1); // 현재 페이지
-  const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
-  const limit = 10; // 한 페이지에 표시할 데이터 수
-  const [loading, setLoading] = useState(false); // 로딩 상태
-  const [error, setError] = useState(null); // 에러 메시지
+  const [transactions, setTransactions] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 10;
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   // ** API 호출 함수 **
   const fetchTransactions = async () => {
     setLoading(true);
-    setError(null); // 기존 에러 초기화
+    setError(null);
     try {
       const response = await baseAxios.get(`/api/transaction?page=${page}&limit=${limit}`);
       const data = response.data;
-      setTransactions(data.transactions || []); // 거래 내역 설정
-      setTotalPages(data.totalPages || 1); // 총 페이지 수 설정
+      setTransactions(data.transactions || []);
+      setTotalPages(data.totalPages || 1);
     } catch (error) {
       console.error("Error fetching transactions:", error);
       setError("Failed to fetch transactions. Please try again.");
@@ -32,7 +31,7 @@ function Transactions() {
 
   // ** 날짜 포맷 함수 **
   const formatDate = (dateString) => {
-    const options = { day: "2-digit", month: "short", year: "numeric" }; // 20 Aug 2024 형식
+    const options = { day: "2-digit", month: "short", year: "numeric" }; // "20 Aug 2024" 형식
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
@@ -40,7 +39,7 @@ function Transactions() {
   const formatAmount = (amount) => {
     if (isNaN(Number(amount))) return "N/A";
 
-    const color = amount >= 0 ? "#277C78" : "#201F24"; // +는 녹색, -는 검정
+    const color = amount >= 0 ? "#277C78" : "#201F24"; // 양수는 녹색, 음수는 검정
     const sign = amount >= 0 ? "+" : "-";
 
     return (
@@ -67,10 +66,8 @@ function Transactions() {
       <h2 id="TransactionTitle">Transactions</h2>
 
       <div className="mainBox">
-        {/* 에러 메시지 */}
         {error && <div className="errorMessage">{error}</div>}
 
-        {/* 로딩 상태 */}
         {loading ? (
           <div className="loading">
             <div className="spinner"></div>
@@ -90,56 +87,23 @@ function Transactions() {
                 </thead>
                 <tbody>
                   {transactions.length > 0 ? (
-                    transactions.map((transaction) => {
-                      // 현재 화면 폭 확인 (675px 이하 여부)
-                      const isSmallScreen = window.innerWidth <= 675;
-
-                      return isSmallScreen ? (
-                        // 카드형 디자인 (675px 이하)
-                        <div key={transaction._id} className="transactionRow">
-                          <div className="personInfo">
-                            <div className="imgName">
-                              <img
-                                src={transaction.avatar}
-                                alt={`${transaction.name} avatar`}
-                                className="personImg"
-                              />
-                              <span className="personName">{transaction.name}</span>
-                            </div>
-                            <div className="CategoryDateInfo">{transaction.category}</div>
+                    transactions.map((transaction) => (
+                      <tr key={transaction._id} className="transactionRow">
+                        <td className="textPreset4Bold personInfo">
+                          <div className="imgName">
+                            <img
+                              src={transaction.avatar}
+                              alt={`${transaction.name} avatar`}
+                              className="personImg"
+                            />
+                            {transaction.name}
                           </div>
-                          <div className="rightInfo">
-                            <div
-                              className={`amountInfo ${
-                                transaction.amount >= 0 ? "positive" : "negative"
-                              }`}
-                            >
-                              {transaction.amount >= 0 ? "+" : "-"}${
-                                Math.abs(transaction.amount).toFixed(2)
-                              }
-                            </div>
-                            <div className="transactionDate">{formatDate(transaction.date)}</div>
-                          </div>
-                        </div>
-                      ) : (
-                        // 테이블형 디자인 (675px 초과)
-                        <tr key={transaction._id} className="transactionRow">
-                          <td className="textPreset4Bold personInfo">
-                            <div className="imgName">
-                              <img
-                                src={transaction.avatar}
-                                alt={`${transaction.name} avatar`}
-                                className="personImg"
-                              />
-                              {transaction.name}
-                            </div>
-                          </td>
-                          <td className="textPreset5 CategoryDateInfo">{transaction.category}</td>
-                          <td className="textPreset5 CategoryDateInfo">{formatDate(transaction.date)}</td>
-                          <td className="amountInfo">{formatAmount(transaction.amount)}</td>
-                        </tr>
-                      );
-                    })
+                        </td>
+                        <td className="textPreset5 CategoryDateInfo">{transaction.category}</td>
+                        <td className="textPreset5 CategoryDateInfo">{formatDate(transaction.date)}</td>
+                        <td className="amountInfo">{formatAmount(transaction.amount)}</td>
+                      </tr>
+                    ))
                   ) : (
                     <tr>
                       <td colSpan="4" className="noTransactions">
@@ -151,48 +115,8 @@ function Transactions() {
               </table>
             </div>
 
-            {/* 페이지네이션 */}
-            <div className="pagination">
-              {/* Prev 버튼 */}
-              <button
-                disabled={page === 1}
-                onClick={() => handlePageChange(page - 1)}
-                className={`paginationButton prevButton ${page === 1 ? "disabled" : ""}`}
-              >
-                <img src={prevIcon} alt="Prev" className="paginationIcon" />
-                Prev
-              </button>
-
-              {/* 페이지 번호 버튼 */}
-              <div className="pageNumbers">
-                {Array.from({ length: totalPages }, (_, index) => {
-                  const pageNumber = index + 1;
-                  return (
-                    <button
-                      key={pageNumber}
-                      onClick={() => handlePageChange(pageNumber)}
-                      className={`pageButton ${
-                        pageNumber === page ? "currentPage" : ""
-                      }`}
-                    >
-                      {pageNumber}
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Next 버튼 */}
-              <button
-                disabled={page === totalPages}
-                onClick={() => handlePageChange(page + 1)}
-                className={`paginationButton nextButton ${
-                  page === totalPages ? "disabled" : ""
-                }`}
-              >
-                Next
-                <img src={nextIcon} alt="Next" className="paginationIcon" />
-              </button>
-            </div>
+            {/* Pagination 컴포넌트 */}
+            <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
           </div>
         )}
       </div>
