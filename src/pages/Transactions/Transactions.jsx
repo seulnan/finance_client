@@ -126,7 +126,7 @@ function Transactions() {
                 onChange={setSortOption}
               />
               <Dropdown
-                label="Filter By Category"
+                label="Category"
                 options={[{ value: "all", label: "All Transactions" }, ...categories.map((cat) => ({ value: cat, label: cat }))]}
                 value={categoryFilter}
                 onChange={setCategoryFilter}
