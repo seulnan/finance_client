@@ -1,41 +1,58 @@
 import React, { useState, useEffect } from "react";
-import baseAxios from "../../baseAxios.js";
+import BaseAxios from "../../baseAxios.js";
 import BudgetModal from "../../components/common/budgetModal/BudgetModal.jsx";
 import MeatballMenu from "../../components/common/meatballMenu/MeatballMenu.jsx";
 import "../budgets/Budgets.css";
 
 const Budgets = () => {
-  const [budgets, setBudgets] = useState([]);
-  const [selectedBudget, setSelectedBudget] = useState(null);
-  const [modalType, setModalType] = useState("");
+  const [BudgetsData, SetBudgetsData] = useState([]);
+  const [SelectedBudget, SetSelectedBudget] = useState(null);
+  const [ModalType, SetModalType] = useState("");
 
   useEffect(() => {
-    fetchBudgets();
+    FetchBudgets();
   }, []);
 
-  const fetchBudgets = async () => {
+  const FetchBudgets = async () => {
     try {
-      const response = await baseAxios.get("/api/budget");
-      setBudgets(response.data);
-      console.log("Fetched budgets:", response.data);
-    } catch (error) {
-      console.error("Failed to fetch budgets:", error);
+      const Response = await BaseAxios.get("/api/budget");
+      SetBudgetsData(Response.data);
+    } catch (Error) {
+      console.error("Failed to fetch budgets:", Error);
     }
   };
 
-  const handleModalOpen = (type, budget = null) => {
-    setModalType(type);
-    setSelectedBudget(budget);
+  const HandleModalOpen = (Type, Budget = null) => {
+    SetModalType(Type);
+    SetSelectedBudget(Budget);
   };
 
-  const handleModalClose = () => {
-    setModalType("");
-    setSelectedBudget(null);
-    fetchBudgets();
+  const HandleModalClose = () => {
+    SetModalType("");
+    SetSelectedBudget(null);
+    FetchBudgets();
   };
 
-  const getColorClass = (color) => {
-    const colorMap = {
+  const HandleDeleteBudget = async () => {
+    if (!SelectedBudget?._id) {
+      console.error("Invalid Budget ID for deletion");
+      return;
+    }
+    try {
+      console.log("Deleting Budget ID:", SelectedBudget._id);
+      await BaseAxios.delete(`/api/budget/${SelectedBudget._id}`);
+
+      // 삭제 후 UI 업데이트
+      SetBudgetsData((prevBudgets) => prevBudgets.filter(b => b._id !== SelectedBudget._id));
+
+      HandleModalClose(); // 삭제 후 모달 닫기
+    } catch (Error) {
+      console.error("Failed to delete budget:", Error);
+    }
+  };
+
+  const GetColorClass = (Color) => {
+    const ColorMap = {
       Green: "budget-green",
       Yellow: "budget-yellow",
       Cyan: "budget-cyan",
@@ -52,70 +69,133 @@ const Budgets = () => {
       Gold: "budget-gold",
       Orange: "budget-orange",
     };
-    return colorMap[color] || "budget-default";
+    return ColorMap[Color] || "budget-default";
   };
 
   return (
-    <div className="budget-container">
-      <div className="left-summary">
-        <div className="summary-box">
-          <h3>Spending Summary</h3>
-          <ul>
-            {budgets.map((budget) => (
-              <li key={budget._id} className="summary-item">
-                <span className={`summary-color ${getColorClass(budget.color)}`}></span>
-                {budget.name}: ${budget.used} / ${budget.limit}
-              </li>
-            ))}
-          </ul>
-        </div>
+    <div className="BudgetContainer">
+      <div className="BudgetHeaderOne">
+        <h1>Budgets</h1>
+        <button className="AddBudgetButton" onClick={() => HandleModalOpen("add")}>
+          + Add New Budget
+        </button>
       </div>
-      <div className="right-budgets">
-        <div className="header">
-          <h2>Budgets</h2>
-          <button className="add-budget-button" onClick={() => handleModalOpen("add")}>
-            + Add New Budget
-          </button>
-        </div>
-        <div className="budget-list">
-          {budgets.map((budget) => (
-            <div key={budget._id} className={`budget-card ${getColorClass(budget.color)}`}>
-              <div className="budget-header">
-                <h3>{budget.name}</h3>
-                <MeatballMenu
-                  onEdit={() => handleModalOpen("edit", budget)}
-                  onDelete={() => handleModalOpen("delete", budget)}
-                />
-              </div>
-              <div className="budget-details">
-                <p>Maximum: ${budget.limit}</p>
-                <p>Spent: ${budget.used}</p>
-              </div>
-              <h4>Latest Spending</h4>
-              <ul>
-                {budget.latestSpending.map((item, index) => (
-                  <li key={index} className="spending-item">
-                    <img src={item.avatar} alt={item.name} />
-                    <div>
-                      <p>{item.name}</p>
-                      <p>{new Date(item.date).toLocaleDateString()}</p>
-                      <p>${item.amount}</p>
+
+      <div className="BudgetContent">
+        <div className="LeftSummary">
+          <div className="SummaryBox">
+            <h3>Spending Summary</h3>
+            <div>
+              {BudgetsData.map((Budget) => {
+                const UsedAmount = Number(Budget.used) || 0;
+                const LimitAmount = Number(Budget.limit) || 1;
+
+                return (
+                  <div className="SummaryItem">
+                    <div className="SummaryColorBar" style={{ backgroundColor: Budget.color }}></div>
+                    <div className="SummaryDetails">
+                      <p className="BudgetName">{Budget.name}</p>
                     </div>
-                  </li>
-                ))}
-              </ul>
+                    <div className="SummaryAmount">
+                      <p>
+                        <span className="SummaryAmount">${UsedAmount.toFixed(2)}</span> of ${LimitAmount.toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
+
+                );
+              })}
             </div>
-          ))}
+          </div>
         </div>
-        {modalType && (
-          <BudgetModal
-            type={modalType}
-            budget={selectedBudget}
-            onClose={handleModalClose}
-            onSuccess={handleModalClose}
-          />
-        )}
+
+        <div className="RightBudgets">
+          <div className="BudgetList">
+            {BudgetsData.map((Budget) => {
+              const UsedAmount = Number(Budget.used) || 0;
+              const LimitAmount = Number(Budget.limit) || 1;
+              const RemainingAmount = LimitAmount - UsedAmount;
+              const ProgressWidth = Math.max(1, Math.min((UsedAmount / LimitAmount) * 100, 100));
+
+              return (
+                <div key={Budget._id} className="BudgetCard">
+                  <div className="BudgetHeader">
+                  <div className="BudgetTitle">
+                    <span className="BudgetCircle" style={{ backgroundColor: Budget.color }}></span>
+                    <h3>{Budget.name}</h3>
+                  </div>
+                    <MeatballMenu
+                      onEdit={() => HandleModalOpen("edit", Budget)}
+                      onDelete={() => HandleModalOpen("delete", Budget)} // ✅ 삭제 모달을 먼저 띄움
+                    />
+                  </div>
+
+                  <p className="BudgetMax">Maximum: ${LimitAmount.toFixed(2)}</p>
+
+                  <div className="ProgressBar">
+                  <div className="ProgressFill" style={{ width: `${ProgressWidth}%`, backgroundColor: Budget.color }}></div>
+                  </div>
+
+                  <div className="BudgetStats">
+                    <div className="Spent">
+                      <span>Spent</span>
+                      <span className = "SpentBold">${UsedAmount.toFixed(2)}</span>
+                    </div>
+                    <div className="VerticalDivider"></div>
+                    <div className="Remaining">
+                      <span>Remaining</span>
+                      <span className = "SpentBold">${RemainingAmount.toFixed(2)}</span>
+                    </div>
+                  </div>
+
+                  <div className="TransactionHistory">
+                    <h4 className="TransactionHistoryTitle">Latest Spending</h4>
+                    {Budget.latestSpending.map((Item, Index) => (
+                      <div key={Index} className="SpendingItem">
+                        <img src={Item.avatar} alt={Item.name} className="Avatar" />
+                        <div className="SpendingDetails">
+                          <p className="SpendingName">{Item.name}</p>
+                        </div>
+                        <div className="SpendingInfo">
+                          <p className="SpendingAmount">-${Number(Item.amount).toFixed(2)}</p>
+                          <p className="SpendingDate">{new Date(Item.date).toLocaleDateString()}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
       </div>
+
+      {ModalType === "delete" && SelectedBudget && (
+        <BudgetModal
+          type="delete"
+          budget={SelectedBudget}
+          onClose={HandleModalClose}
+          onDelete={HandleDeleteBudget} // ✅ 삭제 후 실행
+          onSuccess={HandleModalClose}
+        />
+      )}
+
+      {ModalType === "edit" && SelectedBudget && (
+        <BudgetModal
+          type="edit"
+          budget={SelectedBudget}
+          onClose={HandleModalClose}
+          onSuccess={HandleModalClose}
+        />
+      )}
+
+      {ModalType === "add" && (
+        <BudgetModal
+          type="add"
+          onClose={HandleModalClose}
+          onSuccess={HandleModalClose}
+        />
+      )}
     </div>
   );
 };
