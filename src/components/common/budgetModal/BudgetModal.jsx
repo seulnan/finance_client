@@ -3,7 +3,30 @@ import baseAxios from "../../../baseAxios.js";
 import SearchField from "../searchField/SearchField.jsx";
 import "../budgetModal/BudgetModal.css";
 
+import "../../../styles/colors.css";
+
 import Dropdowncross from '../../../assets/images/dropdowncross.svg';
+
+const GetColorVariable = (color) => {
+  const colorMap = {
+    Green: "var(--green)",
+    Yellow: "var(--yellow)",
+    Cyan: "var(--cyan)",
+    Navy: "var(--navy)",
+    Red: "var(--red)",
+    Purple: "var(--purple)",
+    Turquoise: "var(--turquoise)",
+    Brown: "var(--brown)",
+    Magenta: "var(--magenta)",
+    Blue: "var(--blue)",
+    Grey: "var(--grey-500)",
+    Army: "var(--army-green)",
+    Pink: "var(--magenta)",
+    Gold: "var(--gold)",
+    Orange: "var(--orange)",
+  };
+  return colorMap[color] || "var(--grey-300)";
+};
 
 const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
@@ -47,10 +70,10 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
   };
 
   const handleThemeSelection = (color) => {
-    setFormData({ ...formData, theme: color });
+    setFormData({ ...formData, theme: color }); // ✅ 색상 이름 그대로 저장
     setDropdownOpen(false);
   };
-
+  
   const handleSubmit = async () => {
     try {
       if (type === "add") {
@@ -136,7 +159,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                   <div onClick={() => setDropdownOpen(!dropdownOpen)} style={{ display: "flex", alignItems: "center", width: "100%" }}>
                     {formData.theme ? (
                       <>
-                        <span className="ColorCircle" style={{ backgroundColor: formData.theme }}></span>
+                        <span className="ColorCircle" style={{ backgroundColor: GetColorVariable(formData.theme) }}></span>
                         {formData.theme}
                       </>
                     ) : (
@@ -154,14 +177,28 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                 {dropdownOpen && (
                   <div className="DropdownList">
                     {options.usedColors.map((color) => (
-                      <div key={`used-${color}`} className="DropdownOption Disabled">
-                        <span className="ColorCircle" style={{ backgroundColor: color }}></span>
+                      <div 
+                        key={`used-${color}`} 
+                        className="DropdownOption Disabled" 
+                        onClick={() => handleThemeSelection(color)}
+                      >
+                        <span 
+                          className="ColorCircle" 
+                          style={{ backgroundColor: GetColorVariable(color) }} // ✅ CSS 변수 변환 후 적용
+                        ></span> 
                         {color} (Already Used)
                       </div>
                     ))}
                     {options.availableColors.map((color) => (
-                      <div key={`available-${color}`} className="DropdownOption" onClick={() => handleThemeSelection(color)}>
-                        <span className="ColorCircle" style={{ backgroundColor: color }}></span>
+                      <div 
+                        key={`available-${color}`} 
+                        className="DropdownOption" 
+                        onClick={() => handleThemeSelection(color)}
+                      >
+                        <span 
+                          className="ColorCircle" 
+                          style={{ backgroundColor: GetColorVariable(color) }} // ✅ CSS 변수 변환 후 적용
+                        ></span> 
                         {color}
                       </div>
                     ))}
@@ -200,16 +237,19 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
               <label>Theme</label>
               <div className="ColorDropdown">
               <div className="DropdownHeader">
-                  <div onClick={() => setDropdownOpen(!dropdownOpen)} style={{ display: "flex", alignItems: "center", width: "100%" }}>
-                    {formData.theme ? (
-                      <>
-                        <span className="ColorCircle" style={{ backgroundColor: formData.theme }}></span>
-                        {formData.theme}
-                      </>
-                    ) : (
-                      "Select Theme"
-                    )}
-                  </div>
+                <div 
+                  onClick={() => setDropdownOpen(!dropdownOpen)} 
+                  style={{ display: "flex", alignItems: "center", width: "100%" }}
+                >
+                  {formData.theme ? (
+                    <>
+                      <span className="ColorCircle" style={{ backgroundColor: GetColorVariable(formData.theme) }}></span>
+                      {formData.theme}
+                    </>
+                  ) : (
+                    "Select Theme"
+                  )}
+                </div>
                   <img 
                     src={Dropdowncross} 
                     alt="Toggle Dropdown" 
@@ -220,14 +260,28 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                 {dropdownOpen && (
                   <div className="DropdownList">
                     {options.usedColors.map((color) => (
-                      <div key={`used-${color}`} className="DropdownOption Disabled">
-                        <span className="ColorCircle" style={{ backgroundColor: color }}></span>
+                      <div 
+                        key={`used-${color}`} 
+                        className="DropdownOption Disabled" 
+                        onClick={() => handleThemeSelection(color)}
+                      >
+                        <span 
+                          className="ColorCircle" 
+                          style={{ backgroundColor: GetColorVariable(color) }} // ✅ CSS 변수 변환 후 적용
+                        ></span> 
                         {color} (Already Used)
                       </div>
                     ))}
                     {options.availableColors.map((color) => (
-                      <div key={`available-${color}`} className="DropdownOption" onClick={() => handleThemeSelection(color)}>
-                        <span className="ColorCircle" style={{ backgroundColor: color }}></span>
+                      <div 
+                        key={`available-${color}`} 
+                        className="DropdownOption" 
+                        onClick={() => handleThemeSelection(color)}
+                      >
+                        <span 
+                          className="ColorCircle" 
+                          style={{ backgroundColor: GetColorVariable(color) }} // ✅ CSS 변수 변환 후 적용
+                        ></span> 
                         {color}
                       </div>
                     ))}

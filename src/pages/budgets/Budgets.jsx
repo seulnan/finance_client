@@ -3,6 +3,8 @@ import BaseAxios from "../../baseAxios.js";
 import BudgetModal from "../../components/common/budgetModal/BudgetModal.jsx";
 import MeatballMenu from "../../components/common/meatballMenu/MeatballMenu.jsx";
 import "../budgets/Budgets.css";
+import "../../styles/colors.css";
+
 
 const Budgets = () => {
   const [BudgetsData, SetBudgetsData] = useState([]);
@@ -50,27 +52,27 @@ const Budgets = () => {
       console.error("Failed to delete budget:", Error);
     }
   };
-
-  const GetColorClass = (Color) => {
-    const ColorMap = {
-      Green: "budget-green",
-      Yellow: "budget-yellow",
-      Cyan: "budget-cyan",
-      Navy: "budget-navy",
-      Red: "budget-red",
-      Purple: "budget-purple",
-      Turquoise: "budget-turquoise",
-      Brown: "budget-brown",
-      Magenta: "budget-magenta",
-      Blue: "budget-blue",
-      Grey: "budget-grey",
-      Army: "budget-army",
-      Pink: "budget-pink",
-      Gold: "budget-gold",
-      Orange: "budget-orange",
+  const GetColorVariable = (color) => {
+    const colorMap = {
+      Green: "var(--green)",
+      Yellow: "var(--yellow)",
+      Cyan: "var(--cyan)",
+      Navy: "var(--navy)",
+      Red: "var(--red)",
+      Purple: "var(--purple)",
+      Turquoise: "var(--turquoise)",
+      Brown: "var(--brown)",
+      Magenta: "var(--magenta)",
+      Blue: "var(--blue)",
+      Grey: "var(--grey-500)",
+      Army: "var(--army-green)",
+      Pink: "var(--magenta)",
+      Gold: "var(--gold)",
+      Orange: "var(--orange)",
     };
-    return ColorMap[Color] || "budget-default";
+    return colorMap[color] || "var(--grey-300)";
   };
+  
 
   return (
     <div className="BudgetContainer">
@@ -92,7 +94,7 @@ const Budgets = () => {
 
                 return (
                   <div className="SummaryItem">
-                    <div className="SummaryColorBar" style={{ backgroundColor: Budget.color }}></div>
+                    <div className="SummaryColorBar" style={{ backgroundColor: GetColorVariable(Budget.color) }}></div>
                     <div className="SummaryDetails">
                       <p className="BudgetName">{Budget.name}</p>
                     </div>
@@ -121,7 +123,7 @@ const Budgets = () => {
                 <div key={Budget._id} className="BudgetCard">
                   <div className="BudgetHeader">
                   <div className="BudgetTitle">
-                    <span className="BudgetCircle" style={{ backgroundColor: Budget.color }}></span>
+                  <span className="BudgetCircle" style={{ backgroundColor: GetColorVariable(Budget.color) }}></span>
                     <h3>{Budget.name}</h3>
                   </div>
                     <MeatballMenu
@@ -133,7 +135,7 @@ const Budgets = () => {
                   <p className="BudgetMax">Maximum: ${LimitAmount.toFixed(2)}</p>
 
                   <div className="ProgressBar">
-                  <div className="ProgressFill" style={{ width: `${ProgressWidth}%`, backgroundColor: Budget.color }}></div>
+                  <div className="ProgressFill" style={{ width: `${ProgressWidth}%`, backgroundColor: GetColorVariable(Budget.color) }}></div>
                   </div>
 
                   <div className="BudgetStats">
