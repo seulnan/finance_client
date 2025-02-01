@@ -2,7 +2,7 @@
 @import '/src/styles/colors.css';
 @import '/src/styles/fonts.css';
 
-.modal {
+.Modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,8 +14,11 @@
   align-items: center;
 }
 
-.modal-content {
-  gap : 20px;
+.FormGroup{
+  margin-bottom : 20px;
+}
+
+.ModalContent {
   background: var(--white);
   border-radius: 10px;
   max-width: 560px; /* Desktop and Tablet */
@@ -27,7 +30,7 @@
   position: relative;
 }
 
-.modal-header {
+.ModalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -42,7 +45,7 @@ h2 {
   margin: 0;
 }
 
-.close-button {
+.CloseButton {
   border: none;
   background: url("../../../assets/images/CloseButton.png") no-repeat center center;
   background-size: contain;
@@ -83,14 +86,7 @@ select::after {
   }
 }
 
-@media screen and (max-width: 768px) {
-  select {
-    max-width: 496px; /* Tablet */
-    height: 45px;
-  }
-}
-
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 375px) {
   select {
     max-width: 295px; /* Mobile */
     height: 45px;
@@ -118,7 +114,7 @@ input {
 }
 
 /* Buttons */
-.modal-submit-button {
+.ModalSubmitButton {
   background: var(--grey-900);
   color: var(--white);
   border: none;
@@ -130,7 +126,7 @@ input {
   font-size: 1rem;
 }
 
-.modal-delete-button {
+.ModalDeleteButton {
   background: var(--red);
   color: var(--white);
   border: none;
@@ -139,9 +135,10 @@ input {
   width: 100%;
   margin-bottom: 10px;
   font-family: 'Text Preset 4 Bold';
+  padding : 16px;
 }
 
-.modal-cancel-button {
+.ModalCancelButton {
   background: var(--grey-100);
   color: var(--grey-900);
   border: none;
@@ -149,12 +146,13 @@ input {
   cursor: pointer;
   width: 100%;
   font-family: 'Text Preset 4';
+  padding : 16px;
 }
 
 @media screen and (max-width: 375px) {
-  .modal-content {
+  .ModalContent {
     max-width: 335px; /* Mobile size */
-    padding: var(--spacing-200, 16px);
+    padding: 24px;
   }
 
   h2 {
