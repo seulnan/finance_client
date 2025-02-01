@@ -1,7 +1,8 @@
 @import '/src/styles/colors.css';
 @import '/src/styles/fonts.css';
 
-.sidebar {
+/* Desktop 모드: 요청된 모습으로 수정 */
+.SideBar {
   width: 300px;
   height: 100vh;
   background-color: var(--grey-900, #201F24);
@@ -12,7 +13,7 @@
   border-radius: 0px var(--spacing-200, 16px) var(--spacing-200, 16px) 0px;
 }
 
-.logo {
+.Logo {
   display: flex;
   padding: 40px 32px 62px 32px;
   flex-direction: column;
@@ -22,39 +23,182 @@
   align-self: stretch;
 }
 
-/* 메뉴 스타일 */
-.menu ul {
+.Menu ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.menu-item {
+.MenuItem {
   display: flex;
   align-items: center;
   height: 56px;
   gap: 16px;
-  padding: 2px 32px;
+  padding: 8px 32px;
   color: #bdbdbd;
   font-size: 1rem;
   text-decoration: none;
   font-family: 'Text Preset 4 Bold', sans-serif;
+  border-radius: 12px;
 }
 
-.menu-item img.icon {
-  width: 20px;
-  height: 20px;
+.MenuItem img.Icon {
+  width: 24px;
+  height: 24px;
 }
 
-.menu-item:hover {
-  color: var(--white, #FFFFFF);
-}
-
-.menu-item.active {
+.MenuItem.Active {
   color: var(--grey-900, #201F24);
   font-weight: bold;
-  border-left: 4px solid var(--color-green, #277C78);
-  background: var(--color-beige-100, #F8F4F0);
-  border-radius: 0px 12px 12px 0px;
-  width: 212px;
+  border-left: 4px solid var(--color-green, #277C78); /* 왼쪽 초록색 선 */
+  background-color: var(--color-beige-100, #F8F4F0);
+  border-radius: 0px 12px 12px 0px; /* 오른쪽만 둥근 모서리 */
+  padding: 8px 32px;
+  margin-right: 24px; /* 오른쪽 여백 추가 */
+}
+
+/* Tablet 모드 (768px 이하) */
+@media (max-width: 768px) {
+  .SideBar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--grey-900, #201F24);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .Logo {
+    display: none; /* Tablet에서 로고 숨기기 */
+  }
+
+  .Menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .Menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+
+  .MenuItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
+    padding: 8px 0;
+    text-align: center;
+  }
+
+  .MenuItem img.Icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .MenuItem.Active {
+    background: var(--color-beige-100, #F8F4F0);
+    border-radius: 12px;
+    padding: 16px 20px;
+    position: relative;
+    border-left: none; /* 왼쪽 초록색 선 제거 */
+    margin-right: 0px;
+  }
+
+  .MenuItem.Active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* 강조선 하단으로 배치 */
+    left: 10%;
+    width: 80%; /* 강조선 길이 */
+    height: 3px;
+    background: var(--color-green, #277C78);
+    border-radius: 2px;
+  }
+}
+
+/* Mobile 모드 (375px 이하) */
+@media (max-width: 375px) {
+  .SideBar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--grey-900, #201F24);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+
+  .Logo {
+    display: none; /* Mobile에서도 로고 숨기기 */
+  }
+
+  .Menu {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .Menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+  }
+
+  .MenuItem {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0; /* 텍스트 숨기기 */
+    padding: 8px 0;
+    text-align: center;
+  }
+
+  .MenuItem img.Icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .MenuItem.Active {
+    background: var(--color-beige-100, #F8F4F0);
+    border-radius: 12px;
+    padding: 16px 24px;
+    position: relative;
+    border-left: none; /* 왼쪽 초록색 선 제거 */
+    margin-right: 0px;
+  }
+
+  .MenuItem.Active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px; /* 강조선 하단으로 배치 */
+    left: 7.5%; /* 강조선 중앙 배치 */
+    width: 85%; /* 강조선 길이 */
+    height: 3px;
+    background: var(--color-green, #277C78);
+    border-radius: 2px;
+  }
 }
