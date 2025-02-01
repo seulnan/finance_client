@@ -149,8 +149,8 @@ const Budgets = () => {
                   </div>
 
                   <div className="TransactionHistory">
-                    <h4 className="TransactionHistoryTitle">Latest Spending</h4>
-                    {Budget.latestSpending.map((Item, Index) => (
+                    <span className="TransactionHistoryTitle">Latest Spending</span>
+                    {Budget.latestSpending.slice(0, 3).map((Item, Index) => (
                       <div key={Index} className="SpendingItem">
                         <img src={Item.avatar} alt={Item.name} className="Avatar" />
                         <div className="SpendingDetails">
@@ -163,6 +163,7 @@ const Budgets = () => {
                       </div>
                     ))}
                   </div>
+
                 </div>
               );
             })}
