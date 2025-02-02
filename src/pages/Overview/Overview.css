@@ -1,0 +1,89 @@
+.BudgetOverviewContainer {
+    width: 428px;
+    height: 410px;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  
+  .OverviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .OverviewHeader h2 {
+    font-size: 20px;
+    color: var(--grey-900);
+    font-weight: bold;
+  }
+  
+  .SeeDetails {
+    background: none;
+    border: none;
+    color: var(--grey-900);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .SeeDetails:hover {
+    text-decoration: underline;
+  }
+  
+  .BudgetContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    overflow: hidden;
+  }
+  
+  .BudgetChart {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .BudgetList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  
+  .BudgetItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 100px;
+  }
+  
+  .BudgetColor {
+    width: 8px;
+    height: 30px;
+    border-radius: 4px;
+  }
+  
+  .BudgetInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .BudgetInfo p {
+    font-size: 14px;
+    color: var(--grey-900);
+  }
+  
+  .BudgetInfo strong {
+    font-size: 16px;
+    color: var(--grey-900);
+  }
+  

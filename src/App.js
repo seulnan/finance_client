@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './layouts/SideBar.jsx';
 import Transactions from './pages/Transactions/Transactions.jsx';
 import Budgets from './pages/budgets/Budgets.jsx';
+import Overview from './pages/Overview/Overview.jsx';
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
         <Sidebar />
         <div style={{ flexGrow: 1, height: '100vh', backgroundColor: '#F8F4F0' }}>
           <Routes>
-            <Route path="/" element={<h1>Overview</h1>} />
+            <Route path="/" element={<Overview />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/budgets" element={<Budgets />} />
             <Route path="/pots" element={<h1>Pots</h1>} />
