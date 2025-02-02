@@ -64,16 +64,19 @@ function Transactions() {
     setError(null);
     try {
       let url = `/api/transaction?page=1&limit=100`; // 전체 데이터 가져오기
-
+  
       if (sortOption !== "Latest") {
-        url += `&sortOption=${sortOption}`; // 정렬 옵션 추가
+        url += `&sortOption=${sortOption}`;
       }
       if (categoryFilter !== "All") {
-        url += `&category=${categoryFilter}`; // 카테고리 필터 추가
+        url += `&category=${encodeURIComponent(categoryFilter)}`; // ✅ 띄어쓰기 포함된 값 처리
       }
-
+  
       const response = await baseAxios.get(url);
       const data = response.data;
+  
+      console.log("Received transactions:", data.transactions); // ✅ 데이터 확인
+  
       setTransactions(data.transactions || []);
     } catch (error) {
       console.error("Error fetching transactions:", error);
@@ -89,7 +92,9 @@ function Transactions() {
 
     // 카테고리 필터링
     if (categoryFilter !== "All") {
-      sortedData = sortedData.filter((t) => t.category === categoryFilter);
+      sortedData = sortedData.filter(
+        (t) => decodeURIComponent(t.category).toLowerCase().trim() === categoryFilter.toLowerCase().trim()
+      );
     }
 
     // 정렬 적용
