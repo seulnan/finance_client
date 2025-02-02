@@ -224,16 +224,30 @@
   font-size: 12px;
   color: #888;
 }
-
-/* 반응형 */
-@media screen and (max-width: 1023px) {
-  .BudgetCard {
+/* Tablet (768px ~ 1023px) */
+@media screen and (max-width: 768px) {
+  .BudgetContent {
+    flex-direction: column;
+    align-items: center;
     width: 100%;
-    height: auto;
+    overflow-x: hidden;
   }
 
-  .TransactionHistory {
-    max-height: none;
-    overflow-y: visible;
+  .LeftSummary, .BudgetCard {
+    width: 688px; /* Summary와 동일한 크기 */
+    max-width: 688px;
+  }
+}
+
+/* Mobile (375px 이하) */
+@media screen and (max-width: 375px) {
+  .LeftSummary, .BudgetCard {
+    width: 343px; /* Summary와 동일한 크기 */
+    max-width: 343px;
+  }
+
+  /* Latest Spending에서 아바타 제거 */
+  .SpendingItem img {
+    display: none;
   }
 }

@@ -165,7 +165,6 @@ const Budgets = () => {
                       </div>
                     ))}
                   </div>
-
                 </div>
               );
             })}
