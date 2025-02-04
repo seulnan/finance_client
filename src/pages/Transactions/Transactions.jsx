@@ -69,7 +69,7 @@ function Transactions() {
         url += `&sortOption=${sortOption}`;
       }
       if (categoryFilter !== "All") {
-        url += `&category=${categoryFilter}`;
+        url += `&category=${encodeURIComponent(categoryFilter)}`;
       }
   
       const response = await baseAxios.get(url);
@@ -77,7 +77,6 @@ function Transactions() {
   
       setTransactions(data.transactions || []);
       setTotalPages(data.totalPages || 1); // ✅ API에서 받은 totalPages를 그대로 사용
-      console.log("Fetching data from URL:", url);
 
   
     } catch (error) {
