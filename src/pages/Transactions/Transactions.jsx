@@ -63,28 +63,29 @@ function Transactions() {
     setLoading(true);
     setError(null);
     try {
-      let url = `/api/transaction?page=1&limit=100`; // 전체 데이터 가져오기
+      let url = `/api/transaction?page=${page}&limit=${limit}`; // ✅ 한 번에 10개씩 요청
   
       if (sortOption !== "Latest") {
         url += `&sortOption=${sortOption}`;
       }
       if (categoryFilter !== "All") {
-        url += `&category=${encodeURIComponent(categoryFilter)}`; // ✅ 띄어쓰기 포함된 값 처리
+        url += `&category=${categoryFilter}`;
       }
   
       const response = await baseAxios.get(url);
       const data = response.data;
   
-      console.log("Received transactions:", data.transactions); // ✅ 데이터 확인
-  
       setTransactions(data.transactions || []);
+      setTotalPages(data.totalPages || 1); // ✅ API에서 받은 totalPages를 그대로 사용
+      console.log("Fetching data from URL:", url);
+
+  
     } catch (error) {
-      console.error("Error fetching transactions:", error);
       setError("Failed to fetch transactions. Please try again.");
     } finally {
       setLoading(false);
     }
-  };
+  };  
 
   // ✅ 데이터 정렬 & 필터링
   useEffect(() => {
@@ -118,18 +119,21 @@ function Transactions() {
         sortedData.sort((a, b) => new Date(b.date) - new Date(a.date)); // 최신순
         break;
     }
-
-    // 페이지네이션 적용
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    setFilteredTransactions(sortedData.slice(startIndex, endIndex));
-    setTotalPages(Math.ceil(sortedData.length / limit));
+    setFilteredTransactions(sortedData);
   }, [transactions, sortOption, categoryFilter, page]);
+
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
 
   useEffect(() => {
     fetchTransactions();
-  }, []);
+  }, [page, sortOption, categoryFilter]); // ✅ 페이지 변경 시 API 다시 호출
 
+  useEffect(() => {
+  }, [transactions]);
+  
   return (
     <div className="Transactions">
       <h2 id="TransactionTitle" className="textPreset4Bold">Transactions</h2>
@@ -186,7 +190,7 @@ function Transactions() {
         )}
 
         {/* ✅ 페이지네이션 */}
-        <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
+        <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>
   );
