@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import baseAxios from "../../baseAxios";
+import SearchField from "../../components/common/searchField/SearchField.jsx"; 
 import Dropdown from "../../components/common/dropdown/dropdown.jsx";
 import "../../styles/fonts.css";
 import "./Transactions.css";
@@ -10,6 +11,7 @@ function Transactions() {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [sortOption, setSortOption] = useState("Latest"); // 기본값 최신순
   const [categoryFilter, setCategoryFilter] = useState("All"); // 기본값 All
+  const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 10;
@@ -86,6 +88,24 @@ function Transactions() {
     }
   };  
 
+  useEffect(() => {
+    let filtered = [...transactions];
+
+    if (categoryFilter !== "All") {
+      filtered = filtered.filter((t) =>
+        decodeURIComponent(t.category).toLowerCase().trim() === categoryFilter.toLowerCase().trim()
+      );
+    }
+
+    if (searchQuery.trim() !== "") {
+      filtered = filtered.filter((t) =>
+        t.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+
+    setFilteredTransactions(filtered);
+  }, [transactions, categoryFilter, searchQuery]);
+
   // ✅ 데이터 정렬 & 필터링
   useEffect(() => {
     let sortedData = [...transactions];
@@ -147,10 +167,12 @@ function Transactions() {
           </div>
         ) : (
           <div>
-            {/* ✅ 필터링 드롭다운 */}
-            <div className="filters">
-              <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
-              <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
+            <div className="searchFilters">
+              <SearchField type="icon-right" placeholder="Search transaction" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+              <div className="filters">
+                <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
+                <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
+              </div>
             </div>
 
             {/* ✅ 테이블 헤더 */}
