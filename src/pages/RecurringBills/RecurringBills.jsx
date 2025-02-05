@@ -141,16 +141,28 @@ function RecurringBills() {
             ) : error ? (
               <p>{error}</p>
             ) : filteredBills.length > 0 ? (
-              filteredBills.map((bill) => (
-                <div key={bill._id} className="billContainer">
-                  <div className="billInfo">
-                    <img src={bill.avatar} alt={bill.name} className="billImg" />
-                    <span className="textPreset4Bold">{bill.name}</span>
+              filteredBills.map((bill) => {
+                const billDay = parseInt(bill.date.match(/\d+/)[0]);
+                const isPaid = billDay < today.getDate();
+                const isDueSoon = billDay >= today.getDate() && billDay <= fiveDaysLater.getDate();
+
+                return (
+                  <div key={bill._id} className="billContainer">
+                    <div className="billInfo">
+                      <img src={bill.avatar} alt={bill.name} className="billImg" />
+                      <span className="textPreset4Bold">{bill.name}</span>
+                    </div>
+                    <div className="billDateWrapper">
+                      <span className={`billDate textPreset5 ${isPaid ? "paidDate" : ""}`}>{bill.date}</span>
+                      {isPaid && <img src={PaidIcon} alt="Paid" className="statusIcon paidIcon" />}
+                      {isDueSoon && <img src={DueSoonIcon} alt="Due Soon" className="statusIcon dueSoonIcon" />}
+                    </div>
+                    <span className={`billAmount textPreset4Bold ${isDueSoon ? "dueSoonAmount" : ""}`}>
+                      ${Math.abs(parseFloat(bill.amount)).toFixed(2)}
+                    </span>
                   </div>
-                  <span className="billDate textPreset5">{bill.date}</span>
-                  <span className="billAmount textPreset4Bold">${Math.abs(parseFloat(bill.amount)).toFixed(2)}</span>
-                </div>
-              ))
+                );
+              })
             ) : (
               <p>No recurring bills available.</p>
             )}

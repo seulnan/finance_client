@@ -166,11 +166,27 @@
   color: var(--grey-900);
 }
 
-.billDate {
+.paidDate {
+  color: var(--green);
+}
+
+.billDateWrapper {
+  display: flex;
+  align-items: center;
   width: 100%;
   max-width: 120px;
   font-weight: 400;
   color: var(--grey-500);
+  gap: var(--spacing-100);
+}
+
+.statusIcon {
+  width: var(--spacing-200);
+  height: var(--spacing-200);
+}
+
+.dueSoonAmount {
+  color: var(--red);
 }
 
 .billAmount {
