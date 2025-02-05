@@ -2,42 +2,74 @@
 @import '../../styles/spacing.css';
 
 .RecurringBills {
-  display: flex;
-  justify-content: center;
-  padding: var(--spacing-500);
-  background-color: var(--beige-100);
-  min-height: 100vh;
+  margin: var(--spacing-400) var(--spacing-500);
 }
 
-.leftPanel {
+.title {
+  margin: 0 0 var(--spacing-400);
+  font-size: 32px;
+}
+
+.BillsBoxes {
+  display: flex;
+  gap: var(--spacing-300);
+}
+
+.summaryBox {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-300);
-  margin-right: var(--spacing-300);
 }
 
 .totalBills, .summaryDetails {
-  background: var(--white);
   border-radius: var(--spacing-100);
-  padding: var(--spacing-400);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  width: 280px;
 }
 
 .totalBills {
-  text-align: center;
+  background-color: var(--grey-900);
+  padding: var(--spacing-300);
+  text-align: start;
   font-size: 18px;
   font-weight: bold;
-  color: var(--grey-900);
+  color: var(--white);
+  width: 289px;
+}
+
+#totalTitle {
+  color: var(--white);
+  margin: var(--spacing-200) 0 11px;
+}
+
+#totalBills {
+  margin: 0;
 }
 
 .summaryDetails {
+  background-color: var(--white);
+  padding: var(--spacing-250);
   font-size: 14px;
   color: var(--grey-900);
+  width: 297px;
 }
 
-.summaryDetails span {
-  font-weight: bold;
+#SummaryTitle {
+  color: var(--grey-900);
+  margin: 0 0 var(--spacing-250);
+}
+
+.SummaryContent p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--white);
+  background-color: #69686826;
+  margin: var(--spacing-200) 0;
 }
 
 .dueSoon {
@@ -45,9 +77,12 @@
 }
 
 .recurringBillsMain {
+  display: flex;
+  flex-direction: column;
   background: var(--white);
   border-radius: var(--spacing-100);
   padding: var(--spacing-400);
+  gap: var(--spacing-300);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 800px;
@@ -58,16 +93,15 @@
   justify-content: space-between;
   align-items: center;
   gap: var(--spacing-300);
-  margin-bottom: var(--spacing-300);
+  margin: 0;
 }
 
 .billsHeader {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
   gap: var(--spacing-100);
-  padding: var(--spacing-200);
-  font-weight: bold;
-  color: var(--grey-900);
+  padding: var(--spacing-150) var(--spacing-200);
+  color: var(--grey-500);
 }
 
 .billsList {
