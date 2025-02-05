@@ -65,6 +65,14 @@
   margin: 0;
 }
 
+.dueSoonAmount, .SummaryAmount {
+  font-weight: 700;
+}
+
+.SummaryAmount {
+  color: var(--grey-900);
+}
+
 .divider {
   border: none;
   border-top: 1px solid var(--white);

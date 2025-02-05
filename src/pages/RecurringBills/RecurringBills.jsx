@@ -115,11 +115,11 @@ function RecurringBills() {
           <div className="summaryDetails">
             <p id="SummaryTitle" className="textPreset3">Summary</p>
             <div className="SummaryContent">
-              <p className="textPreset5">Paid Bills <span className="textPreset5Bold">{paidSummary.count} (${paidSummary.totalAmount})</span></p>
+              <p className="textPreset5">Paid Bills <span className="textPreset5Bold SummaryAmount">{paidSummary.count} (${paidSummary.totalAmount})</span></p>
               <hr className="divider" />
-              <p className="textPreset5">Total Upcoming <span className="textPreset5Bold">{upcomingSummary.count} (${upcomingSummary.totalAmount})</span></p>
+              <p className="textPreset5">Total Upcoming <span className="textPreset5Bold SummaryAmount">{upcomingSummary.count} (${upcomingSummary.totalAmount})</span></p>
               <hr className="divider" />
-              <p className="textPreset5 dueSoon">Due Soon <span className="textPreset5Bold">{dueSoonSummary.count} (${dueSoonSummary.totalAmount})</span></p>
+              <p className="textPreset5 dueSoon">Due Soon <span className="textPreset5Bold dueSoonAmount">{dueSoonSummary.count} (${dueSoonSummary.totalAmount})</span></p>
             </div>
           </div>
         </div>
