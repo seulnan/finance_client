@@ -1,0 +1,151 @@
+@import '../../styles/colors.css';
+@import '../../styles/spacing.css';
+
+.RecurringBills {
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-500);
+  background-color: var(--beige-100);
+  min-height: 100vh;
+}
+
+.leftPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+  margin-right: var(--spacing-300);
+}
+
+.totalBills, .summaryDetails {
+  background: var(--white);
+  border-radius: var(--spacing-100);
+  padding: var(--spacing-400);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 280px;
+}
+
+.totalBills {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--grey-900);
+}
+
+.summaryDetails {
+  font-size: 14px;
+  color: var(--grey-900);
+}
+
+.summaryDetails span {
+  font-weight: bold;
+}
+
+.dueSoon {
+  color: var(--red);
+}
+
+.recurringBillsMain {
+  background: var(--white);
+  border-radius: var(--spacing-100);
+  padding: var(--spacing-400);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 800px;
+}
+
+.searchFilters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-300);
+  margin-bottom: var(--spacing-300);
+}
+
+.billsHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--spacing-100);
+  padding: var(--spacing-200);
+  font-weight: bold;
+  color: var(--grey-900);
+}
+
+.billsList {
+  display: flex;
+  flex-direction: column;
+}
+
+.billContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-150) 0;
+  border-top: 1px solid var(--grey-100);
+}
+
+.billInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.billImg {
+  width: var(--spacing-500);
+  height: var(--spacing-500);
+  border-radius: 50%;
+}
+
+.billName {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--grey-900);
+}
+
+.billDate {
+  font-size: 12px;
+  color: var(--grey-500);
+}
+
+.billAmount {
+  font-weight: bold;
+  color: var(--grey-900);
+}
+
+.billAmount.negative {
+  color: var(--red);
+}
+
+.noBills {
+  text-align: center;
+  padding: var(--spacing-400);
+  color: var(--grey-500);
+}
+
+@media (max-width: 675px) {
+  .RecurringBills {
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-300);
+  }
+
+  .leftPanel {
+    margin-right: 0;
+  }
+
+  .mainBox {
+    padding: var(--spacing-300);
+    margin-top: var(--spacing-300);
+  }
+
+  .billsHeader {
+    display: none;
+  }
+
+  .billContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-200) 0;
+    border-top: none;
+    border-bottom: 1px solid var(--grey-100);
+  }
+}
