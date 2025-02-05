@@ -5,6 +5,8 @@ import Dropdown from "../../components/common/dropdown/dropdown.jsx";
 import "../../styles/fonts.css";
 import "./RecurringBills.css";
 import totalBillsIcon from "../../assets/images/totalBillsIcon.svg";
+import PaidIcon from "../../assets/images/PaidIcon.svg";
+import DueSoonIcon from "../../assets/images/DueSoonIcon.svg";
 
 function RecurringBills() {
   const [bills, setBills] = useState([]);
@@ -146,7 +148,7 @@ function RecurringBills() {
                     <span className="textPreset4Bold">{bill.name}</span>
                   </div>
                   <span className="billDate textPreset5">{bill.date}</span>
-                  <span className="billAmount textPreset4Bold">${parseFloat(bill.amount).toFixed(2)}</span>
+                  <span className="billAmount textPreset4Bold">${Math.abs(parseFloat(bill.amount)).toFixed(2)}</span>
                 </div>
               ))
             ) : (
