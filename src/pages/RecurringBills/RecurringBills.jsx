@@ -107,7 +107,7 @@ function RecurringBills() {
   return (
     <div className="RecurringBills">
       <h2 className="title textPreset4Bold">Recurring Bills</h2>
-      <div className="BillsBoxes">
+      <div className="TotalSummaryBox">
         <div className="summaryBox">
           <div className="totalBills">
             <img src={totalBillsIcon} alt="Total Bills" />
