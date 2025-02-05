@@ -91,9 +91,9 @@ function RecurringBills() {
             <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
           </div>
           <div className="billsHeader">
-            <span className="textPreset5">Bill Title</span>
-            <span className="textPreset5">Due Date</span>
-            <span className="textPreset5">Amount</span>
+            <span className="textPreset5" id="BillTitle">Bill Title</span>
+            <span className="textPreset5" id="BillDueTitle">Due Date</span>
+            <span className="textPreset5" id="BillAmountTitle">Amount</span>
           </div>
           <div className="billsList">
             {loading ? (
@@ -105,10 +105,10 @@ function RecurringBills() {
                 <div key={bill._id} className="billContainer">
                   <div className="billInfo">
                     <img src={bill.avatar} alt={bill.name} className="billImg" />
-                    <span>{bill.name}</span>
+                    <span className="textPreset4Bold">{bill.name}</span>
                   </div>
-                  <span className="billDate">{new Date(bill.date).toLocaleDateString()}</span>
-                  <span className="billAmount">${parseFloat(bill.amount).toFixed(2)}</span>
+                  <span className="billDate textPreset5">{new Date(bill.date).toLocaleDateString()}</span>
+                  <span className="billAmount textPreset4Bold">${parseFloat(bill.amount).toFixed(2)}</span>
                 </div>
               ))
             ) : (

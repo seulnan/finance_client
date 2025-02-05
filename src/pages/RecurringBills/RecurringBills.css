@@ -85,10 +85,12 @@
   gap: var(--spacing-300);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 800px;
+  max-width: 635px;
 }
 
 .searchFilters {
+  width: 100%;
+  max-width: 635px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -97,35 +99,56 @@
 }
 
 .billsHeader {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: var(--spacing-100);
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-400);
   padding: var(--spacing-150) var(--spacing-200);
   color: var(--grey-500);
+}
+
+#BillTitle {
+  width: 100%;
+  max-width: 320px;
+}
+
+#BillDueTitle {
+  width: 100%;
+  max-width: 120px;
+}
+
+#BillAmountTitle {
+  width: 100%;
+  max-width: 100px;
+  text-align: end;
 }
 
 .billsList {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 635px;
 }
 
 .billContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--spacing-150) 0;
+  padding: var(--spacing-250) var(--spacing-200);
   border-top: 1px solid var(--grey-100);
+  gap: var(--spacing-400);
 }
 
 .billInfo {
   display: flex;
+  width: 100%;
+  max-width: 320px;
   align-items: center;
   gap: var(--spacing-200);
 }
 
 .billImg {
-  width: var(--spacing-500);
-  height: var(--spacing-500);
+  width: var(--spacing-400);
+  height: var(--spacing-400);
   border-radius: 50%;
 }
 
@@ -136,13 +159,16 @@
 }
 
 .billDate {
+  width: 100%;
+  max-width: 120px;
   font-size: 12px;
   color: var(--grey-500);
 }
 
 .billAmount {
-  font-weight: bold;
-  color: var(--grey-900);
+  width: 100%;
+  max-width: 100px;
+  text-align: end;
 }
 
 .billAmount.negative {
