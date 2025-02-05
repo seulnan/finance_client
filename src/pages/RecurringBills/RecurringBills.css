@@ -150,6 +150,7 @@
   display: flex;
   width: 100%;
   max-width: 320px;
+  min-width: 0;
   align-items: center;
   gap: var(--spacing-200);
 }
@@ -160,10 +161,15 @@
   border-radius: 50%;
 }
 
-.billName {
+#billsNameData {
   font-size: 14px;
   font-weight: bold;
   color: var(--grey-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .paidDate {

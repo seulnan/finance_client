@@ -150,7 +150,7 @@ function RecurringBills() {
                   <div key={bill._id} className="billContainer">
                     <div className="billInfo">
                       <img src={bill.avatar} alt={bill.name} className="billImg" />
-                      <span className="textPreset4Bold">{bill.name}</span>
+                      <span className="textPreset4Bold" id="billsNameData">{bill.name}</span>
                     </div>
                     <div className="billDateWrapper">
                       <span className={`billDate textPreset5 ${isPaid ? "paidDate" : ""}`}>{bill.date}</span>
