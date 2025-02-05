@@ -19,7 +19,7 @@ const SearchField = ({
               onChange={onChange} // 이벤트 핸들러 추가
               value={value} // value 추가
             />
-            <span className="iconRight">🔍</span>
+            <span className="iconRight"></span>
           </div>
         );
       case 'icon-left':
