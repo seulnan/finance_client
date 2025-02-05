@@ -28,10 +28,22 @@
   margin-top: var(--spacing-400);
 }
 
+.searchFilters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-300);
+  margin-bottom: var(--spacing-300);
+}
+
+.InputWrapper {
+  width: 100%;
+  max-width: 320px;
+}
+
 .filters {
   display: flex;
   justify-content: end;
-  margin-bottom: var(--spacing-300);
   gap: var(--spacing-300);
 }
 
