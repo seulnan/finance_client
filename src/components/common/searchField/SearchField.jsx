@@ -1,5 +1,6 @@
 import React from 'react';
 import './SearchField.css';
+import searchIcon from '../../../assets/images/searchFieldIcon.svg';
 
 const SearchField = ({ 
   type = 'default', 
@@ -19,7 +20,7 @@ const SearchField = ({
               onChange={onChange} // 이벤트 핸들러 추가
               value={value} // value 추가
             />
-            <span className="iconRight"></span>
+            <img src={searchIcon} alt="Search" className="IconRight" />
           </div>
         );
       case 'icon-left':
