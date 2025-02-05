@@ -11,10 +11,7 @@ function Transactions() {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [sortOption, setSortOption] = useState("Latest"); // 기본값 최신순
   const [categoryFilter, setCategoryFilter] = useState("All"); // 기본값 All
-<<<<<<< HEAD
-=======
   const [searchQuery, setSearchQuery] = useState("");
->>>>>>> transactions
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const limit = 10;
@@ -36,15 +33,9 @@ function Transactions() {
     "Entertainment",
     "Bills",
     "Groceries",
-<<<<<<< HEAD
-    "Dining out",
-    "Transportation",
-    "Personal care",
-=======
     "Dining Out",
     "Transportation",
     "Personal Care",
->>>>>>> transactions
     "Education",
     "Lifestyle",
     "Shopping",
@@ -74,36 +65,21 @@ function Transactions() {
     setLoading(true);
     setError(null);
     try {
-<<<<<<< HEAD
-      let url = `/api/transaction?page=1&limit=100`; // 전체 데이터 가져오기
-=======
       let url = `/api/transaction?page=${page}&limit=${limit}`; // ✅ 한 번에 10개씩 요청
->>>>>>> transactions
   
       if (sortOption !== "Latest") {
         url += `&sortOption=${sortOption}`;
       }
       if (categoryFilter !== "All") {
-<<<<<<< HEAD
-        url += `&category=${encodeURIComponent(categoryFilter)}`; // ✅ 띄어쓰기 포함된 값 처리
-=======
         url += `&category=${encodeURIComponent(categoryFilter)}`;
->>>>>>> transactions
       }
   
       const response = await baseAxios.get(url);
       const data = response.data;
   
-<<<<<<< HEAD
-      console.log("Received transactions:", data.transactions); // ✅ 데이터 확인
-  
-      setTransactions(data.transactions || []);
-=======
       setTransactions(data.transactions || []);
       setTotalPages(data.totalPages || 1); // ✅ API에서 받은 totalPages를 그대로 사용
 
-  
->>>>>>> transactions
     } catch (error) {
       setError("Failed to fetch transactions. Please try again.");
     } finally {
@@ -111,8 +87,6 @@ function Transactions() {
     }
   };  
 
-<<<<<<< HEAD
-=======
   useEffect(() => {
     let filtered = [...transactions];
 
@@ -131,7 +105,6 @@ function Transactions() {
     setFilteredTransactions(filtered);
   }, [transactions, categoryFilter, searchQuery]);
 
->>>>>>> transactions
   // ✅ 데이터 정렬 & 필터링
   useEffect(() => {
     let sortedData = [...transactions];
@@ -164,20 +137,6 @@ function Transactions() {
         sortedData.sort((a, b) => new Date(b.date) - new Date(a.date)); // 최신순
         break;
     }
-<<<<<<< HEAD
-
-    // 페이지네이션 적용
-    const startIndex = (page - 1) * limit;
-    const endIndex = startIndex + limit;
-    setFilteredTransactions(sortedData.slice(startIndex, endIndex));
-    setTotalPages(Math.ceil(sortedData.length / limit));
-  }, [transactions, sortOption, categoryFilter, page]);
-
-  useEffect(() => {
-    fetchTransactions();
-  }, []);
-
-=======
     setFilteredTransactions(sortedData);
   }, [transactions, sortOption, categoryFilter, page]);
 
@@ -193,7 +152,6 @@ function Transactions() {
   useEffect(() => {
   }, [transactions]);
   
->>>>>>> transactions
   return (
     <div className="Transactions">
       <h2 id="TransactionTitle" className="textPreset4Bold">Transactions</h2>
@@ -208,19 +166,12 @@ function Transactions() {
           </div>
         ) : (
           <div>
-<<<<<<< HEAD
-            {/* ✅ 필터링 드롭다운 */}
-            <div className="filters">
-              <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
-              <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
-=======
             <div className="searchFilters">
               <SearchField type="icon-right" placeholder="Search transaction" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
               <div className="filters">
                 <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
                 <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
               </div>
->>>>>>> transactions
             </div>
 
             {/* ✅ 테이블 헤더 */}
@@ -259,11 +210,7 @@ function Transactions() {
         )}
 
         {/* ✅ 페이지네이션 */}
-<<<<<<< HEAD
-        <Pagination page={page} totalPages={totalPages} onPageChange={setPage} />
-=======
         <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
->>>>>>> transactions
       </div>
     </div>
   );
