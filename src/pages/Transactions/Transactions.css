@@ -6,7 +6,7 @@
 }
 
 #TransactionTitle {
-  margin: var(--spacing-100) 0 var(--spacing-500);
+  margin: 0 0 var(--spacing-400);
   font-size: 32px;
 }
 
@@ -28,25 +28,36 @@
   margin-top: var(--spacing-400);
 }
 
+.searchFilters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-300);
+  margin-bottom: var(--spacing-300);
+}
+
+.InputWrapper {
+  width: 100%;
+  max-width: 320px;
+}
+
 .filters {
   display: flex;
   justify-content: end;
-  margin-bottom: var(--spacing-400);
   gap: var(--spacing-300);
 }
 
 .dropdown {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
 }
 
 .dropdownLabel {
   font-size: 14px;
-  margin-bottom: var(--spacing-100);
 }
 
 .dropdownSelect {
-  padding: var(--spacing-150);
   border-radius: var(--spacing-100);
   border: 1px solid var(--grey-300);
   font-size: 14px;
