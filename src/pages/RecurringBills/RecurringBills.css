@@ -169,7 +169,7 @@
 .billDate {
   width: 100%;
   max-width: 120px;
-  font-size: 12px;
+  font-weight: 400;
   color: var(--grey-500);
 }
 
