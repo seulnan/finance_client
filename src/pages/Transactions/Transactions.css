@@ -28,7 +28,7 @@
   margin-top: var(--spacing-400);
 }
 
-.searchFilters {
+.TrancsSearchFilters {
   display: flex;
   justify-content: space-between;
   align-items: center;
