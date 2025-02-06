@@ -80,10 +80,10 @@ function RecurringBills() {
 
     switch (sortOption) {
       case "Oldest":
-        sortedData.sort((a, b) => parseInt(a.date.match(/\d+/)[0]) - parseInt(b.date.match(/\d+/)[0]));
+        sortedData.sort((a, b) => parseInt(b.date.match(/\d+/)[0]) - parseInt(a.date.match(/\d+/)[0]));
         break;
       case "Latest":
-        sortedData.sort((a, b) => parseInt(b.date.match(/\d+/)[0]) - parseInt(a.date.match(/\d+/)[0]));
+        sortedData.sort((a, b) => parseInt(a.date.match(/\d+/)[0]) - parseInt(b.date.match(/\d+/)[0]));
         break;
       case "A to Z":
         sortedData.sort((a, b) => a.name.localeCompare(b.name));
