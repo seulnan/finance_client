@@ -177,7 +177,7 @@ function Transactions() {
 
             {/* ✅ 테이블 헤더 */}
             <div className="transactionHeader">
-              <div className="headerItem textPreset5">Recipient / Sender</div>
+              <div className="headerItem textPreset5" id="NameTitle">Recipient / Sender</div>
               <div className="headerItem textPreset5" id="CategoryTitle">Category</div>
               <div className="headerItem textPreset5" id="DateTitle">Transaction Date</div>
               <div className="headerItem textPreset5" id="AmountTitle">Amount</div>
