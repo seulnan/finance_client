@@ -86,7 +86,7 @@ const Budgets = () => {
       <div className="BudgetContent">
         <div className="LeftSummary">
           <div className="SummaryBox">
-            <h3>Spending Summary</h3>
+            <h3 className = "BudgetNameOne">Spending Summary</h3>
             <div>
               {BudgetsData.map((Budget) => {
                 const UsedAmount = Number(Budget.used) || 0;
@@ -98,10 +98,8 @@ const Budgets = () => {
                     <div className="SummaryDetails">
                       <p className="BudgetName">{Budget.name}</p>
                     </div>
-                    <div className="SummaryAmount">
-                      <p>
-                        <span className="SummaryAmount">${UsedAmount.toFixed(2)}</span> of ${LimitAmount.toFixed(2)}
-                      </p>
+                    <div>
+                        <span className="SummaryAmount">${UsedAmount.toFixed(2)}</span> <span className = "SummaryMax">of ${LimitAmount.toFixed(2)}</span>
                     </div>
                   </div>
 
@@ -121,10 +119,10 @@ const Budgets = () => {
 
               return (
                 <div key={Budget._id} className="BudgetCard">
-                  <div className="BudgetHeader">
-                  <div className="BudgetTitle">
-                  <span className="BudgetCircle" style={{ backgroundColor: GetColorVariable(Budget.color) }}></span>
-                    <h3>{Budget.name}</h3>
+                  <div className ="BudgetHeader">
+                  <div className ="BudgetTitle">
+                  <span className ="BudgetCircle" style={{ backgroundColor: GetColorVariable(Budget.color) }}></span>
+                    <h3 className = "BudgetNameOne">{Budget.name}</h3>
                   </div>
                     <MeatballMenu
                       onEdit={() => HandleModalOpen("edit", Budget)}
@@ -139,19 +137,22 @@ const Budgets = () => {
                   </div>
 
                   <div className="BudgetStats">
+                    <div className="SummaryColorBarSpent" style={{ backgroundColor: GetColorVariable(Budget.color) }}></div>
                     <div className="Spent">
-                      <span>Spent</span>
+                      <span className = "SpentMini">Spent</span>
                       <span className = "SpentBold">${UsedAmount.toFixed(2)}</span>
                     </div>
                     <div className="VerticalDivider"></div>
                     <div className="Remaining">
-                      <span>Remaining</span>
+                      <span className = "SpentMini">Remaining</span>
                       <span className = "SpentBold">${RemainingAmount.toFixed(2)}</span>
                     </div>
                   </div>
 
                   <div className="TransactionHistory">
-                    <span className="TransactionHistoryTitle">Latest Spending</span>
+                    <div className="TransactionHistoryTitle">
+                      <span>Latest Spending</span>
+                    </div>
                     {Budget.latestSpending.slice(0, 3).map((Item, Index) => (
                       <div key={Index} className="SpendingItem">
                         <img src={Item.avatar} alt={Item.name} className="Avatar" />
@@ -159,8 +160,12 @@ const Budgets = () => {
                           <p className="SpendingName">{Item.name}</p>
                         </div>
                         <div className="SpendingInfo">
-                          <p className="SpendingAmount">-${Number(Item.amount).toFixed(2)}</p>
-                          <p className="SpendingDate">{new Date(Item.date).toLocaleDateString()}</p>
+                          <p className="SpendingAmount">
+                            {`-$${Math.abs(Number(Item.amount)).toFixed(2)}`}
+                          </p>
+                          <p className="SpendingDate">
+                            {new Date(Item.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}
+                          </p>
                         </div>
                       </div>
                     ))}
