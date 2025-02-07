@@ -222,7 +222,6 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #ddd;
-  padding-bottom : 12px
 }
 
 .SpendingItem:last-child {
@@ -231,8 +230,8 @@
 
 /* 아바타 이미지 */
 .Avatar {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
 }
 
@@ -247,8 +246,8 @@
 
 /* 이름 스타일 */
 .SpendingName {
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
+  font-family:'Text Preset 5 Bold';
   color : var(--grey-900);
 }
 
