@@ -130,7 +130,7 @@ const Budgets = () => {
                     />
                   </div>
 
-                  <p className="BudgetMax">Maximum: ${LimitAmount.toFixed(2)}</p>
+                  <p className="BudgetMax">Maximum of ${LimitAmount.toFixed(2)}</p>
 
                   <div className="ProgressBar">
                   <div className="ProgressFill" style={{ width: `${ProgressWidth}%`, backgroundColor: GetColorVariable(Budget.color) }}></div>
