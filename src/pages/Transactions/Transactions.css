@@ -126,6 +126,7 @@
   display: flex;
   align-items: center;
   gap: var(--spacing-200);
+  min-width: 0;
 }
 
 .personImg {
@@ -137,9 +138,15 @@
 .personName {
   width: 100%;
   max-width: 372px;
+  min-width: 0;
   font-size: 14px;
   font-weight: bold;
   color: var(--grey-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .CategoryDateInfo {
@@ -219,6 +226,7 @@
   }
 
   #DateInfo {
+    display: flex;
     grid-area: date; /* 우측 하단 */
     font-size: 12px;
     color: var(--grey-500);
