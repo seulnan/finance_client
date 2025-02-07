@@ -76,7 +76,8 @@
 
 #NameTitle {
   width: 100%;
-  max-width: 428px;
+  max-width: 372px;
+  padding-right: 56px;
 }
 
 #CategoryTitle {
