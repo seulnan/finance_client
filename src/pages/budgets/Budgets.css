@@ -26,11 +26,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding-bottom: 20px;
 }
 
 .BudgetMax{
   font-family : 'Text Preset 4';
   font-size: 14px;
+  margin : 0px;
   color : var(--grey-500);
 }
 
@@ -86,7 +88,7 @@
   width: 4px;
   height: 43px;
   border-radius: 2px;
-  margin-right: 10px;
+  margin-right: 16px;
 }
 
 .SummaryAmount{
@@ -115,14 +117,14 @@
 /* 오른쪽 요소 크기 (Desktop 전용) */
 @media screen and (min-width: 1024px) {
   .BudgetCard {
-    width: 608px;
-    height: 510px;
+    width: 544px;
+    height: 446px;
   }
 }
 
 /* Budget 카드 */
 .BudgetCard {
-  padding: 26px;
+  padding: 32px;
   background: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -185,17 +187,17 @@
 
 /* 사용 금액 진행 바 */
 .ProgressBar {
-  height: 32px;
+  height: 24px;
   background: var(--beige-100);
   border-radius: 5px;
   overflow: hidden;
-  margin: 10px 0;
+  margin: 16px 0;
   position: relative;
   padding : 4px;
 }
 
 .ProgressFill {
-  height: 100%;
+  height: 24px;
   border-radius: 5px;
   transition: width 0.3s ease-in-out;
 }
@@ -204,9 +206,9 @@
   border-radius: var(--spacing-150, 12px);
   background: var(--color-beige-100, #F8F4F0);
   padding: 20px;
-  margin-top: 12px;
+  margin-top: 16px;
   flex-grow: 1;
-  height: 250px;
+  height: 214px;
 }
 
 /* Latest Spending 제목 */
@@ -262,13 +264,14 @@
   color: black;
   font-size: 14px;
   margin-bottom:0px;
+  margin-top : 10px;
 }
 
 .SpendingDate {
   font-size: 12px;
   font-family:'Text Preset 5';
   color: var(--grey-500);
-  margin-top:3px;
+  margin-top:4px;
 }
 /* Tablet (768px ~ 1023px) */
 @media screen and (max-width: 768px) {
@@ -280,16 +283,18 @@
   }
 
   .LeftSummary, .BudgetCard {
-    width: 688px; /* Summary와 동일한 크기 */
-    max-width: 688px;
+    width: 624px; /* Summary와 동일한 크기 */
+    max-width: 624px;
   }
 }
 
 /* Mobile (375px 이하) */
 @media screen and (max-width: 375px) {
   .LeftSummary, .BudgetCard {
-    width: 343px; /* Summary와 동일한 크기 */
-    max-width: 343px;
+    width: 303px; /* Summary와 동일한 크기 */
+    max-width: 303px;
+    height : 438px;
+    max-height : 438px;
   }
 
   /* Latest Spending에서 아바타 제거 */

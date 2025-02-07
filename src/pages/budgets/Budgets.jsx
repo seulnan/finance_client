@@ -122,7 +122,7 @@ const Budgets = () => {
                   <div className ="BudgetHeader">
                   <div className ="BudgetTitle">
                   <span className ="BudgetCircle" style={{ backgroundColor: GetColorVariable(Budget.color) }}></span>
-                    <h3 className = "BudgetNameOne">{Budget.name}</h3>
+                    <span className = "BudgetNameOne">{Budget.name}</span>
                   </div>
                     <MeatballMenu
                       onEdit={() => HandleModalOpen("edit", Budget)}
