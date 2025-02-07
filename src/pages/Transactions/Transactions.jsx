@@ -64,8 +64,9 @@ function Transactions() {
   const fetchTransactions = async () => {
     setLoading(true);
     setError(null);
+  
     try {
-      let url = `/api/transaction?page=${page}&limit=${limit}`; // ✅ 한 번에 10개씩 요청
+      let url = `/api/transaction?page=${page}&limit=${limit}`;
   
       if (sortOption !== "Latest") {
         url += `&sortOption=${sortOption}`;
@@ -73,20 +74,21 @@ function Transactions() {
       if (categoryFilter !== "All") {
         url += `&category=${encodeURIComponent(categoryFilter)}`;
       }
+      if (searchQuery.trim() !== "") {
+        url += `&search=${encodeURIComponent(searchQuery.trim())}`;
+      }
   
       const response = await baseAxios.get(url);
       const data = response.data;
   
       setTransactions(data.transactions || []);
-      setTotalPages(data.totalPages || 1); // ✅ API에서 받은 totalPages를 그대로 사용
-
-  
+      setTotalPages(data.totalPages || 1);
     } catch (error) {
       setError("Failed to fetch transactions. Please try again.");
     } finally {
       setLoading(false);
     }
-  };  
+  };    
 
   useEffect(() => {
     let filtered = [...transactions];
@@ -147,8 +149,12 @@ function Transactions() {
   };
 
   useEffect(() => {
-    fetchTransactions();
-  }, [page, sortOption, categoryFilter]); // ✅ 페이지 변경 시 API 다시 호출
+    const debounceTimer = setTimeout(() => {
+      fetchTransactions();
+    }, 500); // 500ms 디바운싱 적용
+  
+    return () => clearTimeout(debounceTimer);
+  }, [page, sortOption, categoryFilter, searchQuery]);  
 
   useEffect(() => {
   }, [transactions]);
@@ -168,7 +174,12 @@ function Transactions() {
         ) : (
           <div>
             <div className="TrancsSearchFilters">
-              <SearchField type="icon-right" placeholder="Search transaction" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+              <SearchField 
+                type="icon-right" 
+                placeholder="Search Transactions" 
+                value={searchQuery} 
+                onChange={(e) => setSearchQuery(e.target.value)} 
+              />
               <div className="filters">
                 <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
                 <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
