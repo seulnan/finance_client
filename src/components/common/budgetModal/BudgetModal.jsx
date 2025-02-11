@@ -6,6 +6,7 @@ import "../budgetModal/BudgetModal.css";
 import "../../../styles/colors.css";
 
 import Dropdowncross from '../../../assets/images/dropdowncross.svg';
+import DropdowncrossRotate from '../../../assets/images/dropdowncrossrotate.svg'
 
 const GetColorVariable = (color) => {
   const colorMap = {
@@ -27,7 +28,6 @@ const GetColorVariable = (color) => {
   };
   return colorMap[color] || "var(--grey-300)";
 };
-
 const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
     category: "",
@@ -41,7 +41,11 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
     usedColors: [],
   });
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const [isRotated, setIsRotated] = useState(false);
+  
+  const [categoryDropdownOpen, setCategoryDropdownOpen] = useState(false);
+  const [isCategoryRotated, setIsCategoryRotated] = useState(false); // Category 드롭다운 아이콘 상태
+  
   useEffect(() => {
     if (type === "add") {
       fetchOptions();
@@ -72,7 +76,15 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
   const handleThemeSelection = (color) => {
     setFormData({ ...formData, theme: color }); // ✅ 색상 이름 그대로 저장
     setDropdownOpen(false);
+    setIsRotated(false); // ✅ 아이콘 원래대로
   };
+
+  const handleCategorySelection = (category) => {
+    setFormData({ ...formData, category });
+    setCategoryDropdownOpen(false);
+    setIsCategoryRotated(false); // ✅ 아이콘 원래대로
+  };
+  
   
   const handleSubmit = async () => {
     try {
@@ -112,36 +124,63 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
               ? "Add New Budget"
               : type === "edit"
               ? "Edit Budget"
-              : `Delete ‘${budget.name}’`}
+              : `Delete ‘${budget.name}’?`}
           </h2>
           <button className="CloseButton" onClick={onClose}></button>
         </div>
 
         {type === "add" && (
           <>
-            <p>
+            <div className ='ExplainBox'>
               Choose a category to set a spending budget. These categories can
               help you monitor spending.
-            </p>
+            </div>
             <div className="FormGroup">
-              <label>Budget Category</label>
-              <select name="category" onChange={handleInputChange} value={formData.category}>
-                <option value="">Select Category</option>
-                {options.usedCategories.map((category) => (
-                  <option key={category} value={category} disabled>
-                    {category} (Already Used)
-                  </option>
-                ))}
-                {options.availableCategories.map((category) => (
-                  <option key={category} value={category}>
-                    {category}
-                  </option>
-                ))}
-              </select>
+              <div className = 'Title'>Budget Category</div>
+              <div className="ColorDropdown">
+              <div 
+                className="DropdownHeader" 
+                onClick={() => {
+                  setCategoryDropdownOpen(!categoryDropdownOpen);
+                  setIsCategoryRotated(!isCategoryRotated); // 🔥 카테고리 아이콘 상태 변경
+                }}
+              >
+                <div className ='SelectName'>
+                  {formData.category ? formData.category : "Select Category"}
+                </div>
+                <img 
+                  src={isCategoryRotated ? DropdowncrossRotate : Dropdowncross} 
+                  alt="Toggle Dropdown" 
+                  className="DropdownCloseIcon"
+                />
+              </div>
+                
+                {categoryDropdownOpen && (
+                  <div className="DropdownList">
+                    {options.usedCategories.map((category) => (
+                      <div key={`used-${category}`} className="DropdownOption Disabled">
+                        <div className="ColorTextContainer">
+                          <span className="ColorName">{category}</span>
+                          <span className="AlreadyUsed">Already Used</span>
+                        </div>
+                      </div>
+                    ))}
+                    {options.availableCategories.map((category) => (
+                      <div 
+                        key={`available-${category}`} 
+                        className="DropdownOption" 
+                        onClick={() => handleCategorySelection(category)}
+                      >
+                        {category}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <div className="FormGroup">
-              <label>Maximum Spend</label>
+              <div className = 'Title'>Maximum Spend</div>
               <SearchField
                 type="icon-left"
                 placeholder="e.g. 2000"
@@ -153,40 +192,43 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
             </div>
 
             <div className="FormGroup">
-              <label>Theme</label>
+              <div className = 'Title'>Theme</div>
               <div className="ColorDropdown">
-                <div className="DropdownHeader">
-                  <div onClick={() => setDropdownOpen(!dropdownOpen)} style={{ display: "flex", alignItems: "center", width: "100%" }}>
-                    {formData.theme ? (
-                      <>
-                        <span className="ColorCircle" style={{ backgroundColor: GetColorVariable(formData.theme) }}></span>
-                        {formData.theme}
-                      </>
-                    ) : (
-                      "Select Theme"
-                    )}
-                  </div>
-                  <img 
-                    src={Dropdowncross} 
-                    alt="Toggle Dropdown" 
-                    className={`DropdownCloseIcon ${dropdownOpen ? "visible" : "hidden"}`} 
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                  />
+              <div 
+                className="DropdownHeader" 
+                onClick={() => {
+                  setDropdownOpen(!dropdownOpen);
+                  setIsRotated(!isRotated); // 🔥 테마 아이콘 상태 변경
+                }}
+              >
+                <div className ='SelectName'
+                style={{ display: "flex", alignItems: "center", width: "100%" }}>
+                  {formData.theme ? (
+                    <>
+                      <span className="ColorCircle" style={{ backgroundColor: GetColorVariable(formData.theme) }}></span>
+                      {formData.theme}
+                    </>
+                  ) : (
+                    "Select Theme"
+                  )}
                 </div>
+                <img 
+                  src={isRotated ? DropdowncrossRotate : Dropdowncross} 
+                  alt="Toggle Dropdown" 
+                  className="DropdownCloseIcon"
+                />
+              </div>
+
                 
                 {dropdownOpen && (
                   <div className="DropdownList">
                     {options.usedColors.map((color) => (
-                      <div 
-                        key={`used-${color}`} 
-                        className="DropdownOption Disabled" 
-                        onClick={() => handleThemeSelection(color)}
-                      >
-                        <span 
-                          className="ColorCircle" 
-                          style={{ backgroundColor: GetColorVariable(color) }} // ✅ CSS 변수 변환 후 적용
-                        ></span> 
-                        {color} (Already Used)
+                      <div key={`used-${color}`} className="DropdownOption Disabled">
+                        <span className="ColorCircle" style={{ backgroundColor: GetColorVariable(color) }}></span>
+                        <div className="ColorTextContainer">
+                          <span className="ColorName">{color}</span>
+                          <span className="AlreadyUsed">Already Used</span>
+                        </div>
                       </div>
                     ))}
                     {options.availableColors.map((color) => (
@@ -215,14 +257,14 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
 
         {type === "edit" && (
           <>
-            <p>As your budgets change, feel free to update your spending limits.</p>
+            <div className = 'ExplainBox'>As your budgets change, feel free to update your spending limits.</div>
             <div className="FormGroup">
-              <label>Budget Category</label>
+              <div className = 'Title'>Budget Category</div>
               <input type="text" value={formData.category} disabled />
             </div>
 
             <div className="FormGroup">
-              <label>Maximum Spend</label>
+              <div className = 'Title'>Maximum Spend</div>
               <SearchField
                 type="icon-left"
                 placeholder="e.g. 2000"
@@ -234,10 +276,10 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
             </div>
 
             <div className="FormGroup">
-              <label>Theme</label>
+              <div className = 'Title'>Theme</div>
               <div className="ColorDropdown">
               <div className="DropdownHeader">
-                <div 
+                <div className ='SelectName'
                   onClick={() => setDropdownOpen(!dropdownOpen)} 
                   style={{ display: "flex", alignItems: "center", width: "100%" }}
                 >
@@ -250,26 +292,25 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                     "Select Theme"
                   )}
                 </div>
-                  <img 
-                    src={Dropdowncross} 
-                    alt="Toggle Dropdown" 
-                    className={`DropdownCloseIcon ${dropdownOpen ? "visible" : "hidden"}`} 
-                    onClick={() => setDropdownOpen(!dropdownOpen)}
-                  />
+                <img 
+                  src={isRotated ? DropdowncrossRotate : Dropdowncross} 
+                  alt="Toggle Dropdown" 
+                  className="DropdownCloseIcon"
+                  onClick={() => {
+                    setIsRotated(!isRotated); // 클릭할 때마다 이미지 변경
+                    setDropdownOpen(!dropdownOpen); // 드롭다운도 토글
+                  }}
+                />
                 </div>
                 {dropdownOpen && (
                   <div className="DropdownList">
                     {options.usedColors.map((color) => (
-                      <div 
-                        key={`used-${color}`} 
-                        className="DropdownOption Disabled" 
-                        onClick={() => handleThemeSelection(color)}
-                      >
-                        <span 
-                          className="ColorCircle" 
-                          style={{ backgroundColor: GetColorVariable(color) }} // ✅ CSS 변수 변환 후 적용
-                        ></span> 
-                        {color} (Already Used)
+                      <div key={`used-${color}`} className="DropdownOption Disabled">
+                        <span className="ColorCircle" style={{ backgroundColor: GetColorVariable(color) }}></span>
+                        <div className="ColorTextContainer">
+                          <span className="ColorName">{color}</span>
+                          <span className="AlreadyUsed">Already Used</span>
+                        </div>
                       </div>
                     ))}
                     {options.availableColors.map((color) => (
@@ -298,7 +339,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
 
         {type === "delete" && (
           <>
-            <p>Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever.</p>
+            <div className = 'ExplainBox'>Are you sure you want to delete this budget? This action cannot be reversed, and all the data inside it will be removed forever.</div>
             <button className="ModalDeleteButton" onClick={handleDelete}>Yes, Confirm Deletion</button>
             <button className="ModalCancelButton" onClick={onClose}>No, Go Back</button>
           </>
