@@ -81,11 +81,11 @@
 .IconLeft {
   font-family: 'Text Preset 4';
   position: absolute;
-  left: 10px; /* 왼쪽 10px */
-  top: 50%;
+  left: 20px; 
+  top: 45%;
   transform: translateY(-50%);
-  font-size: 20px;
-  color: var(--grey-500, #696868);
+  font-size: 14px;
+  color: var(--beige-500, #696868);
   pointer-events: none; /* 아이콘 클릭 방지 */
 }
 
