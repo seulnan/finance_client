@@ -10,12 +10,11 @@
   font-size: 32px;
 }
 
-.mainBox {
+.TransactionMainBox {
   padding: var(--spacing-400);
   background-color: var(--white);
   border-radius: var(--spacing-100);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  width: 100%;
   max-width: 996px;
 }
 
@@ -49,6 +48,11 @@
   gap: var(--spacing-300);
 }
 
+.desktop-filters {
+  display: flex;
+  gap: var(--spacing-300);
+}
+
 .dropdown {
   display: flex;
   flex-direction: row;
@@ -63,6 +67,10 @@
   border-radius: var(--spacing-100);
   border: 1px solid var(--grey-300);
   font-size: 14px;
+}
+
+.mobile-filters {
+  display: none; /* 기본적으로 아이콘 숨김 */
 }
 
 /* 헤더 스타일 */
@@ -180,6 +188,55 @@
     padding: var(--spacing-300) var(--spacing-250);
   }
 
+  .desktop-filters {
+    display: none;
+  }
+
+  .mobile-filters {
+    display: flex;
+    gap: var(--spacing-200);
+  }
+
+  .filter-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+  }
+
+  .dropdown-container {
+    position: relative;
+  }
+
+  /* 아이콘 아래에서 리스트 형태로 펼쳐지도록 설정 */
+  .dropdown-menu {
+    position: absolute;
+    top: 30px; /* 아이콘 아래로 드롭다운 위치 */
+    right: 0;
+    background: var(--white);
+    padding: var(--spacing-200);
+    border-radius: var(--spacing-100);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 160px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 10;
+  }
+
+  .dropdown-item {
+    padding: var(--spacing-100);
+    font-size: 14px;
+    color: var(--grey-900);
+    cursor: pointer;
+  }
+
+  .dropdown-item:hover {
+    background: var(--grey-100);
+  }
+
+  .dropdown-item.selected {
+    font-weight: bold;
+  }
+  
   .transactionHeader {
     display: none; /* 헤더 숨기기 */
   }
