@@ -91,8 +91,8 @@ p {
 
 /* Form input styles */
 input {
-  width: 142%;
-  padding: var(--spacing-150, 12px) var(--spacing-250, 20px);
+  width: 135%;
+  padding: var(--spacing-150, 12px) var(--spacing-400, 20px);
   font-family: 'Text Preset 4';
   font-size: 14px;
   border: 1px solid var(--grey-300);
@@ -163,12 +163,12 @@ background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 2
     font-size: 0.875rem;
   }
   input {
-    width: 85%;
-    padding: var(--spacing-150, 12px) var(--spacing-250, 20px);
+    width: 77%;
+    padding: var(--spacing-150, 12px) 32px;
     font-family: 'Text Preset 4';
-    font-size: 1rem;
+    font-size: 14px;
     border: 1px solid var(--grey-300);
-    border-radius: 5px;
+    border-radius: 8px;
     color: var(--grey-900);
   }
 
