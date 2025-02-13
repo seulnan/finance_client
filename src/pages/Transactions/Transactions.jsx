@@ -186,26 +186,26 @@ function Transactions() {
               />
               <div className="filters">
                 {/* 기본 화면에서는 기존 드롭다운 표시 */}
-                <div className="desktop-filters">
+                <div className="DesktopFilters">
                   <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
                   <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
                 </div>
 
                 {/* 모바일 화면에서는 아이콘만 표시 */}
-                <div className="mobile-filters">
-                  <div className="dropdown-container">
+                <div className="MobileFilters">
+                  <div className="TransDropdownContainer">
                     <img 
                       src={sortingIcon} 
                       alt="Sort"
-                      className="filter-icon"
+                      className="filteringIcon"
                       onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
                     />
                     {isSortDropdownOpen && (
-                      <div className="dropdown-menu">
+                      <div className="TransDropdownMenu">
                         {sortOptions.map((option) => (
                           <div 
                             key={option.value} 
-                            className={`dropdown-item ${sortOption === option.value ? "selected" : ""}`}
+                            className={`TransDropdownItem ${sortOption === option.value ? "selected" : ""}`}
                             onClick={() => {
                               setSortOption(option.value);
                               setIsSortDropdownOpen(false);
@@ -218,19 +218,19 @@ function Transactions() {
                     )}
                   </div>
 
-                  <div className="dropdown-container">
+                  <div className="TransDropdownContainer">
                     <img 
                       src={filteringIcon} 
                       alt="Filter"
-                      className="filter-icon"
+                      className="filteringIcon"
                       onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
                     />
                     {isFilterDropdownOpen && (
-                      <div className="dropdown-menu">
+                      <div className="TransDropdownMenu">
                         {categories.map((category) => (
                           <div 
                             key={category} 
-                            className={`dropdown-item ${categoryFilter === category ? "selected" : ""}`}
+                            className={`TransDropdownItem ${categoryFilter === category ? "selected" : ""}`}
                             onClick={() => {
                               setCategoryFilter(category);
                               setIsFilterDropdownOpen(false);

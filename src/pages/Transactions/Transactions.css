@@ -48,7 +48,7 @@
   gap: var(--spacing-300);
 }
 
-.desktop-filters {
+.DesktopFilters {
   display: flex;
   gap: var(--spacing-300);
 }
@@ -69,7 +69,7 @@
   font-size: 14px;
 }
 
-.mobile-filters {
+.MobileFilters {
   display: none; /* 기본적으로 아이콘 숨김 */
 }
 
@@ -188,27 +188,27 @@
     padding: var(--spacing-300) var(--spacing-250);
   }
 
-  .desktop-filters {
+  .DesktopFilters {
     display: none;
   }
 
-  .mobile-filters {
+  .MobileFilters {
     display: flex;
     gap: var(--spacing-200);
   }
 
-  .filter-icon {
-    width: 24px;
-    height: 24px;
+  .filteringIcon {
+    width: var(--spacing-250);
+    height: var(--spacing-250);
     cursor: pointer;
   }
 
-  .dropdown-container {
+  .TransDropdownContainer {
     position: relative;
   }
 
   /* 아이콘 아래에서 리스트 형태로 펼쳐지도록 설정 */
-  .dropdown-menu {
+  .TransDropdownMenu {
     position: absolute;
     top: 30px; /* 아이콘 아래로 드롭다운 위치 */
     right: 0;
@@ -222,18 +222,18 @@
     z-index: 10;
   }
 
-  .dropdown-item {
+  .TransDropdownItem {
     padding: var(--spacing-100);
     font-size: 14px;
     color: var(--grey-900);
     cursor: pointer;
   }
 
-  .dropdown-item:hover {
+  .TransDropdownItem:hover {
     background: var(--grey-100);
   }
 
-  .dropdown-item.selected {
+  .TransDropdownItem.selected {
     font-weight: bold;
   }
 
