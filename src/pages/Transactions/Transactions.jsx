@@ -185,71 +185,74 @@ function Transactions() {
                 onChange={(e) => setSearchQuery(e.target.value)} 
               />
               <div className="filters">
-                {/* ✅ 기본 화면에서는 기존 드롭다운 표시 */}
+                {/* 기본 화면에서는 기존 드롭다운 표시 */}
                 <div className="desktop-filters">
                   <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
                   <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
                 </div>
 
-                {/* ✅ 모바일 화면에서는 아이콘만 표시 */}
+                {/* 모바일 화면에서는 아이콘만 표시 */}
                 <div className="mobile-filters">
-                  <img 
-                    src={sortingIcon} 
-                    alt="Sort"
-                    className="filter-icon"
-                    onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
-                  />
-                  <img 
-                    src={filteringIcon} 
-                    alt="Filter"
-                    className="filter-icon"
-                    onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
-                  />
+                  <div className="dropdown-container">
+                    <img 
+                      src={sortingIcon} 
+                      alt="Sort"
+                      className="filter-icon"
+                      onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
+                    />
+                    {isSortDropdownOpen && (
+                      <div className="dropdown-menu">
+                        {sortOptions.map((option) => (
+                          <div 
+                            key={option.value} 
+                            className={`dropdown-item ${sortOption === option.value ? "selected" : ""}`}
+                            onClick={() => {
+                              setSortOption(option.value);
+                              setIsSortDropdownOpen(false);
+                            }}
+                          >
+                            {option.label}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="dropdown-container">
+                    <img 
+                      src={filteringIcon} 
+                      alt="Filter"
+                      className="filter-icon"
+                      onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
+                    />
+                    {isFilterDropdownOpen && (
+                      <div className="dropdown-menu">
+                        {categories.map((category) => (
+                          <div 
+                            key={category} 
+                            className={`dropdown-item ${categoryFilter === category ? "selected" : ""}`}
+                            onClick={() => {
+                              setCategoryFilter(category);
+                              setIsFilterDropdownOpen(false);
+                            }}
+                          >
+                            {category}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* ✅ 정렬 옵션 팝업 */}
-            {isSortDropdownOpen && (
-              <div className="dropdown-overlay" onClick={() => setIsSortDropdownOpen(false)}>
-                <div className="dropdown-popup" onClick={(e) => e.stopPropagation()}>
-                  {sortOptions.map((option) => (
-                    <div 
-                      key={option.value} 
-                      className={`dropdown-item ${sortOption === option.value ? "selected" : ""}`}
-                      onClick={() => {
-                        setSortOption(option.value);
-                        setIsSortDropdownOpen(false);
-                      }}
-                    >
-                      {option.label}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
+            <div className="transactionHeader">
+              <div className="headerItem textPreset5" id="NameTitle">Recipient / Sender</div>
+              <div className="headerItem textPreset5" id="CategoryTitle">Category</div>
+              <div className="headerItem textPreset5" id="DateTitle">Transaction Date</div>
+              <div className="headerItem textPreset5" id="AmountTitle">Amount</div>
+            </div>
 
-            {/* ✅ 필터 옵션 팝업 */}
-            {isFilterDropdownOpen && (
-              <div className="dropdown-overlay" onClick={() => setIsFilterDropdownOpen(false)}>
-                <div className="dropdown-popup" onClick={(e) => e.stopPropagation()}>
-                  {categories.map((category) => (
-                    <div 
-                      key={category} 
-                      className={`dropdown-item ${categoryFilter === category ? "selected" : ""}`}
-                      onClick={() => {
-                        setCategoryFilter(category);
-                        setIsFilterDropdownOpen(false);
-                      }}
-                    >
-                      {category}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* ✅ 트랜잭션 리스트 */}
             <div className="transactionList">
               {filteredTransactions.length > 0 ? (
                 filteredTransactions.map((transaction) => (
@@ -276,7 +279,7 @@ function Transactions() {
           </div>
         )}
 
-        {/* ✅ 페이지네이션 */}
+        {/* 페이지네이션 */}
         <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>
