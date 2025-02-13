@@ -124,6 +124,10 @@ input {
   padding : 16px;
 }
 
+.ModalDeleteButton:hover{
+background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--red);
+}
+
 .ModalCancelButton {
   background: var(--white);
   color: var(--grey-900);
@@ -170,12 +174,20 @@ input {
   display: flex;
   align-items: center;
   padding: 12px 20px;
-  border: 1px solid var(--grey-300);
+  border: 1px solid var(--beige-500);
   border-radius: 8px;
   background: var(--white);
   cursor: pointer;
   color: var(--grey-900);
   justify-content: space-between;
+}
+
+.DropdownHeader:hover{
+  border: 1px solid var(--grey-500);
+}
+
+.DropdownHeader:active{
+  border: 1px solid var(--grey-900);
 }
 
 .DropdownCloseIcon {

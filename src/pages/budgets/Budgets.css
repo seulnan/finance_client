@@ -45,6 +45,10 @@
   cursor: pointer;
 }
 
+.AddBudgetButton:hover{
+  background: var(--grey-500);
+}
+
 /* 메인 컨텐츠 */
 .BudgetContent {
   display: flex;
