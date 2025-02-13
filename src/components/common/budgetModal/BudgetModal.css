@@ -18,9 +18,17 @@
   margin-bottom : 20px;
 }
 
+.ExplainBox{
+  color: var(--grey-500);
+  font-family : 'Text Preset 4';
+  margin-top:20px;
+  margin-bottom:20px;
+  font-size:14px;
+}
+
 .ModalContent {
   background: var(--white);
-  border-radius: 10px;
+  border-radius: 12px;
   max-width: 560px; /* Desktop and Tablet */
   width: 100%;
   padding: var(--spacing-400, 32px);
@@ -39,7 +47,7 @@
 
 h2 {
   font-family: 'Text Preset 1';
-  font-size: 1.5rem;
+  font-size: 32px;
   line-height: 120%;
   color: var(--grey-900);
   margin: 0;
@@ -49,49 +57,19 @@ h2 {
   border: none;
   background: url("../../../assets/images/CloseButton.png") no-repeat center center;
   background-size: contain;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   cursor: pointer;
 }
 
-/* Dropdown styles */
-select {
-  display: flex;
-  padding: var(--spacing-150, 12px) var(--spacing-250, 20px);
-  align-self: stretch;
-  font-family: 'Text Preset 4';
-  border: 1px solid var(--grey-300);
-  border-radius: 5px;
-  color: var(--grey-900);
-  background-color: var(--white);
-  width: 100%;
-  box-sizing: border-box;
-  position: relative;
-  overflow-y: visible;
+.Title{
+  color: var(--grey-500);
+  font-family : 'Text Preset 5 Bold';
+  margin-bottom:4px;
+  font-size :12px;
 }
 
-/* Dropdown arrow customization */
-select::after {
-  content: '\25BE';
-  position: absolute;
-  right: 10px;
-  pointer-events: none;
-}
 
-/* Responsive category box styles */
-@media screen and (min-width: 769px) {
-  select {
-    max-width: 496px;
-    height: 45px;
-  }
-}
-
-@media screen and (max-width: 375px) {
-  select {
-    max-width: 295px; /* Mobile */
-    height: 45px;
-  }
-}
 
 /* Text styles */
 p {
@@ -99,7 +77,6 @@ p {
   font-size: 1rem;
   line-height: 150%;
   color: var(--grey-500);
-  margin-bottom: 20px;
 }
 
 /* Form input styles */
@@ -107,10 +84,10 @@ input {
   width: 92%;
   padding: var(--spacing-150, 12px) var(--spacing-250, 20px);
   font-family: 'Text Preset 4';
-  font-size: 1rem;
+  font-size: 14px;
   border: 1px solid var(--grey-300);
-  border-radius: 5px;
-  color: var(--grey-900);
+  border-radius: 8px;
+  color: var(--grey-300);
 }
 
 /* Buttons */
@@ -118,12 +95,21 @@ input {
   background: var(--grey-900);
   color: var(--white);
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  padding: 16px;
+  border-radius: 8px;
   cursor: pointer;
   width: 100%;
   font-family: 'Text Preset 4 Bold';
-  font-size: 1rem;
+  font-size: 14px;
+}
+
+.SelectName{
+  display: "flex";
+  align-items: "center";
+  width: "100%";
+  font-family : 'Text Preset 4';
+  font-size:14px;
+  color: var(--grey-900);
 }
 
 .ModalDeleteButton {
@@ -138,8 +124,12 @@ input {
   padding : 16px;
 }
 
+.ModalDeleteButton:hover{
+background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--red);
+}
+
 .ModalCancelButton {
-  background: var(--grey-100);
+  background: var(--white);
   color: var(--grey-900);
   border: none;
   border-radius: 5px;
@@ -172,4 +162,96 @@ input {
     color: var(--grey-900);
   }
 
+}
+
+.ColorDropdown {
+  position: relative;
+  width: 100%;
+  max-width: 496px;
+}
+
+.DropdownHeader {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border: 1px solid var(--beige-500);
+  border-radius: 8px;
+  background: var(--white);
+  cursor: pointer;
+  color: var(--grey-900);
+  justify-content: space-between;
+}
+
+.DropdownHeader:hover{
+  border: 1px solid var(--grey-500);
+}
+
+.DropdownHeader:active{
+  border: 1px solid var(--grey-900);
+}
+
+.DropdownCloseIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.DropdownList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px; /* 높이 유지 */
+  background: var(--white);
+  border: 1px solid var(--grey-300);
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* 스크롤 유지 */
+  z-index: 10;
+
+  /* 스크롤 바 숨기기 */
+  scrollbar-width: none; /* Firefox */
+}
+
+.DropdownList::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+
+.DropdownOption {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  color: var(--grey-900);
+}
+
+.ColorTextContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* 전체 너비 사용 */
+}
+
+.AlreadyUsed {
+  margin-left: auto; /* 오른쪽 끝으로 이동 */
+  color: var(--grey-500); /* 색상 조정 */
+  font-size: 0.9rem; /* 크기 조정 */
+}
+
+.DropdownOption:hover {
+  background: var(--grey-100);
+}
+
+.DropdownOption.Disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ColorCircle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
