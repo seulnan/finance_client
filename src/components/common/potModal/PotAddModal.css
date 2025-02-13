@@ -1,0 +1,245 @@
+/* 기존 BudgetModal 스타일 그대로 유지 */
+@import '/src/styles/colors.css';
+@import '/src/styles/fonts.css';
+
+.Modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ModalContent {
+  background: var(--white);
+  border-radius: 12px;
+  max-width: 560px;
+  width: 100%;
+  padding: var(--spacing-400, 32px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.ModalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+h2 {
+  font-family: 'Text Preset 1';
+  font-size: 32px;
+  line-height: 120%;
+  color: var(--grey-900);
+  margin: 0;
+}
+
+.CloseButton {
+  border: none;
+  background: url("../../../assets/images/CloseButton.png") no-repeat center center;
+  background-size: contain;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.ExplainBox {
+  color: var(--grey-500);
+  font-family: 'Text Preset 4';
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.FormGroup {
+  margin-bottom: 20px;
+}
+
+.Title {
+  color: var(--grey-500);
+  font-family: 'Text Preset 5 Bold';
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.CharCount{
+    text-align: right;
+    margin-top:4px;
+    font-family : 'Text preset 5';
+    font-size: 12px;
+    color : var(--grey-500);
+}
+
+/* Pot Name 입력 필드 스타일 추가 */
+input.PotNameInput {
+  width: 92%;
+  padding: var(--spacing-150, 12px) 20px;
+  font-family: 'Text Preset 4';
+  font-size: 14px;
+  border: 1px solid var(--beige-500);
+  border-radius: 8px;
+  color: var(--grey-900);
+}
+
+/* 버튼 스타일 */
+.ModalSubmitButton {
+  background: var(--grey-900);
+  color: var(--white);
+  border: none;
+  padding: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  font-family: 'Text Preset 4 Bold';
+  font-size: 14px;
+}
+
+.ModalDeleteButton {
+  background: var(--red);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+  font-family: 'Text Preset 4 Bold';
+  padding: 16px;
+}
+
+.ModalDeleteButton:hover {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.20) 100%), var(--red);
+}
+
+.ModalCancelButton {
+  background: var(--white);
+  color: var(--grey-900);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  font-family: 'Text Preset 4';
+  padding: 16px;
+}
+
+/* 반응형 스타일 */
+@media screen and (max-width: 375px) {
+  .ModalContent {
+    max-width: 335px;
+    padding: 24px;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+  }
+
+  input.PotNameInput {
+    width: 86%;
+    padding: var(--spacing-150, 12px)  20px;
+    font-family: 'Text Preset 4';
+    font-size: 14px;
+    border: 1px solid var(--grey-300);
+    border-radius: 8px;
+    color: var(--grey-900);
+  }
+}
+
+/* Color Picker 드롭다운 */
+.ColorDropdown {
+  position: relative;
+  width: 100%;
+  max-width: 496px;
+}
+
+.DropdownHeader {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  border: 1px solid var(--beige-500);
+  border-radius: 8px;
+  background: var(--white);
+  cursor: pointer;
+  color: var(--grey-900);
+  justify-content: space-between;
+}
+
+.DropdownHeader:hover {
+  border: 1px solid var(--grey-500);
+}
+
+.DropdownHeader:active {
+  border: 1px solid var(--grey-900);
+}
+
+.DropdownCloseIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.DropdownList {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  background: var(--white);
+  border: 1px solid var(--grey-300);
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 10;
+  scrollbar-width: none;
+}
+
+.DropdownList::-webkit-scrollbar {
+  display: none;
+}
+
+.DropdownOption {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  cursor: pointer;
+  color: var(--grey-900);
+}
+
+.ColorTextContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.AlreadyUsed {
+  margin-left: auto;
+  color: var(--grey-500);
+  font-size: 0.9rem;
+}
+
+.DropdownOption:hover {
+  background: var(--grey-100);
+}
+
+.DropdownOption.Disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ColorCircle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  margin-right: 10px;
+}

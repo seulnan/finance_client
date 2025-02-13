@@ -4,6 +4,7 @@ import Sidebar from './layouts/SideBar.jsx';
 import Transactions from './pages/Transactions/Transactions.jsx';
 import Budgets from './pages/budgets/Budgets.jsx';
 import RecurringBills from './pages/RecurringBills/RecurringBills.jsx';
+import Pots from './pages/pots/Pots.jsx'
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
             <Route path="/" element={<h1>Overview</h1>} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/budgets" element={<Budgets />} />
-            <Route path="/pots" element={<h1>Pots</h1>} />
+            <Route path="/pots" element={<Pots />} />
             <Route path="/recurring-bills" element={<RecurringBills />} />
             <Route path="/new-budget" element={<h1>New Budget</h1>} />
           </Routes>
