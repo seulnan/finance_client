@@ -68,11 +68,6 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
   const handleThemeSelection = (color) => {
     setFormData({ ...formData, theme: color }); // ✅ 색상 이름 그대로 저장
     setDropdownOpen(false);
@@ -184,8 +179,9 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
               <SearchField
                 type="icon-left"
                 placeholder="e.g. 2000"
-                value={formData.limit}
-                onChange={handleInputChange}
+                onChange={(e) =>
+                  setFormData({ ...formData, limit: e.target.value })
+                }
               />
             </div>
 
