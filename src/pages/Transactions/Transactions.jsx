@@ -4,6 +4,8 @@ import SearchField from "../../components/common/searchField/SearchField.jsx";
 import Dropdown from "../../components/common/dropdown/dropdown.jsx";
 import "../../styles/fonts.css";
 import "./Transactions.css";
+import filteringIcon from "../../assets/images/filteringIcon.svg";
+import sortingIcon from "../../assets/images/sortingIcon.svg";
 import Pagination from "../../components/common/pagination/pagination.jsx";
 
 function Transactions() {
@@ -11,6 +13,8 @@ function Transactions() {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [sortOption, setSortOption] = useState("Latest"); // 기본값 최신순
   const [categoryFilter, setCategoryFilter] = useState("All"); // 기본값 All
+  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
+  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -163,7 +167,7 @@ function Transactions() {
     <div className="Transactions">
       <h2 id="TransactionTitle" className="textPreset4Bold">Transactions</h2>
 
-      <div className="mainBox">
+      <div className="TransactionMainBox">
         {error && <div className="errorMessage textPreset5">{error}</div>}
 
         {loading ? (
@@ -181,18 +185,69 @@ function Transactions() {
                 onChange={(e) => setSearchQuery(e.target.value)} 
               />
               <div className="filters">
-                <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
-                <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
+                {/* ✅ 기본 화면에서는 기존 드롭다운 표시 */}
+                <div className="desktop-filters">
+                  <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
+                  <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
+                </div>
+
+                {/* ✅ 모바일 화면에서는 아이콘만 표시 */}
+                <div className="mobile-filters">
+                  <img 
+                    src={sortingIcon} 
+                    alt="Sort"
+                    className="filter-icon"
+                    onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
+                  />
+                  <img 
+                    src={filteringIcon} 
+                    alt="Filter"
+                    className="filter-icon"
+                    onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
+                  />
+                </div>
               </div>
             </div>
 
-            {/* ✅ 테이블 헤더 */}
-            <div className="transactionHeader">
-              <div className="headerItem textPreset5" id="NameTitle">Recipient / Sender</div>
-              <div className="headerItem textPreset5" id="CategoryTitle">Category</div>
-              <div className="headerItem textPreset5" id="DateTitle">Transaction Date</div>
-              <div className="headerItem textPreset5" id="AmountTitle">Amount</div>
-            </div>
+            {/* ✅ 정렬 옵션 팝업 */}
+            {isSortDropdownOpen && (
+              <div className="dropdown-overlay" onClick={() => setIsSortDropdownOpen(false)}>
+                <div className="dropdown-popup" onClick={(e) => e.stopPropagation()}>
+                  {sortOptions.map((option) => (
+                    <div 
+                      key={option.value} 
+                      className={`dropdown-item ${sortOption === option.value ? "selected" : ""}`}
+                      onClick={() => {
+                        setSortOption(option.value);
+                        setIsSortDropdownOpen(false);
+                      }}
+                    >
+                      {option.label}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* ✅ 필터 옵션 팝업 */}
+            {isFilterDropdownOpen && (
+              <div className="dropdown-overlay" onClick={() => setIsFilterDropdownOpen(false)}>
+                <div className="dropdown-popup" onClick={(e) => e.stopPropagation()}>
+                  {categories.map((category) => (
+                    <div 
+                      key={category} 
+                      className={`dropdown-item ${categoryFilter === category ? "selected" : ""}`}
+                      onClick={() => {
+                        setCategoryFilter(category);
+                        setIsFilterDropdownOpen(false);
+                      }}
+                    >
+                      {category}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* ✅ 트랜잭션 리스트 */}
             <div className="transactionList">
