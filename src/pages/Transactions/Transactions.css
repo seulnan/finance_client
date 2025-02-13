@@ -236,7 +236,7 @@
   .dropdown-item.selected {
     font-weight: bold;
   }
-  
+
   .transactionHeader {
     display: none; /* 헤더 숨기기 */
   }
@@ -283,7 +283,7 @@
   }
 
   #DateInfo {
-    display: flex;
+    width: auto;
     grid-area: date; /* 우측 하단 */
     font-size: 12px;
     color: var(--grey-500);
