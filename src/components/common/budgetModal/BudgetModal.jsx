@@ -185,9 +185,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
                 type="icon-left"
                 placeholder="e.g. 2000"
                 value={formData.limit}
-                onChange={(e) =>
-                  setFormData({ ...formData, limit: e.target.value })
-                }
+                onChange={handleInputChange}
               />
             </div>
 
