@@ -97,7 +97,7 @@ input {
   font-size: 14px;
   border: 1px solid var(--grey-300);
   border-radius: 8px;
-  color: var(--grey-300);
+  color: var(--grey-900);
 }
 
 /* Buttons */
@@ -114,9 +114,6 @@ input {
 }
 
 .SelectName{
-  display: "flex";
-  align-items: "center";
-  width: "100%";
   font-family : 'Text Preset 4';
   font-size:14px;
   color: var(--grey-900);
