@@ -253,7 +253,7 @@ const BudgetModal = ({ type, budget, onClose, onSuccess }) => {
             <div className = 'ExplainBox'>As your budgets change, feel free to update your spending limits.</div>
             <div className="FormGroup">
               <div className = 'Title'>Budget Category</div>
-              <input type="text" value={formData.category} disabled />
+              <div className="CategoryDisplay">{formData.category}</div>
             </div>
 
             <div className="FormGroup">

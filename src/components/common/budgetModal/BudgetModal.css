@@ -45,6 +45,16 @@
   width: 100%;
 }
 
+.CategoryDisplay {
+  padding: var(--spacing-150, 12px) var(--spacing-250, 20px);
+  font-family: 'Text Preset 4';
+  font-size: 14px;
+  border: 1px solid var(--grey-300);
+  border-radius: 8px;
+  color: var(--grey-300);
+  background: var(--grey-100);
+}
+
 h2 {
   font-family: 'Text Preset 1';
   font-size: 32px;
@@ -81,7 +91,7 @@ p {
 
 /* Form input styles */
 input {
-  width: 92%;
+  width: 142%;
   padding: var(--spacing-150, 12px) var(--spacing-250, 20px);
   font-family: 'Text Preset 4';
   font-size: 14px;
