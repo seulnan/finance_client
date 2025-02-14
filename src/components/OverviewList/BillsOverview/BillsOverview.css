@@ -2,17 +2,62 @@
 @import '../../../styles/colors.css';
 
 .BillsOverviewContainer {
-    width: 100%;
-    max-width: 364px;
-    padding: var(--spacing-400);
-    background-color: var(--white);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-400);
+  width: 100%;
+  max-width: 364px;
+  padding: var(--spacing-400);
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
 }
 
-.BillsOverviewHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.BillsOverviewHeader { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.SeeDetailsIcon {
+  width: var(--spacing-150);
+  height: var(--spacing-150);
+  margin-left: var(--spacing-150);
+  vertical-align: middle;
+}
+
+.BillsOverviewList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-150);
+}
+
+.OverviewsListTitles {
+  color: var(--grey-900);
+  font-weight: 700;
+  margin: 0;
+}
+
+.BillsOverviewItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-250) var(--spacing-200);
+
+  border-radius: var(--spacing-100);
+  background: var(--beige-100);
+}
+
+.BillsOverviewItemTitle {
+  color: var(--grey-500);
+}
+
+#BillsOverviewPaidBills {
+  border-left: 4px solid var(--green);
+}
+
+#BillsOverviewUpcoming {
+  border-left: 4px solid var(--yellow);
+}
+
+#BillsOverviewDueSoon {
+  border-left: 4px solid var(--cyan);
 }
