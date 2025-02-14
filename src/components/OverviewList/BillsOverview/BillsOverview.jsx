@@ -15,20 +15,28 @@ const BillsOverview = ({ setPaidBills, setTotalUpcoming, setDueSoon }) => {
     const fetchBills = async () => {
       try {
         const response = await baseAxios.get("/api/recurring");
+        console.log("API 응답 데이터:", response.data); // 디버깅용 로그 추가
         const billsData = response.data || [];
         setBills(billsData);
 
-        const today = new Date();
+        const today = new Date().getDate();
         const fiveDaysLater = new Date();
-        fiveDaysLater.setDate(today.getDate() + 5);
+        fiveDaysLater.setDate(today + 5);
+        const fiveDaysLaterDate = fiveDaysLater.getDate();
 
-        const paid = billsData.filter(bill => new Date(bill.date) < today);
-        const upcoming = billsData.filter(bill => new Date(bill.date) >= today);
-        const dueSoonList = upcoming.filter(bill => new Date(bill.date) <= fiveDaysLater);
+        const extractDay = (dateString) => parseInt(dateString.match(/\d+/)[0]);
 
-        const paidTotal = paid.reduce((sum, bill) => sum + Math.abs(parseFloat(bill.amount)), 0).toFixed(2);
-        const upcomingTotal = upcoming.reduce((sum, bill) => sum + Math.abs(parseFloat(bill.amount)), 0).toFixed(2);
-        const dueSoonTotal = dueSoonList.reduce((sum, bill) => sum + Math.abs(parseFloat(bill.amount)), 0).toFixed(2);
+        const paidBills = billsData.filter(bill => extractDay(bill.date) < today);
+        const totalUpcomingBills = billsData.filter(bill => extractDay(bill.date) >= today);
+        const dueSoonBills = totalUpcomingBills.filter(bill => extractDay(bill.date) <= fiveDaysLaterDate);
+
+        const calculateSummary = (billsArray) => {
+          return billsArray.reduce((sum, bill) => sum + Math.abs(parseFloat(bill.amount) || 0), 0).toFixed(2);
+        };
+
+        const paidTotal = calculateSummary(paidBills);
+        const upcomingTotal = calculateSummary(totalUpcomingBills);
+        const dueSoonTotal = calculateSummary(dueSoonBills);
 
         setPaidAmount(paidTotal);
         setUpcomingAmount(upcomingTotal);
@@ -48,7 +56,7 @@ const BillsOverview = ({ setPaidBills, setTotalUpcoming, setDueSoon }) => {
     <div className="BillsOverviewContainer">
       <div className="BillsOverviewHeader">
         <p className="OverviewsListTitles textPreset2">Recurring Bills</p>
-        <button className="textPreset4 SeeDetails" onClick={() => navigate("/RecurringBills")}>
+        <button className="textPreset4 SeeDetails" onClick={() => navigate("/RecurringBills")}> 
           See Details <img src={nextIcon} alt="Next" className="SeeDetailsIcon" />
         </button>
       </div>
