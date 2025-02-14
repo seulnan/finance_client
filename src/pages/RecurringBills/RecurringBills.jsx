@@ -7,6 +7,7 @@ import "./RecurringBills.css";
 import totalBillsIcon from "../../assets/images/totalBillsIcon.svg";
 import PaidIcon from "../../assets/images/PaidIcon.svg";
 import DueSoonIcon from "../../assets/images/DueSoonIcon.svg";
+import sortingIcon from "../../assets/images/sortingIcon.svg";
 
 function RecurringBills() {
   const [bills, setBills] = useState([]);
@@ -15,6 +16,7 @@ function RecurringBills() {
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
 
   const sortOptions = [
     { value: "Latest", label: "Latest" },
@@ -128,8 +130,41 @@ function RecurringBills() {
         <div className="recurringBillsMain">
           <div className="searchFilters">
             <SearchField placeholder="Search bills" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
-            <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
+            
+            {/* 기본 화면에서는 기존 Sort By 드롭다운 표시 */}
+            <div className="BillsDesktopSort">
+              <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
+            </div>
+
+            {/* 375px 이하에서는 sortingIcon 만 표시 */}
+            <div className="BillsMobileSort">
+              <div className="dropdown-container">
+                <img 
+                  src={sortingIcon} 
+                  alt="Sort"
+                  className="sortingIcon"
+                  onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
+                />
+                {isSortDropdownOpen && (
+                  <div className="BillsDropdownMenu">
+                    {sortOptions.map((option) => (
+                      <div 
+                        key={option.value} 
+                        className={`BillsDropdownItem ${sortOption === option.value ? "selected" : ""}`}
+                        onClick={() => {
+                          setSortOption(option.value);
+                          setIsSortDropdownOpen(false);
+                        }}
+                      >
+                        {option.label}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
+
           <div className="billsHeader">
             <span className="textPreset5" id="BillTitle">Bill Title</span>
             <span className="textPreset5" id="BillDueTitle">Due Date</span>
