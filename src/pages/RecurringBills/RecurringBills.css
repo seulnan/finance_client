@@ -238,3 +238,33 @@
     max-width: 624px;
   }
 }
+
+@media (max-width: 375px) {
+  .RecurringBills {
+    margin: var(--spacing-300) var(--spacing-200);  
+  }
+
+  .summaryBox {
+    flex-direction: column;
+    max-width: 343px;
+    gap: var(--spacing-150);
+  }
+
+  .totalBills {
+    width: 100%;
+    max-width: 303px;
+    padding: var(--spacing-300) var(--spacing-250);
+  }
+
+  .summaryDetails {
+    width: 100%;
+    max-width: 303px;
+    padding: var(--spacing-250);
+  } 
+
+  .recurringBillsMain {
+    width: auto;
+    max-width: 303px;
+    padding: var(--spacing-300) var(--spacing-250);
+  }
+}
