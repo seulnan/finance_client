@@ -319,4 +319,17 @@
   .BillsDropdownItem.selected {
     font-weight: bold;
   }
+
+  .billsHeader {
+    display: none;
+  }
+
+  .billContainer {
+    flex-wrap: wrap;
+    gap: var(--spacing-100);
+  }
+
+  .billInfo {
+    max-width: 303px;
+  }
 }
