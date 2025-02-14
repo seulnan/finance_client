@@ -210,3 +210,16 @@
   padding: var(--spacing-400);
   color: var(--grey-500);
 }
+
+@media (max-width: 768px) {
+  .TotalSummaryBox {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: var(--spacing-300);
+  }
+
+  .summaryBox {
+    flex-direction: row;
+    width: 100%;
+  }
+}
