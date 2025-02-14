@@ -39,7 +39,7 @@
 
 #totalTitle {
   color: var(--white);
-  margin: var(--spacing-200) 0 11px;
+  margin: var(--spacing-400) 0 11px;
 }
 
 #totalBills {
@@ -220,6 +220,21 @@
 
   .summaryBox {
     flex-direction: row;
+    max-width: 688px;
+  }
+
+  .totalBills {
     width: 100%;
+    max-width: 284px;
+  }
+
+  .summaryDetails {
+    width: 100%;
+    max-width: 292px;
+  } 
+
+  .recurringBillsMain {
+    width: auto;
+    max-width: 624px;
   }
 }
