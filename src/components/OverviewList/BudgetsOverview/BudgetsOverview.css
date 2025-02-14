@@ -23,12 +23,12 @@
 }
 
 .SeeDetails {
+  display: flex;
+  align-items: center;
   background: none;
   border: none;
-  color: var(--grey-900);
-  font-weight: bold;
   cursor: pointer;
-  font-size: 14px;
+  color: var(--grey-500)
 }
 
 .SeeDetails:hover {

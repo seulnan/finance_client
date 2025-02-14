@@ -64,7 +64,7 @@ const BudgetsOverview = ({ budgetData, totalUsed, totalLimit }) => {
     <div className="BudgetOverviewContainer">
       <div className="BudgetHeader">
         <h2>Budgets</h2>
-        <button className="SeeDetails" onClick={() => navigate("/budgets")}>
+        <button className="textPreset4 SeeDetails" onClick={() => navigate("/budgets")}>
           See Details →
         </button>
       </div>
