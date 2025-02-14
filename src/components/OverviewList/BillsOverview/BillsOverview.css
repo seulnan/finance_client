@@ -1,0 +1,18 @@
+@import '../../../styles/spacing.css';
+@import '../../../styles/colors.css';
+
+.BillsOverviewContainer {
+    width: 100%;
+    max-width: 364px;
+    padding: var(--spacing-400);
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-400);
+}
+
+.BillsOverviewHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

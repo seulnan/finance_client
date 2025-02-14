@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import baseAxios from "../../baseAxios.js";
 import { useNavigate } from "react-router-dom";
 import BudgetsOverview from "../../components/OverviewList/BudgetsOverview/BudgetsOverview.jsx";
+import BillsOverview from "../../components/OverviewList/BillsOverview/BillsOverview.jsx";
 import "./Overview.css";
 
 const Overview = () => {
   const [budgetData, setBudgetData] = useState([]);
+  const [paidBills, setPaidBills] = useState(0);
+  const [totalUpcoming, setTotalUpcoming] = useState(0);
+  const [dueSoon, setDueSoon] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,6 +42,11 @@ const Overview = () => {
         <h1>Overview</h1>
       </div>
       <BudgetsOverview budgetData={budgetData} totalUsed={totalUsed} totalLimit={totalLimit} />
+      <BillsOverview 
+        setPaidBills={setPaidBills} 
+        setTotalUpcoming={setTotalUpcoming} 
+        setDueSoon={setDueSoon} 
+      />
     </div>
   );
 };
