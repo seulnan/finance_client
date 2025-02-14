@@ -39,7 +39,9 @@
 
 .InputWrapper {
   width: 100%;
+  min-width: 160px;
   max-width: 320px;
+  margin-right: var(--spacing-300);
 }
 
 .filters {
