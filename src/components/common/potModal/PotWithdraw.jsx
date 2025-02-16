@@ -11,8 +11,7 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
       alert("Please enter a valid amount.");
       return;
     }
-
-    const updatedData = { amount: parseFloat(amount).toFixed(2) }; // ✅ amount만 보내도록 수정
+    const updatedData = { amount: Number(amount) };// ✅ amount만 보내도록 수정
 
     const endpoint =
       type === "add"
