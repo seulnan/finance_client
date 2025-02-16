@@ -1,0 +1,11 @@
+.FormGroup {
+    align-items: center;
+    justify-content: space-between;
+  }
+  .Title{
+    display:flex;
+  }
+
+  .Money{
+    display:flex;
+  }
