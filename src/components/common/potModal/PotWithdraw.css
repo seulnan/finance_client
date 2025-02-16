@@ -20,31 +20,33 @@
     height: 8px;
     background-color: var(--beige-100);
     border-radius: 4px;
+    position: relative;
     overflow: hidden;
   }
   
   .ProgressBarFilled {
     height: 100%;
-    background-color: var(--green-500);
-    transition: width 0.5s ease-in-out;
+    background: var(--grey-900);
+    position: absolute;
+    top: 0;
+    left: 0;
   }
   
   .ProgressBarChange {
     position: absolute;
     top: 0;
     height: 100%;
-    transition: width 0.5s ease-in-out;
   }
   
   .ProgressBarChange.increase {
-    left: 100%;
-    background-color: var(--green-300);
+    background: var(--green-300);
   }
   
   .ProgressBarChange.decrease {
-    left: 0;
-    background-color: var(--red-400);
+    background: var(--red-400);
   }
+  
+  
 
   .ProgressBarText {
     display: flex;

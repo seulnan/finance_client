@@ -18,6 +18,7 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
       const initialPercentage = ((currentAmount / targetAmount) * 100).toFixed(2);
       setCurrentPercentage(initialPercentage);
       setNewPercentage(initialPercentage);
+      console.log("✅ 초기 퍼센트 설정:", initialPercentage);
     }
   }, [currentAmount, targetAmount]);
 
@@ -25,16 +26,16 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
     const inputAmount = parseFloat(amount || 0);
     if (isNaN(inputAmount) || targetAmount === 0) return;
 
-    // ✅ 현재 금액에서 입력된 금액을 더하거나 빼고 새로운 금액을 계산
     const updatedAmount = type === "add"
       ? currentAmount + inputAmount
       : currentAmount - inputAmount;
 
-    // ✅ 새로운 금액이 목표 금액 대비 몇 %인지 계산
     const updatedPercentage = ((updatedAmount / targetAmount) * 100).toFixed(2);
-
-    // ✅ 새로운 퍼센트 설정
     setNewPercentage(updatedPercentage);
+
+    console.log("📊 입력된 금액:", inputAmount);
+    console.log("📊 업데이트된 금액:", updatedAmount);
+    console.log("📊 새로운 퍼센트:", updatedPercentage);
   }, [amount, currentAmount, targetAmount, type]);
 
   const handleSubmit = async () => {
@@ -94,18 +95,43 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
 
         <div className="ProgressBarContainer">
           <div className="ProgressBarBackground">
+            {/* ✅ 기존 저장된 금액 표시 (회색) */}
             <div
               className="ProgressBarFilled"
-              style={{ width: `${currentPercentage}%` }}
-            ></div>
-            <div
-              className={`ProgressBarChange ${type === "add" ? "increase" : "decrease"}`}
               style={{
-                width: `${Math.abs(newPercentage - currentPercentage)}%`,
-                left: type === "add" ? `${currentPercentage}%` : "0%",
+                width: `${currentPercentage}%`,
+                background: "var(--grey-900)",
+                transition: "width 0.5s ease-in-out",
               }}
             ></div>
+
+            {/* ✅ 증가한 금액 (초록색) */}
+            {newPercentage > currentPercentage && (
+              <div
+                className="ProgressBarChange increase"
+                style={{
+                  width: `${newPercentage - currentPercentage}%`,
+                  left: `${currentPercentage}%`,
+                  background: "var(--green-300)",
+                  transition: "width 0.5s ease-in-out, left 0.5s ease-in-out",
+                }}
+              ></div>
+            )}
+
+            {/* ✅ 감소한 금액 (빨간색) */}
+            {newPercentage < currentPercentage && (
+              <div
+                className="ProgressBarChange decrease"
+                style={{
+                  width: `${currentPercentage - newPercentage}%`,
+                  left: `${newPercentage}%`,
+                  background: "var(--red-400)",
+                  transition: "width 0.5s ease-in-out, left 0.5s ease-in-out",
+                }}
+              ></div>
+            )}
           </div>
+
           <div className="ProgressBarText">
             <span className="PercentageText">{newPercentage}%</span>
             <span className="TargetMoney">Target of ${targetAmount.toFixed(2)}</span>
