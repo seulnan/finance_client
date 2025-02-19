@@ -24,17 +24,17 @@ const BalanceOverview = () => {
 
   return (
     <div className="BalanceOverviewContainer">
-      <div className="BalanceOverview dark">
-        <p>Current Balance</p>
-        <h2>${parseFloat(overview.currentBalance).toLocaleString()}</h2>
+      <div className="BalanceOverview" id="CurrentBalance">
+        <p className="BalanceOverviewTitle textPreset4" id="CurrentBalanceTitle">Current Balance</p>
+        <p className="BalanceOverviewItem textPreset1" id="CurrentBalanceItem">${parseFloat(overview.currentBalance).toLocaleString()}</p>
       </div>
       <div className="BalanceOverview">
-        <p>Income</p>
-        <h2>${parseFloat(overview.income).toLocaleString()}</h2>
+        <p className="BalanceOverviewTitle textPreset4">Income</p>
+        <p className="BalanceOverviewItem textPreset1">${parseFloat(overview.income).toLocaleString()}</p>
       </div>
       <div className="BalanceOverview">
-        <p>Expenses</p>
-        <h2>${parseFloat(overview.expenses).toLocaleString()}</h2>
+        <p className="BalanceOverviewTitle textPreset4">Expenses</p>
+        <p className="BalanceOverviewItem textPreset1">${parseFloat(overview.expenses).toLocaleString()}</p>
       </div>
     </div>
   );

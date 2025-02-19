@@ -1,15 +1,45 @@
 @import '../../../styles/spacing.css';
 @import '../../../styles/colors.css';
 
-.BalanceOverviewContainer {  
+.BalanceOverviewContainer {
+  width: 100%;
+  max-width: 1440px;
   display: flex;
   flex-direction: row;
   gap: var(--spacing-300);
-  justify-content: space-between;
+  justify-content: start;
 }
 
 .BalanceOverview {
+  width: 100%;
+  height: auto;
+  max-width: 289px;
   padding: var(--spacing-300);
+  display: flex;
+  flex-direction: column;
   border-radius: var(--spacing-150);
   background-color: var(--white);
+  gap: var(--spacing-150);
+}
+
+#CurrentBalance {
+  background-color: var(--grey-900);
+}
+
+#CurrentBalanceTitle {
+  color: var(--white);
+}
+
+#CurrentBalanceItem {
+  color: var(--white);
+}
+
+.BalanceOverviewTitle {
+  margin: 0;
+  color: var(--grey-500);
+}
+
+.BalanceOverviewItem {
+  margin: 0;
+  color: var(--grey-900);
 }
