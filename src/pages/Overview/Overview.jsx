@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import baseAxios from "../../baseAxios.js";
 import { useNavigate } from "react-router-dom";
+import BalanceOverview from "../../components/OverviewList/BalanceOverview/BalanceOverview.jsx";
 import BudgetsOverview from "../../components/OverviewList/BudgetsOverview/BudgetsOverview.jsx";
 import BillsOverview from "../../components/OverviewList/BillsOverview/BillsOverview.jsx";
 import "./Overview.css";
@@ -41,6 +42,7 @@ const Overview = () => {
       <div className="OverviewHeader">
         <h1>Overview</h1>
       </div>
+      <BalanceOverview />
       <BudgetsOverview budgetData={budgetData} totalUsed={totalUsed} totalLimit={totalLimit} />
       <BillsOverview 
         setPaidBills={setPaidBills} 
