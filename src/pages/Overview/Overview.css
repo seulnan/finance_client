@@ -19,3 +19,16 @@
   font-weight: bold;
   color: var(--grey-900);
 }
+
+.SeeDetails {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--grey-500)
+}
+
+.SeeDetails:hover {
+  text-decoration: underline;
+}
