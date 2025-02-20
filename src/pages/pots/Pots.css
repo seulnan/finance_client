@@ -1,86 +1,144 @@
-/* 전체 Pot 컨테이너 */
+@import '/src/styles/colors.css';
+@import '/src/styles/fonts.css';
+
 .PotsContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Pot 카드 스타일 */
+.PotCard {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 24px;
+  position: relative;
+  width: 470px;
+  height: 255px;
+}
+
+/* Pot 제목과 동그라미 컨테이너 */
+.PotTitleContainer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Pot 제목 스타일 */
+.PotTitle {
+  color: var(--grey-900, #201F24);
+  font-family: "Text Preset 2";
+  font-size: 20px;
+}
+
+/* Pot 동그라미 색상 */
+.PotCircle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.Total{
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom:16px;
+}
+
+/* Pot 제목과 미트볼 메뉴 정렬 */
+.PotHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; 
+  margin-bottom: 42px;
+}
+.TotalSaved{
+  color: var(--grey-500, #696868);
+  font-family: "Text Preset 4";
+  font-size: 14px;
+}
+
+/* 목표 진행률 표시 */
+.PotProgressContainer {
+  width: 100%;
+  height: 8px;
+  background: var(--beige-100);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 13px;
+}
+
+.Target{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom:32px;
+}
+
+.AWButtonContainer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap:16px;
+}
+
+.AWButton{
+  width:227px;
+  height:53px;
+  border-radius: 8px;
+  background: var(--beige-100);
+  padding: 16px;
+  border:0px;
+  font-family:'Text Preset 4 Bold';
+  font-size: 14px;
+  color: var(--grey-900);
+}
+
+.Percentage{
+  color: var(--grey-500, #696868);
+  font-family: "Text Preset 5 Bold";
+  font-size: 12px;
+}
+
+.TargetOf{
+  color: var(--grey-500, #696868);
+  font-family: "Text Preset 5";
+  font-size: 12px;
+}
+
+.PotProgressBar {
+  height: 100%;
+  border-radius: 5px;
+  transition: width 0.3s ease-in-out;
+}
+
+/* 🟢 태블릿 (768px 이하) */
+@media (max-width: 768px) {
+  .PotsContainer {
+    grid-template-columns: 1fr;
+    padding: 15px;
   }
-  
-  /* Pot 카드 스타일 */
   .PotCard {
-    background: #f9f8f6;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: relative;
-    max-width: 340px;
+    max-width: 100%;
+    width:640px;
+    padding : 24px;
   }
-  
-  /* Pot 제목과 미트볼 메뉴 정렬 */
-  .PotHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
+  .AWButton{
+    width:100%;
   }
-  
-  /* 미트볼 메뉴 버튼 */
-  .MenuButton {
-    background: none;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /* 총 저장 금액 스타일 */
-  .PotCard h2 {
-    font-size: 24px;
-    color: #333;
-    margin: 5px 0;
-  }
-  
-  /* 목표 진행률 표시 */
-  .PotProgressContainer {
-    width: 100%;
-    height: 8px;
-    background: #e0e0e0;
-    border-radius: 5px;
-    overflow: hidden;
-    margin-bottom: 10px;
-  }
-  
-  .PotProgressBar {
-    height: 100%;
-    border-radius: 5px;
-    transition: width 0.3s ease-in-out;
-  }
-  
-  /* 버튼 스타일 */
-  .PotCard button {
-    width: 100%;
+}
+
+/* 🔴 모바일 (375px 이하) */
+@media (max-width: 375px) {
+  .PotsContainer {
     padding: 10px;
-    border: none;
-    border-radius: 8px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background 0.3s ease;
-    margin-top: 8px;
   }
-  
-  .PotCard button:first-child {
-    background: #4caf50;
-    color: white;
+  .PotCard {
+    max-width: 100%;
+    width:303px;
+    padding: 24px 20px;
   }
-  
-  .PotCard button:first-child:hover {
-    background: #45a049;
+  .PotHeader{
+    margin-bottom:32px;
   }
-  
-  .PotCard button:last-child {
-    background: #f44336;
-    color: white;
-  }
-  
-  .PotCard button:last-child:hover {
-    background: #d32f2f;
-  }
-  
+}
