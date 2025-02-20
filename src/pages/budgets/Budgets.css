@@ -8,6 +8,12 @@
   flex-direction: column;
 }
 
+.BudgetTitle{
+  color: var(--grey-900);
+  font-family: "Text Preset 1";
+  font-size : 32px;
+}
+
 .BudgetNameOne{
   color: var(--grey-900);
   font-family : 'Text Preset 2';
