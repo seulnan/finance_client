@@ -153,7 +153,8 @@ background: linear-gradient(0deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 2
   }
 
   h2 {
-    font-size: 1.25rem;
+    font-family:'Text Preset 2';
+    font-size : 20px;
   }
 
   p {
