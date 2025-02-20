@@ -23,10 +23,20 @@
     position: relative;
     overflow: hidden;
   }
+
+  .ProgressBarDivider {
+    position: absolute;
+    top: 0;
+    width: 4px; /* ✅ 선 두께 */
+    height: 100%;
+    background: var(--beige-100); /* ✅ 흰색 선 */
+    transform: translateX(-50%);
+  }  
   
   .ProgressBarFilled {
     height: 100%;
     background: var(--grey-900);
+    border-radius:0 4px 4px 0;
     position: absolute;
     top: 0;
     left: 0;
@@ -39,11 +49,13 @@
   }
   
   .ProgressBarChange.increase {
-    background: var(--green-300);
+    background: var(--green);
+    border-radius : 0 4px 4px 0;
   }
   
   .ProgressBarChange.decrease {
-    background: var(--red-400);
+    background: var(--red);
+    border-radius : 0 4px 4px 0;
   }
   
   

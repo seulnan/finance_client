@@ -8,3 +8,11 @@ input.PotNameInput {
   border-radius: 8px;
   color: var(--grey-900);
 }
+
+.CharCount{
+  margin-top:4px;
+  color: var(--grey-500, #696868);
+  font-family:'Text Preset 5';
+  font-size : 12px;
+  text-align:right;
+}

@@ -141,7 +141,13 @@ const PotModal = ({ type, pot, onClose, onSuccess }) => {
                   setFormData({ ...formData, name: e.target.value })
                 }
               />
-              <div className="CharCount">{MAX_LENGTH - formData.name.length} characters left</div>
+              <div className="CharCountContainer">
+                <div className="CharCount">
+                  {type === "edit"
+                    ? `${MAX_LENGTH - formData.name.length} of 30 characters left`
+                    : `${MAX_LENGTH - formData.name.length} characters left`}
+                </div>
+              </div>
             </div>
 
             {/* Target (목표 금액) 입력 - SearchField 적용 */}

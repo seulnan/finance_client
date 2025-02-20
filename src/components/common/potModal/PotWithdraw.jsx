@@ -13,6 +13,7 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
   const currentAmount = Number(pot?.currentAmount);
   const targetAmount = Number(pot?.target);
 
+  // 초기 퍼센트 설정
   useEffect(() => {
     if (targetAmount > 0) {
       const initialPercentage = ((currentAmount / targetAmount) * 100).toFixed(2);
@@ -22,6 +23,7 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
     }
   }, [currentAmount, targetAmount]);
 
+  // 금액 입력 시 새로운 퍼센트 계산
   useEffect(() => {
     const inputAmount = parseFloat(amount || 0);
     if (isNaN(inputAmount) || targetAmount === 0) return;
@@ -30,7 +32,7 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
       ? currentAmount + inputAmount
       : currentAmount - inputAmount;
 
-    const updatedPercentage = ((updatedAmount / targetAmount) * 100).toFixed(2);
+    const updatedPercentage = ((updatedAmount / targetAmount) * 100);
     setNewPercentage(updatedPercentage);
 
     console.log("📊 입력된 금액:", inputAmount);
@@ -38,6 +40,7 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
     console.log("📊 새로운 퍼센트:", updatedPercentage);
   }, [amount, currentAmount, targetAmount, type]);
 
+  // API 요청 처리
   const handleSubmit = async () => {
     if (!amount || isNaN(amount) || parseFloat(amount) <= 0) {
       alert("Please enter a valid amount.");
@@ -58,15 +61,12 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
 
       console.log("✅ 업데이트된 Pot:", response.data);
       alert("Pot updated successfully!");
+
+      setCurrentPercentage(newPercentage); // ✅ API 요청 후 Progress Bar 업데이트
       onSuccess();
     } catch (error) {
-      if (error.response) {
-        console.error("❌ 서버 오류:", error.response.data.message);
-        alert(`Error: ${error.response.data.message}`);
-      } else {
-        console.error("❌ 네트워크 오류: 서버에 연결할 수 없음.");
-        alert("Error: Could not connect to server.");
-      }
+      console.error("❌ 서버 오류:", error);
+      alert("Error: Could not update the pot.");
     }
   };
 
@@ -95,45 +95,79 @@ const PotWithdraw = ({ type, pot, onClose, onSuccess }) => {
 
         <div className="ProgressBarContainer">
           <div className="ProgressBarBackground">
-            {/* ✅ 기존 저장된 금액 표시 (회색) */}
             <div
               className="ProgressBarFilled"
               style={{
                 width: `${currentPercentage}%`,
-                background: "var(--grey-900)",
                 transition: "width 0.5s ease-in-out",
               }}
-            ></div>
+            />
 
-            {/* ✅ 증가한 금액 (초록색) */}
-            {newPercentage > currentPercentage && (
+            {/* ✅ 감소 또는 증가가 발생하면 구분선 추가 */}
+            {newPercentage !== currentPercentage && (
               <div
-                className="ProgressBarChange increase"
+                className="ProgressBarDivider"
                 style={{
-                  width: `${newPercentage - currentPercentage}%`,
-                  left: `${currentPercentage}%`,
-                  background: "var(--green-300)",
-                  transition: "width 0.5s ease-in-out, left 0.5s ease-in-out",
+                  left: `${newPercentage}%`,
                 }}
-              ></div>
+              />
             )}
 
-            {/* ✅ 감소한 금액 (빨간색) */}
-            {newPercentage < currentPercentage && (
-              <div
-                className="ProgressBarChange decrease"
-                style={{
-                  width: `${currentPercentage - newPercentage}%`,
-                  left: `${newPercentage}%`,
-                  background: "var(--red-400)",
-                  transition: "width 0.5s ease-in-out, left 0.5s ease-in-out",
-                }}
-              ></div>
+            {/* ✅ 입력 값이 존재할 때만 바를 추가 또는 제거 */}
+            {!isNaN(parseFloat(amount)) && (
+              <>
+                {/* ✅ 증가한 금액 (초록색) */}
+                {newPercentage > currentPercentage && (
+                  <>
+                    <div
+                      className="ProgressBarChange increase"
+                      style={{
+                        width: `${newPercentage - currentPercentage}%`,
+                        left: `${currentPercentage}%`,
+                        transition: "width 0.5s ease-in-out, left 0.5s ease-in-out",
+                      }}
+                    ></div>
+
+                    {/* ✅ 증가할 때 기존 바의 오른쪽에도 구분선 추가 */}
+                    <div
+                      className="ProgressBarDivider"
+                      style={{
+                        left: `${currentPercentage}%`, // ✅ 기존 바 끝에 구분선 표시
+                      }}
+                    />
+                  </>
+                )}
+
+                {/* ✅ 감소한 금액 (빨간색) */}
+                {newPercentage < currentPercentage && (
+                  <div
+                    className="ProgressBarChange decrease"
+                    style={{
+                      width: `${currentPercentage - newPercentage}%`,
+                      left: `${newPercentage}%`,
+                      background: "var(--red)",
+                      transition: "width 0.5s ease-in-out, left 0.5s ease-in-out",
+                    }}
+                  ></div>
+                )}
+              </>
             )}
           </div>
 
           <div className="ProgressBarText">
-            <span className="PercentageText">{newPercentage}%</span>
+            <span
+              className="PercentageText"
+              style={{
+                color:
+                  !isNaN(parseFloat(amount))
+                    ? type === "add"
+                      ? "var(--green)"
+                      : "var(--red)"
+                    : "var(--grey-500)", 
+              }}
+            >
+              {newPercentage.toFixed(2)}%
+            </span>
             <span className="TargetMoney">Target of ${targetAmount.toFixed(2)}</span>
           </div>
         </div>
