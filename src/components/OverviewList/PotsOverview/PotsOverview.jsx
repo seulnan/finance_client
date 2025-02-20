@@ -59,7 +59,7 @@ const PotOverview = () => {
         </div>
         <div className="PotOverviewList">
           <div className="PotOverviewScroll">
-            {pots.map((pot, index) => (
+            {pots.map((pot) => (
               <div key={pot._id} className="PotItem">
                 <span
                   className="PotColor"
