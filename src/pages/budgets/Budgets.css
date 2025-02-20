@@ -310,4 +310,7 @@
   .SpendingItem img {
     display: none;
   }
+  .Spent{
+    padding-right:70px;
+  }
 }
