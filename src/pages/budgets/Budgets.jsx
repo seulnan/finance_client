@@ -77,7 +77,7 @@ const Budgets = () => {
   return (
     <div className="BudgetContainer">
       <div className="BudgetHeaderOne">
-        <h1>Budgets</h1>
+        <h1 className = 'BudgetTitle'>Budgets</h1>
         <button className="AddBudgetButton" onClick={() => HandleModalOpen("add")}>
           + Add New Budget
         </button>
