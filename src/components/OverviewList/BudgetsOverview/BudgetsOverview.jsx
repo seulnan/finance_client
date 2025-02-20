@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import "./BudgetsOverview.css"; // 새로운 CSS 파일 import
+import nextIcon from "../../../assets/images/nextIcon.png";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -63,9 +64,9 @@ const BudgetsOverview = ({ budgetData, totalUsed, totalLimit }) => {
   return (
     <div className="BudgetOverviewContainer">
       <div className="BudgetHeader">
-        <h2>Budgets</h2>
-        <button className="textPreset4 SeeDetails" onClick={() => navigate("/budgets")}>
-          See Details →
+        <span className = 'Title'>Budgets</span>
+        <button className="textPreset4 SeeDetails" onClick={() => navigate("/budgets")}> 
+          See Details <img src={nextIcon} alt="Next" className="SeeDetailsIcon" />
         </button>
       </div>
       <div className="BudgetContent">
@@ -81,8 +82,8 @@ const BudgetsOverview = ({ budgetData, totalUsed, totalLimit }) => {
             <div key={budget._id} className="BudgetItem">
               <span className="BudgetColor" style={{ background: colormap[budget.color] || "var(--grey-300)" }}></span>
               <div className="BudgetInfo">
-                <span>{budget.name}</span>
-                <strong>${parseFloat(budget.used).toFixed(2)}</strong>
+                <span className='BudgetName'>{budget.name}</span>
+                <span className ='BudgetMoney'>${parseFloat(budget.used).toFixed(2)}</span>
               </div>
             </div>
           ))}

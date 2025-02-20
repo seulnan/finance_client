@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import BalanceOverview from "../../components/OverviewList/BalanceOverview/BalanceOverview.jsx";
 import BudgetsOverview from "../../components/OverviewList/BudgetsOverview/BudgetsOverview.jsx";
 import BillsOverview from "../../components/OverviewList/BillsOverview/BillsOverview.jsx";
+import PotsOverview from "../../components/OverviewList/PotsOverview/PotsOverview.jsx"; // ✅ 추가
 import "./Overview.css";
 
 const Overview = () => {
@@ -49,6 +50,7 @@ const Overview = () => {
         setTotalUpcoming={setTotalUpcoming} 
         setDueSoon={setDueSoon} 
       />
+      <PotsOverview /> {/* ✅ 추가된 PotsOverview */}
     </div>
   );
 };

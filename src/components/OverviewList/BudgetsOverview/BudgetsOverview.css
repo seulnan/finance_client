@@ -1,3 +1,6 @@
+@import '../../../styles/spacing.css';
+@import '../../../styles/colors.css';
+
 .BudgetOverviewContainer {
   width: 428px;
   height: 410px;
@@ -13,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .BudgetHeader h2 {
@@ -25,9 +28,9 @@
 .BudgetContent {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 16px;
   flex: 1;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .BudgetChart {
@@ -56,31 +59,42 @@
 }
 
 .BudgetUsed {
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--grey-900);
+  color: var(--grey-900, #201F24);
+  font-family: "Text Preset 1";
+  font-size: 32px;
+  margin-bottom : 8px;
 }
 
 .BudgetLimit {
+  color: var(--grey-500, #696868);  
+  font-family: "Text Preset 5";
   font-size: 12px;
-  color: var(--grey-500);
 }
 
 .BudgetList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
   max-height: 300px;
-  overflow-y: auto;
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
+  overflow-y: auto; /* 세로 스크롤 가능 */
+  overflow-x: auto; /* 가로 스크롤 가능 */
+  white-space: nowrap; /* 텍스트가 줄바꿈되지 않도록 설정 */
+  scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+  -ms-overflow-style: none; /* IE, Edge에서 스크롤바 숨기기 */
 }
+
+.BudgetList::-webkit-scrollbar {
+  display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+}
+
 
 .BudgetItem {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   min-width: 100px;
 }
 
@@ -94,13 +108,15 @@
   display: flex;
   flex-direction: column;
 }
-
-.BudgetInfo p {
-  font-size: 14px;
-  color: var(--grey-900);
+.BudgetName{
+  color: var(--grey-500, #696868);
+  font-family: "Text Preset 5";
+  font-size: 12px;
+  margin-bottom : 10px;
 }
 
-.BudgetInfo strong {
-  font-size: 16px;
-  color: var(--grey-900);
+.BudgetMoney{
+  color: var(--grey-900, #201F24);  
+  font-family: "Text Preset 4 Bold";
+  font-size: 14px;
 }
