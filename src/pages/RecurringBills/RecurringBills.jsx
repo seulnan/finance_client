@@ -113,8 +113,10 @@ function RecurringBills() {
         <div className="summaryBox">
           <div className="totalBills">
             <img src={totalBillsIcon} alt="Total Bills" />
-            <p id="totalTitle" className="textPreset4">Total Bills</p>
-            <h1 id="totalBills" className="textPreset1">${totalAmount}</h1>
+            <div className="totalBillsContent">
+              <p id="totalTitle" className="textPreset4">Total Bills</p>
+              <h1 id="totalBills" className="textPreset1">${totalAmount}</h1>
+            </div>
           </div>
           <div className="summaryDetails">
             <p id="SummaryTitle" className="textPreset3">Summary</p>
