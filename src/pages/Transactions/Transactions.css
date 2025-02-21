@@ -3,6 +3,7 @@
 
 .Transactions {
   margin: var(--spacing-400) var(--spacing-500);
+  padding: 0 0 90px;
 }
 
 #TransactionTitle {
@@ -184,6 +185,7 @@
 @media (max-width: 675px) {
   .Transactions {
     margin: var(--spacing-300) var(--spacing-200);
+    padding: 0 0 104px;
   }
 
   .mainBox {
