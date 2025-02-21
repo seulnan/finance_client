@@ -105,4 +105,16 @@
   .pageNumbers .dots {
     display: inline-block;
   }
+
+  .prevButton,
+  .nextButton {
+    width: var(--spacing-500); /* 버튼 크기를 아이콘 크기에 맞춤 */
+    padding: 0; /* 내부 여백 제거 */
+    justify-content: center;
+  }
+
+  .prevButton::after,
+  .nextButton::before {
+    content: none; /* 텍스트 제거 */
+  }
 }

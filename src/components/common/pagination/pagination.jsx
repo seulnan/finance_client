@@ -56,7 +56,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         className={`paginationButton prevButton ${page === 1 ? "disabled" : ""}`}
       >
         <img src={prevIcon} alt="Prev" className="paginationIcon" />
-        Prev
+        {!isMobile && "Prev"} {/* ✅ 모바일에서는 텍스트 숨김 */}
       </button>
 
       {/* 페이지 번호 버튼 */}
@@ -83,7 +83,7 @@ const Pagination = ({ page, totalPages, onPageChange }) => {
         onClick={() => onPageChange(page + 1)}
         className={`paginationButton nextButton ${page === totalPages ? "disabled" : ""}`}
       >
-        Next
+        {!isMobile && "Next"} {/* ✅ 모바일에서는 텍스트 숨김 */}
         <img src={nextIcon} alt="Next" className="paginationIcon" />
       </button>
     </div>
