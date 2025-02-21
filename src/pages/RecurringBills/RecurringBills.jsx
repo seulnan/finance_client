@@ -131,7 +131,7 @@ function RecurringBills() {
         </div>
         <div className="recurringBillsMain">
           <div className="searchFilters">
-            <SearchField placeholder="Search bills" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+            <SearchField type="icon-right" placeholder="Search bills" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
             
             {/* 기본 화면에서는 기존 Sort By 드롭다운 표시 */}
             <div className="BillsDesktopSort">
