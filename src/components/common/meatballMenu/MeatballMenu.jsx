@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./MeatballMenu.css";
-import meatballIcon from "../../../assets/images/meatBallMenu.svg"; // Updated to use the SVG file
+import meatballIcon from "../../../assets/images/meatBallMenu.svg"; 
 
-const MeatballMenu = ({ onEdit, onDelete }) => {
+const MeatballMenu = ({ onEdit, onDelete, source }) => {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
 
@@ -23,6 +23,10 @@ const MeatballMenu = ({ onEdit, onDelete }) => {
     };
   }, []);
 
+  // ✅ source 값에 따라 버튼 텍스트 결정
+  const editText = source === "Pots" ? "Edit Pot" : "Edit Budget";
+  const deleteText = source === "Pots" ? "Delete Pot" : "Delete Budget";
+
   return (
     <div className="MeatballMenu" ref={menuRef}>
       <button className="MenuButton" onClick={toggleMenu}>
@@ -30,9 +34,9 @@ const MeatballMenu = ({ onEdit, onDelete }) => {
       </button>
       {isOpen && (
         <div className="MenuDropdown">
-          <button onClick={onEdit} className="EditButton">Edit Budget</button>
+          <button onClick={onEdit} className="EditButton">{editText}</button>
           <hr />
-          <button onClick={onDelete} className="DeleteButton">Delete Budget</button>
+          <button onClick={onDelete} className="DeleteButton">{deleteText}</button>
         </div>
       )}
     </div>
