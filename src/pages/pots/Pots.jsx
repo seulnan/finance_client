@@ -89,11 +89,12 @@ const Pots = () => {
                 <MeatballMenu
                   onEdit={() => handleOpenModal("edit", pot)}
                   onDelete={() => handleOpenModal("delete", pot)}
+                  source="Pots" // ✅ 추가: Pots에서 사용할 때 source 전달
                 />
               </div>
               <div className='Total'>
-              <span className="TotalSaved">Total Saved</span>
-              <span className="Money">${pot.currentAmount}</span>
+                <span className="TotalSaved">Total Saved</span>
+                <span className="Money">${pot.currentAmount}</span>
               </div>
               <div className="PotProgressContainer">
                 <div
@@ -104,14 +105,14 @@ const Pots = () => {
                   }}
                 />
               </div>
-              <div className = 'Target'>
-                <span className = 'Percentage'>{progress}%</span>
-                <span className = 'TargetOf'>Target of ${pot.target}</span> 
+              <div className='Target'>
+                <span className='Percentage'>{progress}%</span>
+                <span className='TargetOf'>Target of ${pot.target}</span> 
               </div>
               
               <div className='AWButtonContainer'>
-                <button className = 'AWButton' onClick={() => handleOpenModal("add-money", pot)}>+ Add Money</button>
-                <button className = 'AWButton' onClick={() => handleOpenModal("withdraw", pot)}>Withdraw</button>
+                <button className='AWButton' onClick={() => handleOpenModal("add-money", pot)}>+ Add Money</button>
+                <button className='AWButton' onClick={() => handleOpenModal("withdraw", pot)}>Withdraw</button>
               </div>
             </div>
           );
