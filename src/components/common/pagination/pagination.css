@@ -34,16 +34,18 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: var(--spacing-500); 
+  width: var(--spacing-500);
   height: var(--spacing-500);
   border-radius: var(--spacing-100); 
   background-color: var(--white); 
   color: var(--grey-900);
-  font-family: 'Text Preset 4', sans-serif;
-  border: 1px solid var(--grey-300);
-  cursor: default; 
-  user-select: none; 
+  letter-spacing: 1px;
+  border: 1px solid var(--grey-300); 
+  cursor: default;
+  user-select: none;
+  pointer-events: none;
 }
+
 
 /* Prev, Next 버튼 스타일 */
 .prevButton,
