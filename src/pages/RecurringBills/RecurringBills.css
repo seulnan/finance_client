@@ -3,6 +3,7 @@
 
 .RecurringBills {
   margin: var(--spacing-400) var(--spacing-500);
+  padding: 0 0 104px;
 }
 
 .title {
@@ -221,6 +222,10 @@
 }
 
 @media (max-width: 768px) {
+  .RecurringBills {
+    padding: 0 0 104px;
+  }
+
   .TotalSummaryBox {
     flex-direction: column;
     flex-wrap: nowrap;
@@ -250,7 +255,7 @@
 
 @media (max-width: 375px) {
   .RecurringBills {
-    margin: var(--spacing-300) var(--spacing-200);  
+    margin: var(--spacing-300) var(--spacing-200);
   }
 
   .summaryBox {
