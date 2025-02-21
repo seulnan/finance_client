@@ -92,7 +92,7 @@
 /* 오른쪽 아이콘 */
 .IconRight {
   position: absolute;
-  right: 10px; /* 오른쪽 10px */
+  right: 4px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 20px;
