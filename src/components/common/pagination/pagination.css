@@ -13,63 +13,94 @@
   gap: var(--spacing-100);
 }
   
-  .paginationButton,
-  .pageButton {
-    width: var(--spacing-500);
-    height: var(--spacing-500);
-    border: 1px solid var(--grey-300);
-    border-radius: var(--spacing-100);
-    font-family: 'Text Preset 4', sans-serif;
-    font-size: 14px;
-    text-align: center;
-    background-color: var(--white);
-    color: var(--grey-900);
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
-  }
+.paginationButton,
+.pageButton {
+  width: var(--spacing-500);
+  height: var(--spacing-500);
+  border: 1px solid var(--grey-300);
+  border-radius: var(--spacing-100);
+  font-family: 'Text Preset 4', sans-serif;
+  font-size: 14px;
+  text-align: center;
+  background-color: var(--white);
+  color: var(--grey-900);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+.pageNumbers .dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: var(--spacing-500); 
+  height: var(--spacing-500);
+  border-radius: var(--spacing-100); 
+  background-color: var(--white); 
+  color: var(--grey-900);
+  font-family: 'Text Preset 4', sans-serif;
+  border: 1px solid var(--grey-300);
+  cursor: default; 
+  user-select: none; 
+}
+
+/* Prev, Next 버튼 스타일 */
+.prevButton,
+.nextButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  padding: 0 var(--spacing-200);
+  gap: var(--spacing-100);
+  height: var(--spacing-500);
+  border: 1px solid var(--grey-300);
+  border-radius: var(--spacing-100);
+  font-family: 'Text Preset 4', sans-serif;
+  font-size: 14px;
+  background-color: var(--white);
+  color: var(--grey-900);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+/* Hover 효과 */
+.prevButton:hover:not(.disabled),
+.nextButton:hover:not(.disabled),
+.pageButton:hover:not(.currentPage) {
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
   
-  /* Prev, Next 버튼 스타일 */
-  .prevButton,
-  .nextButton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: auto;
-    padding: 0 var(--spacing-200);
-    gap: var(--spacing-100);
-    height: var(--spacing-500);
-    border: 1px solid var(--grey-300);
-    border-radius: var(--spacing-100);
-    font-family: 'Text Preset 4', sans-serif;
-    font-size: 14px;
-    background-color: var(--white);
-    color: var(--grey-900);
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-  }
+/* 비활성화된 Prev, Next 버튼 스타일 */
+.prevButton.disabled,
+.nextButton.disabled {
+  background-color: var(--grey-100);
+  color: #aaa;
+  cursor: default;
+  border: 1px solid #ddd;
+}
   
-  /* Hover 효과 */
-  .prevButton:hover:not(.disabled),
-  .nextButton:hover:not(.disabled),
-  .pageButton:hover:not(.currentPage) {
-    background-color: #f9f9f9;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
+/* 현재 페이지 버튼 스타일 */
+.pageButton.currentPage {
+  background-color: var(--grey-900);
+  color: var(--white);
+  font-weight: bold;
+  cursor: default;
+}
   
-  /* 비활성화된 Prev, Next 버튼 스타일 */
-  .prevButton.disabled,
-  .nextButton.disabled {
-    background-color: var(--grey-100);
-    color: #aaa;
-    cursor: default;
-    border: 1px solid #ddd;
+@media (max-width: 675px) {
+  .pageNumbers button {
+    display: none;
   }
-  
-  /* 현재 페이지 버튼 스타일 */
-  .pageButton.currentPage {
-    background-color: var(--grey-900);
-    color: var(--white);
-    font-weight: bold;
-    cursor: default;
+
+  /* ✅ 항상 표시해야 하는 요소들 */
+  .pageNumbers .pageButton:first-child,
+  .pageNumbers .pageButton:nth-child(2),
+  .pageNumbers .currentPage,
+  .pageNumbers .pageButton:last-child,
+  .pageNumbers .dots {
+    display: inline-block;
   }
-  
+}
