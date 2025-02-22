@@ -94,6 +94,12 @@
   color: var(--grey-900);
 }
 
+.AWButton:hover{
+  border-radius: var(--spacing-100, 8px);
+  border: 1px solid var(--beige-500, #98908B);
+  background: var(--white, #FFF);
+}
+
 .Percentage{
   color: var(--grey-500, #696868);
   font-family: "Text Preset 5 Bold";
