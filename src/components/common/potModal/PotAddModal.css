@@ -1,0 +1,18 @@
+/* Pot Name 입력 필드 스타일 추가 */
+input.PotNameInput {
+  width: 92%;
+  padding: var(--spacing-150, 12px) 20px;
+  font-family: 'Text Preset 4';
+  font-size: 14px;
+  border: 1px solid var(--beige-500);
+  border-radius: 8px;
+  color: var(--grey-900);
+}
+
+.CharCount{
+  margin-top:4px;
+  color: var(--grey-500, #696868);
+  font-family:'Text Preset 5';
+  font-size : 12px;
+  text-align:right;
+}
