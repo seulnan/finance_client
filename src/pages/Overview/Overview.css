@@ -7,7 +7,6 @@
   align-items: start;
   justify-content: flex-start;
   margin: var(--spacing-400) var(--spacing-500);
-  box-sizing: border-box;
 }
 
 .OverviewHeader {
