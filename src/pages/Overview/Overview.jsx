@@ -42,7 +42,7 @@ const Overview = () => {
   return (
     <div className="OverviewPage">
       <div className="OverviewHeader">
-        <h1>Overview</h1>
+        <h1 className="OverviewTitle textPreset1">Overview</h1>
       </div>
       <BalanceOverview />
       <div className="OverviewList">
