@@ -26,7 +26,8 @@
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--grey-500)
+  color: var(--grey-500);
+  padding: 0;
 }
 
 .SeeDetails:hover {
