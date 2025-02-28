@@ -1,8 +1,10 @@
+@import '../../styles/spacing.css';
+
 .OverviewPage {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center;
+  align-items: start;
   justify-content: flex-start;
   padding: 32px;
   width: 100%;
@@ -32,4 +34,14 @@
 
 .SeeDetails:hover {
   text-decoration: underline;
+}
+
+.OverviewList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+  flex-wrap: wrap;
+  width: 100%;
+  max-width: 1060px;
+  max-height: 761px;
 }

@@ -45,14 +45,16 @@ const Overview = () => {
         <h1>Overview</h1>
       </div>
       <BalanceOverview />
-      <BudgetsOverview budgetData={budgetData} totalUsed={totalUsed} totalLimit={totalLimit} />
-      <BillsOverview 
-        setPaidBills={setPaidBills} 
-        setTotalUpcoming={setTotalUpcoming} 
-        setDueSoon={setDueSoon} 
-      />
-      <PotsOverview /> {/* ✅ 추가된 PotsOverview */}
-      <TransOverview />
+      <div className="OverviewList">
+        <PotsOverview />
+        <TransOverview />
+        <BudgetsOverview budgetData={budgetData} totalUsed={totalUsed} totalLimit={totalLimit} />
+        <BillsOverview 
+          setPaidBills={setPaidBills} 
+          setTotalUpcoming={setTotalUpcoming} 
+          setDueSoon={setDueSoon} 
+        />
+      </div>
     </div>
   );
 };
