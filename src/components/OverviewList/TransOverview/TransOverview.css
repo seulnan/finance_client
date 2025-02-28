@@ -1,0 +1,71 @@
+@import '../../../styles/colors.css';
+@import '../../../styles/spacing.css';
+
+.TransOverviewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+  background: var(--white);
+  border-radius: var(--spacing-150);
+  padding: var(--spacing-400);
+  width: 100%;
+  max-width: 544px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.TransOverviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TransOverviewList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-250);
+}
+
+.TransOverviewItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-250) 0 0;
+  border-top: 1px solid var(--grey-100);
+}
+
+.TransOverviewItem:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.TransOverviewPersonInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-200);
+}
+
+.TransOverviewIcon {
+  width: var(--spacing-500);
+  height: var(--spacing-500);
+  border-radius: 50%;
+}
+
+.TransOverviewDetails {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.TransOverviewDate {
+  color: var(--grey-500);
+  font-size: 12px;
+}
+
+.TransAmount {
+  text-align: right;
+}
+
+.positive {
+  color: var(--green);
+}
+
