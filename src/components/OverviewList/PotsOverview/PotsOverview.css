@@ -2,7 +2,8 @@
 @import '../../../styles/colors.css';
 
 .PotOverviewContainer {
-    width: 544px;
+    max-width: 544px;
+    width:100%;
     background: var(--white);
     border-radius: 12px;
     padding: 32px;
@@ -125,3 +126,36 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+@media (max-width: 768px) {
+    .PotOverviewContainer {
+        max-width: 628px;
+        background: var(--white);
+        border-radius: 12px;
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+  }
+
+  @media (max-width: 375px) {
+    .PotOverviewContainer {
+        max-width: 303px;
+        background: var(--white);
+        border-radius: 12px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .PotOverviewContent{
+        flex-direction: column;
+    }
+
+    .PotOverviewScroll{
+        margin-top : 20px;
+    }
+  }

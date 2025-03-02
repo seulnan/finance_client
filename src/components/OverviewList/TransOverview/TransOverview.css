@@ -69,3 +69,22 @@
   color: var(--green);
 }
 
+@media (max-width: 768px) {
+  .TransOverviewContainer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-400);
+    background: var(--white);
+    border-radius: var(--spacing-150);
+    padding: var(--spacing-400);
+    max-width: 624px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@media (max-width: 375px){
+  .TransOverviewContainer {
+    max-width: 303px;
+    padding: 24px;
+  }
+}

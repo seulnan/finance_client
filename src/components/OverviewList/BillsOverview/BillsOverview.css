@@ -62,3 +62,22 @@
 #BillsOverviewDueSoon {
   border-left: 4px solid var(--cyan);
 }
+
+@media (max-width: 768px) {
+  .BillsOverviewContainer {
+    max-width: 624px;
+    padding: var(--spacing-400);
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-400);
+    border-radius: var(--spacing-150);
+  }
+}
+
+@media (max-width: 375px){
+  .BillsOverviewContainer {
+    max-width: 303px;
+    padding: 24px;
+  }
+}

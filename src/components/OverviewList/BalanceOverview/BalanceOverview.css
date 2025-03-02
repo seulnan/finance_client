@@ -43,3 +43,26 @@
   margin: 0;
   color: var(--grey-900);
 }
+
+@media (max-width: 375px) {
+  .BalanceOverviewContainer {
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-300);
+    justify-content: start;
+  }
+
+  .BalanceOverview {
+    width: 100%;
+    height: auto;
+    max-width: 303px;
+    padding: var(--spacing-300);
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--spacing-150);
+    background-color: var(--white);
+    gap: var(--spacing-150);
+  }
+}
