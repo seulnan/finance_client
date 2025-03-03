@@ -7,6 +7,7 @@
   align-items: start;
   justify-content: flex-start;
   margin: var(--spacing-400) var(--spacing-500);
+  padding : 0 0 90px;
 }
 
 .OverviewHeader {
@@ -51,6 +52,7 @@
     align-items: center;
     width: 100%;
     max-width: 100%;
+    max-height: none;
   }
 }
 
