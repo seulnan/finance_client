@@ -4,6 +4,8 @@ import SearchField from "../../components/common/searchField/SearchField.jsx";
 import Dropdown from "../../components/common/dropdown/dropdown.jsx";
 import "../../styles/fonts.css";
 import "./Transactions.css";
+import filteringIcon from "../../assets/images/filteringIcon.svg";
+import sortingIcon from "../../assets/images/sortingIcon.svg";
 import Pagination from "../../components/common/pagination/pagination.jsx";
 
 function Transactions() {
@@ -11,6 +13,8 @@ function Transactions() {
   const [filteredTransactions, setFilteredTransactions] = useState([]);
   const [sortOption, setSortOption] = useState("Latest"); // 기본값 최신순
   const [categoryFilter, setCategoryFilter] = useState("All"); // 기본값 All
+  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
+  const [isFilterDropdownOpen, setIsFilterDropdownOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -64,8 +68,9 @@ function Transactions() {
   const fetchTransactions = async () => {
     setLoading(true);
     setError(null);
+  
     try {
-      let url = `/api/transaction?page=${page}&limit=${limit}`; // ✅ 한 번에 10개씩 요청
+      let url = `/api/transaction?page=${page}&limit=${limit}`;
   
       if (sortOption !== "Latest") {
         url += `&sortOption=${sortOption}`;
@@ -73,19 +78,22 @@ function Transactions() {
       if (categoryFilter !== "All") {
         url += `&category=${encodeURIComponent(categoryFilter)}`;
       }
+      if (searchQuery.trim() !== "") {
+        url += `&search=${encodeURIComponent(searchQuery.trim())}`;
+      }
   
       const response = await baseAxios.get(url);
       const data = response.data;
   
       setTransactions(data.transactions || []);
-      setTotalPages(data.totalPages || 1); // ✅ API에서 받은 totalPages를 그대로 사용
+      setTotalPages(data.totalPages || 1);
 
     } catch (error) {
       setError("Failed to fetch transactions. Please try again.");
     } finally {
       setLoading(false);
     }
-  };  
+  };    
 
   useEffect(() => {
     let filtered = [...transactions];
@@ -146,8 +154,12 @@ function Transactions() {
   };
 
   useEffect(() => {
-    fetchTransactions();
-  }, [page, sortOption, categoryFilter]); // ✅ 페이지 변경 시 API 다시 호출
+    const debounceTimer = setTimeout(() => {
+      fetchTransactions();
+    }, 500); // 500ms 디바운싱 적용
+  
+    return () => clearTimeout(debounceTimer);
+  }, [page, sortOption, categoryFilter, searchQuery]);  
 
   useEffect(() => {
   }, [transactions]);
@@ -156,7 +168,7 @@ function Transactions() {
     <div className="Transactions">
       <h2 id="TransactionTitle" className="textPreset4Bold">Transactions</h2>
 
-      <div className="mainBox">
+      <div className="TransactionMainBox">
         {error && <div className="errorMessage textPreset5">{error}</div>}
 
         {loading ? (
@@ -166,23 +178,82 @@ function Transactions() {
           </div>
         ) : (
           <div>
-            <div className="searchFilters">
-              <SearchField type="icon-right" placeholder="Search transaction" value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
+            <div className="TrancsSearchFilters">
+              <SearchField 
+                type="icon-right" 
+                placeholder="Search Transactions" 
+                value={searchQuery} 
+                onChange={(e) => setSearchQuery(e.target.value)} 
+              />
               <div className="filters">
-                <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
-                <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
+                {/* 기본 화면에서는 기존 드롭다운 표시 */}
+                <div className="DesktopFilters">
+                  <Dropdown label="Sort By" options={sortOptions} value={sortOption} onChange={setSortOption} />
+                  <Dropdown label="Category" options={categories.map((cat) => ({ value: cat, label: cat }))} value={categoryFilter} onChange={setCategoryFilter} />
+                </div>
+
+                {/* 모바일 화면에서는 아이콘만 표시 */}
+                <div className="MobileFilters">
+                  <div className="TransDropdownContainer">
+                    <img 
+                      src={sortingIcon} 
+                      alt="Sort"
+                      className="filteringIcon"
+                      onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
+                    />
+                    {isSortDropdownOpen && (
+                      <div className="TransDropdownMenu">
+                        {sortOptions.map((option) => (
+                          <div 
+                            key={option.value} 
+                            className={`TransDropdownItem ${sortOption === option.value ? "selected" : ""}`}
+                            onClick={() => {
+                              setSortOption(option.value);
+                              setIsSortDropdownOpen(false);
+                            }}
+                          >
+                            {option.label}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="TransDropdownContainer">
+                    <img 
+                      src={filteringIcon} 
+                      alt="Filter"
+                      className="filteringIcon"
+                      onClick={() => setIsFilterDropdownOpen(!isFilterDropdownOpen)}
+                    />
+                    {isFilterDropdownOpen && (
+                      <div className="TransDropdownMenu">
+                        {categories.map((category) => (
+                          <div 
+                            key={category} 
+                            className={`TransDropdownItem ${categoryFilter === category ? "selected" : ""}`}
+                            onClick={() => {
+                              setCategoryFilter(category);
+                              setIsFilterDropdownOpen(false);
+                            }}
+                          >
+                            {category}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* ✅ 테이블 헤더 */}
             <div className="transactionHeader">
-              <div className="headerItem textPreset5">Recipient / Sender</div>
+              <div className="headerItem textPreset5" id="NameTitle">Recipient / Sender</div>
               <div className="headerItem textPreset5" id="CategoryTitle">Category</div>
               <div className="headerItem textPreset5" id="DateTitle">Transaction Date</div>
               <div className="headerItem textPreset5" id="AmountTitle">Amount</div>
             </div>
 
-            {/* ✅ 트랜잭션 리스트 */}
             <div className="transactionList">
               {filteredTransactions.length > 0 ? (
                 filteredTransactions.map((transaction) => (
@@ -197,7 +268,7 @@ function Transactions() {
                     <div className="transactionRow">
                       <div className="rowItem personName textPreset4Bold">{transaction.name}</div>
                       <div className="rowItem CategoryDateInfo textPreset5">{transaction.category}</div>
-                      <div className="rowItem CategoryDateInfo textPreset5">{formatDate(transaction.date)}</div>
+                      <div className="rowItem CategoryDateInfo textPreset5" id="DateInfo">{formatDate(transaction.date)}</div>
                       <div className="rowItem amountInfo textPreset4Bold">{formatAmount(transaction.amount)}</div>
                     </div>
                   </div>
@@ -209,7 +280,7 @@ function Transactions() {
           </div>
         )}
 
-        {/* ✅ 페이지네이션 */}
+        {/* 페이지네이션 */}
         <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
     </div>
