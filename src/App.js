@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div style={{ display: 'flex' }}>
         <Sidebar />
-        <div style={{ flexGrow: 1, height: '100vh', backgroundColor: '#F8F4F0' }}>
+        <div style={{ flexGrow: 1, height: 'auto', backgroundColor: '#F8F4F0' }}>
           <Routes>
             <Route path="/" element={<Overview />} />
             <Route path="/transactions" element={<Transactions />} />
