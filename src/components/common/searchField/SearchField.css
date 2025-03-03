@@ -67,7 +67,7 @@
   font-size: 16px;
   font-family: 'Text Preset 2', sans-serif;
   box-sizing: border-box;
-  padding-left: var(--spacing-200);
+  padding-left: var(--spacing-400);
 }
 
 .InputField::placeholder {
@@ -81,20 +81,20 @@
 
 /* 왼쪽 아이콘 */
 .IconLeft {
-  font-family: 'Text Preset 2', sans-serif;
+  font-family: 'Text Preset 4';
   position: absolute;
-  left: 10px; /* 왼쪽 10px */
-  top: 50%;
+  left: 20px; 
+  top: 45%;
   transform: translateY(-50%);
-  font-size: 20px;
-  color: var(--grey-500, #696868);
+  font-size: 14px;
+  color: var(--beige-500, #696868);
   pointer-events: none; /* 아이콘 클릭 방지 */
 }
 
 /* 오른쪽 아이콘 */
 .IconRight {
   position: absolute;
-  right: var(--spacing-250);
+  right: 4px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 20px;

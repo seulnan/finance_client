@@ -87,6 +87,7 @@ function Transactions() {
   
       setTransactions(data.transactions || []);
       setTotalPages(data.totalPages || 1);
+
     } catch (error) {
       setError("Failed to fetch transactions. Please try again.");
     } finally {
